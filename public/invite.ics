@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VEVENT
+DTSTART;TZID=America/Sao_Paulo:20170119T090000
+DTEND;TZID=America/Sao_Paulo:20170119T100000
+DTSTAMP;TZID=America/Sao_Paulo:20170120T013653
+UID:20170119T233653-1789429727@inovativabrasil.com.br
+ORGANIZER;CN=InovAtiva Brasil:inovativa@inovativabrasil.com.br
+CREATED:20170120T013653
+DESCRIPTION:Olá Mentor Teste AAA, muito prazer em conhecer! Meu nome é David Administrador, gostaria de informar que nossa reunião de boas-vindas foi agendada com sucesso. Estou enviando junto à este e-mail um convite que pode ser adicionado ao seu calendário para ajudá-lo(a) a se lembrar da nossa reunião. Irei contactá-lo(a) utilizando um dos contatos indicados, na data e horário a seguir.Detalhes da Reunião de Boas-vindas:19 de Janeiro de 2017 às 09:00:00Mentor(a): Mentor Teste AAAEmail: d.avidoracle@gmail.comTel. fixo: (11) 1111-1111Tel. celular: (22) 22222-2222Atenciosamente,David Administradordavid@dtsc-it.com
+LAST-MODIFIED:20170120T013653
+LOCATION:Telefone ou vídeo conferência
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Reunião de Boas-vindas
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,125 @@
+.ui-helper-hidden-accessible { position: absolute; left: -9999px; }
+
+.profile-info-double { width: 30% !important;}
+
+.btn-blue {
+ 	background-color: #307ecc !important;
+    color: #fff !important;
+    border-color: #307ecc !important;
+}
+.btn-blue:focus, .btn-blue:hover {
+    background-color: #3b98d6 !important;
+    border-color: #3b98d6 !important;
+}
+
+.btn-green {
+ 	background-color: #69aa46 !important;
+    color: #fff !important;
+    border-color: #69aa46 !important;
+}
+.btn-green:focus, .btn-green:hover {
+    background-color: #69aa46 !important;
+    border-color: #cce2c1 !important;
+}
+.btn-red {
+ 	background-color: #dd5a43 !important;
+    color: #fff !important;
+    border-color: #dd5a43 !important;
+}
+.btn-red:focus, .btn-red:hover {
+    background-color: #dd5a43 !important;
+    border-color: #f3cdc6 !important;
+}
+
+.btn-ajuda {
+	height: 34px !important;
+}
+
+.nav-tabs > li.active > a { cursor: pointer !important; }
+
+.campo-aba > .select2-container { 
+	padding-left: 0px !important; 
+	padding-right: 0px !important; 
+}
+
+.box-entregavel-ajuda { 
+	margin-left: 0 !important;
+}
+
+.box-entregavel-ajuda .popover-success { 
+	margin-left: -8px !important;
+}
+
+.box-entregavel-ajuda .entregavel-ajuda .col-sm-5 { 
+	padding-left: 0px;
+}
+
+.box-entregavel-ajuda .entregavel-ajuda > .col-sm-12 { 
+	padding-left: 0px;
+	padding-bottom: 5px;
+}
+.box-status-convidar {
+    border-radius: 5px;
+    background: #438EB9;
+    border: 1px solid #000;
+    padding: 1px;
+    text-align: center;
+    color: white;
+}
+.box-status-convidado {
+    border-radius: 5px;
+    background: #FDCA2E;
+    border: 1px solid #000;
+    padding: 1px;
+    text-align: center;
+    color: black;
+}
+.box-status-confirmado {
+    border-radius: 5px;
+    background: #A2C749;
+    border: 1px solid #000;
+    padding: 1px;
+    text-align: center;
+    color: black;
+}
+.box-status-declinado {
+    border-radius: 5px;
+    background: #FF0000;
+    border: 1px solid #000;
+    padding: 1px;
+    text-align: center;
+    color: white;
+}
+.btn-group-lg>.btn {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 6px
+}
+.btn-sm,
+.btn-group-sm>.btn {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px
+}
+.btn-xs,
+.btn-group-xs>.btn {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px
+}
+.btn-block {
+    display: block;
+    width: 100%
+}
+.btn-block+.btn-block {
+    margin-top: 5px
+}
+.img-perfil-rounded {
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    overflow:hidden;
+}

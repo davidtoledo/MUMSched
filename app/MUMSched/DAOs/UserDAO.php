@@ -1,0 +1,97 @@
+<?php
+
+namespace MUMSched\DAOs;
+use Illuminate\Support\Facades\DB;
+
+/**
+ * Data Access Object for System User
+ *
+ * @author Fantastic Five
+ */
+class UserDAO {
+
+	/**
+	 * Checks and returns an user by login
+	 * 
+	 * @author Fantastic Five
+	 * 
+	 */
+	public static function getUserByLogin($login, $passwd) {
+		
+		$user = \SystemUser::where("username", $login)
+		  				   ->where("password", $passwd)
+						   ->first();
+
+		return $user;
+	}
+
+	/**
+	 * Returns a list of users
+	 * 
+	 * @author Fantastic Five
+	 */
+	public static function getUserList() {
+		$users = \SystemUser::all();
+		return $users;
+	}
+
+	/**
+	 * Return a User by ID
+	 * 
+	 * @author Fantastic Five
+	 */
+	public static function getUserByID($id) {
+		$user = \SystemUser::find($id);
+		return $user;
+	}
+
+	/**
+	 * Return a User by Username
+	 * 
+	 * @author Fantastic Five
+	 */
+	public static function getUserByUsername($username) {
+		$user = \SystemUser::where("username", $username)->first();
+		return $user;
+	}
+	
+	public static function saveUser($user) {
+		return $user->save();
+	}
+	
+	/**
+	 * Delete User
+	 * 
+	 * @author Fantatisc Five
+	 */
+	public static function deleteUser($id) {
+		
+		// Avoid delete Admin Master
+		if ($id == 1) {
+			return new \Exception("You cannot remove the Admin Master.");
+		}
+		
+		$queries = [
+			'DELETE FROM system_user                WHERE  id_user = ?',
+		];
+		
+		try	{
+			
+			foreach ($queries as $query) {
+				DB::delete($query, [
+					$id
+				]);
+			}
+			
+			DB::commit();
+			return TRUE;
+		}
+		catch (\Exception $e)
+		{
+			DB::rollback();
+			return $e;
+		}
+		
+	}
+	
+}

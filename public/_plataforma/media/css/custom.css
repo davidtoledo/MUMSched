@@ -1,0 +1,57 @@
+
+.well h1, .well h2, .well h3, .well h4, .well h5, .well h6 {
+    margin-top: 0;
+    text-transform: uppercase;
+}
+
+.blue {
+    color: #478fca !important;
+}
+
+
+.well-lg {
+    border-radius: 6px;
+    padding: 24px;
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    font-weight: 400;    
+}
+.well {
+    background-color: #ebebeb;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    margin-bottom: 20px;
+    min-height: 20px;
+    padding: 19px;
+	color: #393939 !important;
+	font-family: "Open Sans";
+	line-height: 1.5;
+	border-radius: 0; 
+}
+
+.well > a {
+	color: #31a4ce !important;
+}
+
+.ui-datepicker .ui-datepicker-prev:before, .ui-datepicker .ui-datepicker-next:before {
+    color: #393939;
+    content: "\f060";
+    display: inline;
+    font-family: FontAwesome;
+    font-size: 14px;
+}
+
+.ui-datepicker .ui-datepicker-next:before {
+    content: "\f061";
+}
+
+main[data-page=entregavel] .ui-widget-content { 
+    background: none !important; 
+}
+
+.ui-tooltip{font-size: 1.7em !important}
+
+.ui-datepicker {
+    font-size: 1.5em !important
+}
