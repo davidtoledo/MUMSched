@@ -1,2 +1,2 @@
 # MUMSched
-MUMSched Project
+MUMSched Project v1.0
