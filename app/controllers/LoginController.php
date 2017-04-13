@@ -20,15 +20,6 @@ class LoginController extends BaseController {
 		// Redirects to the login page
 		return View::make('login');
 	}
-
-	/**
-	 * Direct link to the view layer (For prototype building purposes)
-	 *
-	 * @author Fantastic Five
-	 */	
-	public function link($params) {
-		return View::make($params);
-	}
 	
 	/**
 	 * User login
@@ -57,6 +48,15 @@ class LoginController extends BaseController {
 		} 
 		 
 		return Redirect::route('login')->withErrors('Invalid user name or password!');	
+	}
+
+	/**
+	 * Direct link to the view layer (For prototype building purposes)
+	 *
+	 * @author Fantastic Five
+	 */	
+	public function link($params) {
+		return View::make($params);
 	}
 			
 }
