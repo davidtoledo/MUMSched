@@ -1,4 +1,4 @@
-<?php
+deleteFacultySpecialization<?php
 
 namespace MUMSched\DAOs;
 use Illuminate\Support\Facades\DB;
@@ -106,7 +106,7 @@ class UserDAO {
 	/**
 	 * Delete a Faculty Specialization Association
 	 *
-	 * @author DTSC Engenharia de Sistemas
+	 * @author Fantastic Five
 	 */
 	public static function deleteFacultySpecialization($id) {
 		

@@ -10,7 +10,6 @@ use MUMSched\DAOs\UserDAO;
  */
 class UserService {
 
-
 	/**
 	 * Checks and returns an user by login
 	 * 
