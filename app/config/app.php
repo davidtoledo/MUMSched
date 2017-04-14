@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL ^ E_DEPRECATED);
+//error_reporting(E_ALL ^ E_DEPRECATED);
 date_default_timezone_set('America/Los_Angeles');
 setlocale(LC_ALL, array('en_US.UTF-8', 'en_us', 'en_US', 'en_US.UTF-8', 'en-us', 'english', 'english-us', 'usa'));
 
