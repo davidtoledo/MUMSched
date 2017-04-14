@@ -1,4 +1,4 @@
-deleteFacultySpecialization<?php
+<?php
 
 namespace MUMSched\DAOs;
 use Illuminate\Support\Facades\DB;
