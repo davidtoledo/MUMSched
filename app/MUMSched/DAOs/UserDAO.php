@@ -72,7 +72,7 @@ class UserDAO {
 		}
 		
 		$queries = [
-			'DELETE FROM system_user                WHERE  id_user = ?',
+			'DELETE FROM system_user                WHERE  id_user = ?',			
 		];
 		
 		try	{
