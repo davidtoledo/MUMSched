@@ -95,4 +95,40 @@ class UserDAO {
 		
 	}
 	
+	public static function getUserWithSpecializations($id_user) {
+		
+		$user = \SystemUser::with("specializations")
+			       	       ->find($id_user);
+			      	      
+		return $user;
+	}
+	
+	/**
+	 * Delete a Faculty Specialization Association
+	 *
+	 * @author DTSC Engenharia de Sistemas
+	 */
+	public static function deleteFacultySpecialization($id) {
+		
+		$queries = [
+			'DELETE FROM faculty_specialization WHERE id_fs = ?',
+		];
+		
+		try	{
+			
+			foreach ($queries as $query) {
+				DB::delete($query, [
+					$id
+				]);
+			}
+			DB::commit();
+			return TRUE;
+		}
+		catch (\Exception $e)
+		{
+			DB::rollback();
+			return $e;
+		}
+	}			
+	
 }

@@ -60,5 +60,13 @@ class UserService {
 	public static function saveUser($user) {
 		return UserDAO::saveUser($user);
 	}
+
+	public static function getUserWithSpecializations($id_user) {
+		return UserDAO::getUserWithSpecializations($id_user);
+	}
+
+	public static function deleteFacultySpecialization($id) {
+		return UserDAO::deleteFacultySpecialization($id);
+	}
 	
 }
