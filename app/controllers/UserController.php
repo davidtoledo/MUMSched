@@ -73,7 +73,7 @@ class UserController extends BaseController {
 	 *
 	 * @author Fantastic Five
 	 */
-	public function create()	{
+	public function create() {
 		
 		// Add select data
 		self::addCombos();
