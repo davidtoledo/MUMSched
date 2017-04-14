@@ -7,5 +7,14 @@
 				Edit user
 			</a>
 		</li>
-	</ul>
+		
+		@if ($user->type == \SystemUser::TYPE_FACULTY)
+			<li class="{{ Request::is('admin/user/specialization*') ? ' active ' : '' }}">
+				<a href="{{ URL::route('admin.user.specialization.list', $user->id_user) }}">
+					<i class="blue ace-icon fa fa-book bigger-110"></i>
+					Specialization
+				</a>
+			</li>
+		@endif
+	</ul>	
 @endif

@@ -172,6 +172,7 @@
 						Save
 					</button>
 				{{ Form::close() }}
+				
 			</div>
 		</div>
 	</div>	

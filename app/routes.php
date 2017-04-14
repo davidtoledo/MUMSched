@@ -83,6 +83,33 @@
 				'before' => 'isAdmin'
 		]);
 		
+		###############################################
+		########## USERS -> SPECIALIZATION ############
+
+		Route::any('user/specialization/list/{id_user}', [
+				'as' => 'admin.user.specialization.list',
+				'uses' => 'UserController@listSpecialization',
+				'before' => 'isAdmin'
+		]);		
+		
+		Route::any('user/specialization/create/{id_user}', [
+				'as' => 'admin.user.specialization.create',
+				'uses' => 'UserController@createSpecialization',
+				'before' => 'isAdmin'
+		]);
+
+		Route::any('user/specialization/edit/{id_user}/{id_specialization}', [
+				'as' => 'admin.user.specialization.edit',
+				'uses' => 'UserController@editSpecialization',
+				'before' => 'isAdmin'
+		]);
+
+		Route::any('user/specialization/delete/{id_specialization}', [
+				'as' => 'admin.user.specialization.delete',
+				'uses' => 'UserController@deleteSpecialization',
+				'before' => 'isAdmin'
+		]);		
+		
 	});
 			
 	#######################

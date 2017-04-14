@@ -5,7 +5,7 @@
  *
  * @author Fantastic Five
  */
-class Student extends Eloquent {
+class Student extends SystemUser {
 	
 	protected $table = 'system_user';
 	protected $primaryKey = 'id_user';

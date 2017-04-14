@@ -17,7 +17,12 @@ class SystemUser extends Eloquent implements UserInterface, RemindableInterface 
 	protected $table = 'system_user';
 	protected $primaryKey = 'id_user';
 	public $timestamps = FALSE;
-		
+	
+	// Relationship with FacultySpecialization
+	public function specializations() {
+		return $this->hasMany('FacultySpecialization', 'id_faculty', 'id_user');
+	}		
+
 	protected $hidden = array(
 		'password'
 	);
