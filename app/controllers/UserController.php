@@ -101,13 +101,13 @@ class UserController extends BaseController {
 			// Register
 			$user = self::populate();
 			
-			if ( UserService::saveUser($user) ) {
+			if ( $user->save() ) {
 				
 				// Success
 				Session::flash('success', 'Successfully registered.');
 				
 				// Show view
-				return Redirect::route('admin.user.list');
+				return Redirect::route('admin.user.edit', $user->id_user);
 			}
 			
 			return View::make('admin.user.form-user')
@@ -172,12 +172,12 @@ class UserController extends BaseController {
 			// Edit
 			$user = self::populate($id);
 			
-			if ( UserService::saveUser($user) ) {
+			if ( $user->save() ) {
 				
 				Session::flash('success', 'Successfully edited.');
 				
 				// show view
-				return Redirect::route('admin.user.list');
+				return Redirect::route('admin.user.edit', $user->id_user);
 			}
 
 			// show view

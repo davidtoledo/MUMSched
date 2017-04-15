@@ -60,7 +60,7 @@
 					{{ Form::hidden('id_user', $user->id_user) }}
 
 					@if ( isset ($user->specializations) )
-						<h3>Specialization</h3>
+						<h3>Specialization(s) for {{ $user->first_name }} {{ $user->last_name }}</h3>
 						<table class="table table-striped table-bordered table-hover">
 							<thead>
 								<tr>

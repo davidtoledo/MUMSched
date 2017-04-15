@@ -75,9 +75,8 @@ class UserSpecController extends BaseController {
 			}
 			
 			// Checks if association already exists
-			$fs = FacultySpecialization::where("id_faculty", $id_user)
-										->where("id_specialization", Input::get('id_specialization'))
-										->first();			 
+			$fs = UserService::getFacultySpecialization($id_user, Input::get('id_specialization'));
+			
 			if ($fs) {
 				return Redirect::route('admin.user.specialization.list', [$user->id_user])
 					->withErrors(['Association already exists.']);

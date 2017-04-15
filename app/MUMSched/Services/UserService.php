@@ -41,5 +41,9 @@ class UserService {
 	public static function deleteFacultySpecialization($id) {
 		return UserDAO::deleteFacultySpecialization($id);
 	}
+
+	public static function getFacultySpecialization($id_user, $id_specialization) {
+		return UserDAO::getFacultySpecialization($id_user, $id_specialization);
+	}
 	
 }

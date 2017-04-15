@@ -73,6 +73,7 @@ class UserDAO {
 		}
 		
 		$queries = [
+			'DELETE FROM faculty_specialization     WHERE  id_faculty = ?',
 			'DELETE FROM system_user                WHERE  id_user = ?',			
 		];
 		
@@ -130,5 +131,19 @@ class UserDAO {
 			return $e;
 		}
 	}			
+	
+	/**
+	 * Get a Faculty Specialization Association
+	 *
+	 * @author Fantastic Five
+	 */
+	public static function getFacultySpecialization($id_user, $id_specialization) {
+		
+		$fs = \FacultySpecialization::where("id_faculty", $id_user)
+						   			->where("id_specialization", $id_specialization)
+						   			->first();
+		return ($fs);
+	}
+	
 	
 }
