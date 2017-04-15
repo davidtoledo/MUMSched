@@ -17122,3 +17122,17 @@ main[data-page=webinars] .paginacao li.active span {
     user-select: none;	
     pointer-events: none;
 }
+#watermark {
+  color: gray;
+  font-size: 140px;
+  -webkit-transform: rotate(-45deg);
+  opacity: 0.5;
+  -moz-transform: rotate(-45deg);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 10px;
+  z-index: 100;
+  left:450px;
+  top:0px;
+}

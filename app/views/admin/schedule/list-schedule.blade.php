@@ -3,7 +3,8 @@
 @section('page_title') MUM Schedule @endsection
 
 @section('css_header')
-	<link rel="stylesheet" href="{{ URL::to('_temas/_base/media/css/jqueryui-blue/jquery-ui.min.css') }}" />	
+	<link rel="stylesheet" href="{{ URL::to('_temas/_base/media/css/jqueryui-blue/jquery-ui.min.css') }}" />
+	<link rel="stylesheet" href="{{ URL::to('_temas/admin/media/css/progress_bar.css') }}" />	
 @endsection
 
 @section('breadcrumb')
@@ -28,7 +29,7 @@
 	<!-- Screen ID: list-schedule -->	    
 	<h4 class="pink">
    		<i class="ace-icon fa fa-plus-square green"></i>
-   		<a href="{{ URL::route('admin.schedule.generate') }}" class="blue">Generate Schedule</a>
+   		<a href="{{ URL::route('admin.schedule.create') }}" class="blue">Create schedule</a>
    	</h4>
 
 	<div class="page-header">
@@ -67,7 +68,7 @@
 	         	Entry
 	         </th>
 
-	         <th style="width:35%;">
+	         <th style="width:25%;">
 	         	Schedule Generated At
 	         </th>
 	         
@@ -75,7 +76,7 @@
 	         	Status
 	         </th>
 	         
-	         <th style="width:11%;">Actions</th>
+	         <th style="width:20%;">Actions</th>
 	      </tr>
 	   </thead>
 	   <tbody>
@@ -89,11 +90,15 @@
 	            	{{ $schd->entry->name }}
 	           </a>
 	         </td>
-
+	         
 	         <td>
-	         	<a href="{{ URL::route('admin.schedule.edit', $schd->id_schedule) }}">
-	            	{{ $schd->generated_date }}
-	           </a>
+	         	@if ($schd->generated_date)
+		         	<a href="{{ URL::route('admin.schedule.edit', $schd->id_schedule) }}">
+		            	{{ $schd->generated_date }}
+		            </a>
+	           @else
+					Not automatically generated
+	           @endif
 	         </td>
 	         
 	         <td align="center">
@@ -112,20 +117,33 @@
 	            <!-- Multiple-action button -->
 	            <div class="btn-group">
 	               
-		               <a class="btn btn-glow" href="{{ URL::route('admin.schedule.edit', $schd->id_schedule) }}">
-			               <i class="fa fa-pencil"></i>
-			               <span>Edit</span>
-		               </a>
-		               <a class="btn btn-glow dropdown-toggle" href="" data-toggle="dropdown"><span class="caret"></span></a>
+	               	  @if (!$schd->generated_date)
+			          	<a class="btn btn-glow" href="#2" onclick="scheduleConfiguration('{{ URL::route('admin.schedule.generate', $schd->id_schedule) }}', '{{ URL::route('admin.schedule.list') }}');">
+							<i class="fa fa-calendar"></i>
+								<span>Generate Schedule</span>
+						</a>
+						<a class="btn btn-glow dropdown-toggle" href="" data-toggle="dropdown"><span class="caret"></span></a>
+			          @else
+			          	<a class="btn btn-glow" href="{{ URL::route('calendar.view', [$schd->id_schedule]) }}" target="_new">
+							<i class="fa fa-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp; <span>View Schedule</span>&nbsp;&nbsp;&nbsp;&nbsp;
+						</a>
+						<a class="btn btn-glow dropdown-toggle" href="" data-toggle="dropdown"><span class="caret"></span></a>			          
+			          @endif 
 		           
 		           	  <!-- Sub options -->
 	               	  <ul class="dropdown-menu pull-right">
+		                  <li>
+		                     <a href="{{ URL::route('admin.schedule.edit', $schd->id_schedule) }}">
+			                     <i class="fa fa-pencil"></i>
+			                     <span>Edit</span>
+		                     </a>
+		                  </li>
 		                  <li>
 		                     <a href="#2" title="delete" onclick="deletar('{{ URL::route('admin.schedule.delete', [$schd->id_schedule]) }}');">
 			                     <i class="fa fa-trash-o"></i>
 			                     <span>Delete</span>
 		                     </a>
-		                  </li>
+		                  </li>		                  
 		              </ul>
 	            </div>
 	         </td>
@@ -137,6 +155,105 @@
 	<br>
 	<i>Displaying {{ sizeof ($schedules) }} {{ sizeof ($schedules) == 1 ? "item" : "items" }}</i>
 	<br><br>			
+	
+	<!-- MODAL FOR "SCHEDULE CONFIGURATION" -->
+	<div class="modal fade" id="modal-schedule-configuration">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+	                <h4 class="modal-title">SCHEDULE GENERATOR CONFIGURATION</h4>
+	            </div>
+	            
+	            <div class="modal-body">
+	            	
+	            	<div class="form-group">
+	            		<label class="col-sm-3 control-label no-padding-right blue">Algorithm Type</label>
+	            		<div class="col-sm-9">
+							{{ Form::select('algorithm_type', 
+		        				[\Schedule::ALGORITHM_MUM_DEFAULT => 'Maharishi University Default', 
+		        				 \Schedule::ALGORITHM_ONLY_COMPUTER_SCIENCE => 'Only Computer Science Courses'],
+		        				null,
+		            				[
+		            					'id' => 'cbo-algorithm-type',
+		            					'class' => 'multiple-selected-big'
+		            				]
+								)
+		        			}}
+							<span 
+							    data-content="<font color='black'><b>MUM Default Algorithm</b></font> will generate a schedule with SCI course in the 1st block and MPP/FPP in the 2nd block." 
+								data-placement="right"
+								data-rel="popover" 
+								data-trigger="hover"
+								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+							</span>														
+		        			
+			            </div>
+			       	</div>
+			       	<br><br>
+
+	            	<div class="form-group">
+	            		<label class="col-sm-3 control-label no-padding-right blue">Block Order</label>
+	            		<div class="col-sm-9">
+							{{ Form::select('order', 
+		        				[
+		        					\Schedule::BLOCK_ORDER_DEFAULT => 'Same order as registered in the system',
+		        					\Schedule::BLOCK_ORDER_RANDOM  => 'Random order', 
+		        				],
+		        				null,
+		            				[
+		            					'id' => 'cbo-order',
+		            					'class' => 'multiple-selected-big'
+		            				]
+								)
+		        			}}
+		        			
+							<span 
+							    data-content="<font color='black'><b>Select the Same order option</b></font> if you want to generate a regular schedule." 
+								data-placement="right"
+								data-rel="popover" 
+								data-trigger="hover"
+								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+							</span>														
+		        			
+			            </div>
+			       	</div>
+			       	
+			       	<br><br><br>
+			       	
+			       	<button id="btnGenerate" onclick="btnGenerateSchedule();" class="btn btn-default primary"><i class="fa fa-check"></i> Generate Schedule</button>
+	        	</div>
+	    	</div>
+		</div>
+	</div>
+	
+	<!-- MODAL FOR "GENERATE SCHEDULE" -->
+	<div class="modal fade" id="modal-generate-schedule">
+	    <div class="modal-dialog" style="min-width: 60%;">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	            	<center>
+	            		<h3 class="modal-title"><i class="fa fa-cogs"></i>&nbsp;&nbsp;&nbsp;GENERATING SCHEDULE</h3>
+	                </center>
+	            </div>
+	            <div class="modal-body">
+	            	<br>
+	            	<center>
+	            		<img src="{{ URL::to('_plataforma/media/img/dtsc/mentoria.gif') }}" style="width: 80%; height: auto;">
+	            	</center>
+	            	
+					<div class="loader">
+						<div class="progress-bar"><div class="progress-stripes"></div><div class="percentage">0%</div></div>
+					</div>
+					
+	            	<div align="right"><img src="{{ URL::to('_plataforma/media/img/dtsc/logo_dtsc.png') }}" width="30" title="Desenvolvido por DTSC Engenharia de Sistemas"></div>
+	            	
+	            </div>
+	        </div>
+	    </div>
+	</div>
 	
 	{{ Form::close() }}
 @stop

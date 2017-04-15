@@ -113,7 +113,13 @@
 				'before' => 'isAdmin'
 		]);
 
-		Route::any('schedule/generate', [
+		Route::any('schedule/create', [
+				'as' => 'admin.schedule.create',
+				'uses' => 'ScheduleController@create',
+				'before' => 'isAdmin'
+		]);
+
+		Route::any('schedule/generate/{id_schedule}/{algorithm_type}/{block_order}', [
 				'as' => 'admin.schedule.generate',
 				'uses' => 'ScheduleController@generate',
 				'before' => 'isAdmin'
@@ -132,12 +138,27 @@
 		]);
 		
 	});
-			
+
+	###################################
+	######## SCHEDULE CALENDAR ########
+	
+	Route::group ( array ('prefix'=>'calendar' ), function() {
+
+		##############################
+		########### GRADE ############
+
+		Route::any('view/{id_schedule}/{id_user?}', [
+				'as' => 'calendar.view',
+				'uses' => 'ScheduleController@view'
+		]);
+
+	});
+
 	#######################
 	######## LOGOUT ########	
 	Route::get('/logout', array('as'=>'logout', 'uses' => function() {
 		Auth::logout();
 		return Redirect::route('login');
 	}));
-	
+
 ?>

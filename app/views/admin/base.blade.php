@@ -138,41 +138,25 @@
 				<ul class="nav nav-list">
 					
 					@if (Auth::user()->is_admin)
-						<li class="{{ Request::is('admin/user*') || 
-									  Request::is('admin/schedule*') ? 'active open' : ''  }}">
-							<a href="#" class="dropdown-toggle">
-								<i class="menu-icon fa fa-sitemap"></i>
+												
+						<li class="{{ Request::is('admin/user/*') ? 'active open' : '' }}">
+							<a href="{{ URL::to('/admin/user/list') }}">
+								<i class="menu-icon fa fa-user"></i>
 								<span class="menu-text">
-									Administration
+									System User
 								</span>
-								<b class="arrow fa fa-angle-down"></b>
 							</a>
-	
-							<b class="arrow"></b>
-							<ul class="submenu">
-								<li class="{{ Request::is('admin/user/*') ? 'active' : '' }}">
-									<a href="{{ URL::to('/admin/user/list') }}">
-										<i class="menu-icon fa fa-caret-right"></i>
-										Users
-									</a>
-	
-									<b class="arrow"></b>
-								</li>
-							</ul>
-							
-							<b class="arrow"></b>
-							<ul class="submenu">
-								<li class="{{ Request::is('admin/schedule/*') ? 'active' : '' }}">
-									<a href="{{ URL::to('/admin/schedule/list') }}">
-										<i class="menu-icon fa fa-caret-right"></i>
-										Schedule
-									</a>
-	
-									<b class="arrow"></b>
-								</li>
-							</ul>
-							
 						</li>
+						
+						<li class="{{ Request::is('admin/schedule/*') ? 'active open' : '' }}">
+							<a href="{{ URL::to('/admin/schedule/list') }}">
+								<i class="menu-icon fa fa-calendar"></i>
+								<span class="menu-text">
+									Schedule
+								</span>
+							</a>
+						</li>
+						
 												
 					@endif
 

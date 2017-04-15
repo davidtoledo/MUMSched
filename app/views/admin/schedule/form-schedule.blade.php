@@ -49,13 +49,13 @@
 					'route' => isset($schedule) ?
 							['admin.schedule.edit', $schedule->id_schedule]
 					 	:
-					 		['admin.schedule.generate'],
+					 		['admin.schedule.create'],
 					'class' => 'form-horizontal'
 				]) }}
 
 
 					<div class="form-group">
-						<label class="col-sm-2 control-label no-padding-right blue">Entry</label>
+						<label class="col-sm-2 control-label no-padding-right blue">Select the Entry</label>
 						<div class="col-sm-10">
 							
 							@if ( isset ($schedule) )
@@ -116,8 +116,12 @@
 					@endif
 
 					<button type="submit" class='btn btn-blue btn-info'>
-						<span class="ace-icon fa fa-save icon-on-right bigger-110"></span>
-						Save
+						<span class="ace-icon fa fa-calendar icon-on-right bigger-110"></span>
+						@if (!$schedule)
+							Create Schedule
+						@else
+							Update Schedule
+						@endif
 					</button>
 				{{ Form::close() }}
 				
