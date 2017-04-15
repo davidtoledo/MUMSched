@@ -147,7 +147,7 @@ class UserSpecController extends BaseController {
 	 */
 	private function addCombos() {
 		
-		// Organizando exibição do combo
+		// Selectbox
 		$specialization_list = Specialization::orderBy('specialization')
     										  ->lists('specialization', 'id_specialization');
 		

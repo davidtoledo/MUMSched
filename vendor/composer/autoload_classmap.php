@@ -8,8 +8,10 @@ $baseDir = dirname($vendorDir);
 return array(
 	'UserController' => $baseDir . '/app/controllers/UserController.php',
 	'MUMSched\\DAOs\\UserDAO' => $baseDir . '/app/MUMSched/DAOs/UserDAO.php',
+	'MUMSched\\DAOs\\ScheduleDAO' => $baseDir . '/app/MUMSched/DAOs/ScheduleDAO.php',
 	'MUMSched\\Libraries\\CustomValidator' => $baseDir . '/app/MUMSched/Libraries/CustomValidator.php',
 	'MUMSched\\Services\\UserService' => $baseDir . '/app/MUMSched/Services/UserService.php',
+	'MUMSched\\Services\\ScheduleService' => $baseDir . '/app/MUMSched/Services/ScheduleService.php',
 	'MUMSched\\Utils\\StringUtil' => $baseDir . '/app/MUMSched/Utils/StringUtil.php',
 	'MUMSched\\Utils\\AppUtil' => $baseDir . '/app/MUMSched/Utils/AppUtil.php',
 );

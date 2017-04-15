@@ -102,7 +102,34 @@
 				'as' => 'admin.user.specialization.delete',
 				'uses' => 'UserSpecController@delete',
 				'before' => 'isAdmin'
-		]);		
+		]);
+		
+		################################
+		########### SCHEDULE ###########
+		
+		Route::any('schedule/list', [
+				'as' => 'admin.schedule.list',
+				'uses' => 'ScheduleController@showList',
+				'before' => 'isAdmin'
+		]);
+
+		Route::any('schedule/generate', [
+				'as' => 'admin.schedule.generate',
+				'uses' => 'ScheduleController@generate',
+				'before' => 'isAdmin'
+		]);
+
+		Route::any('schedule/edit/{id_schedule}', [
+				'as' => 'admin.schedule.edit',
+				'uses' => 'ScheduleController@edit',
+				'before' => 'isAdmin'
+		]);
+		
+		Route::any('schedule/delete/{id_schedule}', [
+				'as' => 'admin.schedule.delete',
+				'uses' => 'ScheduleController@delete',
+				'before' => 'isAdmin'
+		]);
 		
 	});
 			
