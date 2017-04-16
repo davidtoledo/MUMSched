@@ -1,6 +1,6 @@
 @extends('admin/base')
 
-@section('page_title') Plataforma de Mentoria @endsection
+@section('page_title') MUM Schedule @endsection
 
 @section('css_header')
 	<link rel="stylesheet" href="{{ URL::to('_temas/_base/media/css/jqueryui-blue/jquery-ui.min.css') }}" />	

@@ -42,7 +42,7 @@ class LoginController extends BaseController {
 			
 			if ($user) {
 				Auth::login ($user);
-				return \Redirect::route('admin.user.list');
+				return \Redirect::route('admin.home.home');
 			}								 
 				
 		} 
@@ -57,6 +57,17 @@ class LoginController extends BaseController {
 	 */	
 	public function link($params) {
 		return View::make($params);
+	}
+	
+	/**
+	 * Home page
+	 *
+	 * @author Fantastic Five
+	 */
+	public function home() {
+		
+		// Redirects to the home page
+		return View::make('admin.home');
 	}
 			
 }

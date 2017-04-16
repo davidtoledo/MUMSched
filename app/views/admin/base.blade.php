@@ -138,6 +138,15 @@
 				<ul class="nav nav-list">
 					
 					@if (Auth::user()->is_admin)
+					
+						<li class="{{ Request::is('admin/home/*') ? 'active open' : '' }}">
+							<a href="{{ URL::to('/admin/home/home') }}">
+								<i class="menu-icon fa fa-home"></i>
+								<span class="menu-text">
+									Home
+								</span>
+							</a>
+						</li>					
 												
 						<li class="{{ Request::is('admin/user/*') ? 'active open' : '' }}">
 							<a href="{{ URL::to('/admin/user/list') }}">

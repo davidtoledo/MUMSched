@@ -19,7 +19,7 @@ return array(
 	|
 	*/
 	
-	// URLs SISTEMA DE MENTORIA
+	// URLs
 	   'url' => 'http://localhost/MUMSched/public',              // DEV
 	// 'url' => 'http://www.tolledo.net/MUMSched',               // PRD
 	

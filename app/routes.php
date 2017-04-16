@@ -57,6 +57,15 @@
 	Route::group ( array ('prefix'=>'admin', 'before' => 'isLogged'), function() {
 
 		#############################
+		########### HOME ############
+		
+		Route::any('home/home', [
+				'as' => 'admin.home.home',
+				'uses' => 'LoginController@home',
+				'before' => 'isAdmin'
+		]);
+
+		#############################
 		########### USERS ###########
 		
 		Route::any('user/list', [
