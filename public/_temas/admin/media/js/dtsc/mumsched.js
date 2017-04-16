@@ -6,18 +6,18 @@
 	$('.multiple-selected').multiselect({
 		numberDisplayed: 1,
         buttonWidth: '200px',
-        nonSelectedText: 'Nenhum selecionado',
-        allSelectedText: 'Todos selecionados',
-        nSelectedText: 'selecionados'
+        nonSelectedText: 'None selected',
+        allSelectedText: 'All selected',
+        nSelectedText: 'selected'
     });		
 
 	// Initializing multiselects
 	$('.multiple-selected-big').multiselect({
 		numberDisplayed: 1,
         buttonWidth: '300px',
-        nonSelectedText: 'Nenhum selecionado',
-        allSelectedText: 'Todos selecionados',
-        nSelectedText: 'selecionados'
+        nonSelectedText: 'None selected',
+        allSelectedText: 'All selected',
+        nSelectedText: 'selected'
     });
     
     // Initializing datepickers
@@ -87,7 +87,7 @@
 		event.preventDefault();
 	}
 	
-	// Generate Schedule Process
+	/* Generate Schedule Process
 	function beginGenerateSchedule (action, actionOK) {
 						
 		// Open Modal
@@ -127,5 +127,4 @@
 			);
 			
 		}, 7000);
-	}
-	
+	} */
