@@ -146,6 +146,33 @@
 				'before' => 'isAdmin'
 		]);
 		
+		################################
+		############# ENTRY ############
+		
+		Route::any('entry/list', [
+				'as' => 'admin.entry.list',
+				'uses' => 'EntryController@showList',
+				'before' => 'isAdmin'
+		]);
+
+		Route::any('entry/create', [
+				'as' => 'admin.entry.create',
+				'uses' => 'EntryController@create',
+				'before' => 'isAdmin'
+		]);
+
+		Route::any('entry/edit/{id_entry}', [
+				'as' => 'admin.entry.edit',
+				'uses' => 'EntryController@edit',
+				'before' => 'isAdmin'
+		]);
+		
+		Route::any('entry/delete/{id_entry}', [
+				'as' => 'admin.entry.delete',
+				'uses' => 'EntryController@delete',
+				'before' => 'isAdmin'
+		]);
+		
 	});
 
 	###################################

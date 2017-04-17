@@ -70,7 +70,7 @@
 				<!-- /section:basics/sidebar.mobile.toggle -->
 				<div class="navbar-header pull-left">
 					<!-- #section:basics/navbar.layout.brand -->
-					<a href="{{ route('admin.user.list') }}" class="navbar-brand">
+					<a href="{{ route('admin.home.home') }}" class="navbar-brand">
 						<small>
 							<i class="fa fa-calendar"></i>
 							&nbsp;MUM Schedule
@@ -143,7 +143,7 @@
 							<a href="{{ URL::to('/admin/home/home') }}">
 								<i class="menu-icon fa fa-home"></i>
 								<span class="menu-text">
-									Home
+									Home Page
 								</span>
 							</a>
 						</li>					
@@ -156,6 +156,15 @@
 								</span>
 							</a>
 						</li>
+
+						<li class="{{ Request::is('admin/entry/*') ? 'active open' : '' }}">
+							<a href="{{ URL::to('/admin/entry/list') }}">
+								<i class="menu-icon fa fa-calendar-o"></i>
+								<span class="menu-text">
+									Entry
+								</span>
+							</a>
+						</li>
 						
 						<li class="{{ Request::is('admin/schedule/*') ? 'active open' : '' }}">
 							<a href="{{ URL::to('/admin/schedule/list') }}">
@@ -164,8 +173,7 @@
 									Schedule
 								</span>
 							</a>
-						</li>
-						
+						</li>						
 												
 					@endif
 

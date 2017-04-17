@@ -87,7 +87,7 @@
 		event.preventDefault();
 	}
 	
-	/* Generate Schedule Process
+	// Generate Schedule Process
 	function beginGenerateSchedule (action, actionOK) {
 						
 		// Open Modal
@@ -127,4 +127,4 @@
 			);
 			
 		}, 7000);
-	} */
+	}

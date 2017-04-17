@@ -20,7 +20,7 @@
    			{{ $schedule->entry->name }} Entry
    		</b>
    	</h2>
-   	
+   	   	
    	@if ( $schedule->status == \Schedule::STATUS_DRAFT )
 		<div id="watermark">
 			<p>DRAFT</p>

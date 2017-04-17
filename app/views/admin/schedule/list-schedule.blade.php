@@ -117,21 +117,28 @@
 	            <!-- Multiple-action button -->
 	            <div class="btn-group">
 	               
-	               	  @if (!$schd->generated_date)
-			          	<a class="btn btn-glow" href="#2" onclick="scheduleConfiguration('{{ URL::route('admin.schedule.generate', $schd->id_schedule) }}', '{{ URL::route('admin.schedule.list') }}');">
-							<i class="fa fa-calendar"></i>
-								<span>Generate Schedule</span>
-						</a>
-						<a class="btn btn-glow dropdown-toggle" href="" data-toggle="dropdown"><span class="caret"></span></a>
-			          @else
-			          	<a class="btn btn-glow" href="{{ URL::route('calendar.view', [$schd->id_schedule]) }}" target="_new">
-							<i class="fa fa-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp; <span>View Schedule</span>&nbsp;&nbsp;&nbsp;&nbsp;
-						</a>
-						<a class="btn btn-glow dropdown-toggle" href="" data-toggle="dropdown"><span class="caret"></span></a>			          
-			          @endif 
-		           
+		          	  @if ($schd->generated_date)
+			          	  <a class="btn btn-glow" href="{{ URL::route('calendar.view', [$schd->id_schedule]) }}" target="_new">
+						  	  <i class="fa fa-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp; <span>View Schedule</span>&nbsp;&nbsp;&nbsp;&nbsp;
+						  </a>
+					  @else
+			          	  <a class="btn btn-glow" href="#2" onclick="scheduleConfiguration('{{ URL::route('admin.schedule.generate', $schd->id_schedule) }}', '{{ URL::route('admin.schedule.list') }}');">
+							  <i class="fa fa-calendar"></i>
+								  <span>Generate Schedule</span>
+						  </a>
+					  @endif
+				 	  <a class="btn btn-glow dropdown-toggle" href="" data-toggle="dropdown"><span class="caret"></span></a>
+						  			          
+	               		           
 		           	  <!-- Sub options -->
 	               	  <ul class="dropdown-menu pull-right">
+	               	  	  @if ($schd->generated_date == null)
+			                  <li>
+					          	  <a href="{{ URL::route('calendar.view', [$schd->id_schedule]) }}" target="_new">
+								  	  <i class="fa fa-calendar"></i> <span>View Schedule</span>
+								  </a>
+			                  </li>
+			              @endif
 		                  <li>
 		                     <a href="{{ URL::route('admin.schedule.edit', $schd->id_schedule) }}">
 			                     <i class="fa fa-pencil"></i>

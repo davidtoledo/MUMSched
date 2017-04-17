@@ -14,6 +14,6 @@ class Entry extends Eloquent {
 	// Relationship with Block
 	public function blocks() {
 		return $this->hasMany('Block', 'id_entry', 'id_entry');
-	}		
+	}
 
 }
