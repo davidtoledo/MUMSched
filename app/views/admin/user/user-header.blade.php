@@ -115,7 +115,7 @@
 	                                       <div class="form-answer">
 	                                          <div style="overflow: hidden; max-height: 54px;">
 	                                             <div style="margin: 0px; padding: 0px; border: 0px;">
-	                                             	&bull; <i>Maryam Naraghi</i>
+	                                             	&bull; Maryam Naraghi
 	                                             </div>
 	                                          </div>
 	                                       </div>
