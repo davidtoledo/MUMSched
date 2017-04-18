@@ -166,8 +166,39 @@
 				'before' => 'isAdmin'
 		]);
 		
+		################################
+		############# Block ############
+		
+		Route::any('block/list', [
+				'as' => 'admin.block.list',
+				'uses' => 'BlockController@showList',
+				'before' => 'isAdmin'
+		]);
+
+		Route::any('block/create', [
+				'as' => 'admin.block.create',
+				'uses' => 'BlockController@create',
+				'before' => 'isAdmin'
+		]);
+
+		Route::any('block/edit/{id_block}', [
+				'as' => 'admin.block.edit',
+				'uses' => 'BlockController@edit',
+				'before' => 'isAdmin'
+		]);
+		
+		Route::any('block/delete/{id_block}', [
+				'as' => 'admin.block.delete',
+				'uses' => 'BlockController@delete',
+				'before' => 'isAdmin'
+		]);
 	});
 
+
+		
+		
+	
+	
 	###################################
 	######## SCHEDULE CALENDAR ########
 	

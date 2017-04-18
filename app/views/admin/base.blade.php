@@ -165,6 +165,24 @@
 								</span>
 							</a>
 						</li>
+	
+						<li class="{{ Request::is('admin/block/*') ? 'active open' : '' }}">
+							<a href="{{ URL::to('/admin/block/list') }}">
+								<i class="menu-icon fa fa-calendar-o"></i>
+								<span class="menu-text">
+									Block
+								</span>
+							</a>
+						</li>	
+						
+						<li class="{{ Request::is('admin/session/*') ? 'active open' : '' }}">
+							<a href="{{ URL::to('/admin/session/list') }}">
+								<i class="menu-icon fa fa-calendar-o"></i>
+								<span class="menu-text">
+									Session
+								</span>
+							</a>
+						</li>
 						
 						<li class="{{ Request::is('admin/schedule/*') ? 'active open' : '' }}">
 							<a href="{{ URL::to('/admin/schedule/list') }}">
