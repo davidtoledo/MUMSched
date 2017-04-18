@@ -67,10 +67,6 @@
 	         <th style="width:25%;">
 	         	Course Specialization
 	         </th>
-
-	         <th style="width:25%;">
-	         	
-	         </th>
 	         
 	         <th style="width:25%;">
 	         	Course Code
