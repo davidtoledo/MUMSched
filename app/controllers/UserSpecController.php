@@ -34,9 +34,8 @@ class UserSpecController extends BaseController {
 	public function showList ($id_user) {
 		
 		$user = UserService::getUserWithSpecializations($id_user);
-		
-		if ( !$user ) {
-			return Redirect::route('admin.user.list')->withErrors('User does not exists.');
+		if ( !$user || !Auth::user()->is_admin && Auth::user()->id_user != $id_user) {
+			return Redirect::route('login')->withErrors('User does not exists.');
 		}	
 
 		$this->data['user'] = & $user;

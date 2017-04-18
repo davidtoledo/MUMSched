@@ -44,7 +44,7 @@ class ScheduleService implements IScheduleService {
 			if ($algorithm_type == NULL || $block_order == NULL) {
 				$json['return'] = 1;
 				$json['messages'][] = "Invalid parameters (algorithm_type: " . $algorithm_type . ", block_order: " . $block_order . ")";
-				return $json;			
+				return $json;
 			}
 			
 			// Getting the Schedule
@@ -67,19 +67,19 @@ class ScheduleService implements IScheduleService {
 			if ($block_order == Schedule::BLOCK_ORDER_DEFAULT) {
 				
 				$blocks = Block::where("id_entry", $entry->id_entry)
-								->get();
+							   ->get();
 			} else {
 				
 				$blocks = Block::where("id_entry", $entry->id_entry)
 							   ->orderByRaw("RAND()")
 							   ->get();
 			}
-			if (!$blocks) {
+			if (!$blocks || sizeof ($blocks) < 8) {
 				$json['return'] = 4;
-				$json['messages'][] = "An error ocurred while trying to retrieve the block data!";
+				$json['messages'][] = "You don't have enough blocks in this entry to build a schedule!";
 				return $json;
 			}
-
+			
 			/*************************************************************
 			 * 
 			 * GENERATE SCHDULE PROCESS - BEGIN
@@ -308,13 +308,15 @@ class ScheduleService implements IScheduleService {
 			$section = Section::where("track", Section::TRACK_MPP)
 							  ->orderBy('id_section', 'desc')
 							  ->first();
-							  
-			$section->id_course = $crs_course->id_course;
-			$section->save();
-
-			// Update the generated date
-			$schedule->generated_date = date("Y-m-d H:i:s");
-			$schedule->save();
+	  		
+			if ($section) {
+				$section->id_course = $crs_course->id_course;
+				$section->save();
+	
+				// Update the generated date
+				$schedule->generated_date = date("Y-m-d H:i:s");
+				$schedule->save();
+			}
 						
 		} catch (Exception $e) {
 			$json['return'] = 99;
