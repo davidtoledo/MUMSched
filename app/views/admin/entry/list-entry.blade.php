@@ -109,7 +109,7 @@
 
 	         <td>
 	         	<a href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
-	            	{{ $entry->start_date }}
+	            	{{ date("m/d/Y", strtotime($entry->start_date)) }}
 	           </a>
 	         </td>
 	         
