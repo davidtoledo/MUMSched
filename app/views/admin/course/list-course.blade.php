@@ -15,8 +15,8 @@
 		</li>
 		<li>
 			<i class="ace-icon fa fa-lock"></i>
-			<a href="{{ URL::route('admin.entry.list') }}">
-				Entries
+			<a href="{{ URL::route('admin.course.list') }}">
+				Course
 			</a>
 		</li>
 		<li>
@@ -26,15 +26,15 @@
 @endsection
 
 @section('content')
-	<!-- Screen ID: list-entry -->	    
+	<!-- Screen ID: list-course -->	    
 	<h4 class="pink">
    		<i class="ace-icon fa fa-plus-square green"></i>
-   		<a href="{{ URL::route('admin.entry.create') }}" class="blue">Create entry</a>
+   		<a href="{{ URL::route('admin.course.create') }}" class="blue">Create course</a>
    	</h4>
 
 	<div class="page-header">
 	   <h1>
-	      Entry
+	      Course
 	      <small>
 		      <i class="ace-icon fa fa-angle-double-right"></i>
 		      List
@@ -46,14 +46,14 @@
 		([
 			'id' => 'frm',
 			'autocomplete' => 'off',
-			'action' => ['admin.entry.list'],
+			'action' => ['admin.course.list'],
 			'files'  => 'true'
 		]) 
 	}}
 	
 	<!-- Navigation Controls -->
 	{{ Form::hidden('page', isset( $_GET['page'] ) ? $_GET['page'] : "", ['id' => 'page'] ) }}
-	{{ Form::hidden('id_entry', '', ['id' => 'id_entry']) }}
+	{{ Form::hidden('id_course', '', ['id' => 'id_course']) }}
 		
 	<table class="table table-striped table-bordered table-hover">
 	   <thead>
@@ -65,58 +65,54 @@
 			</th>							
 	      	
 	         <th style="width:25%;">
-	         	Entry
+	         	Course Specialization
 	         </th>
 
 	         <th style="width:25%;">
-	         	FPP total
+	         	
 	         </th>
 	         
 	         <th style="width:25%;">
-	         	MPP Total
+	         	Course Code
 	         </th>
 
 	         <th style="width:10%;">
-	         	Start Date
+	         	Course Name
 	         </th>
 	         
 	         <th style="width:10%;">Actions</th>
 	      </tr>
 	   </thead>
 	   <tbody>
-	      @foreach ($entries as $entry)
+	      @foreach ($courses as $course)
 	      <tr>
 	      	<td align="center">
-	      		<input type="checkbox" name="chk_usuarios[]" value="{{ $entry->id_entry }}" class="chkSelecionado"></input>
+	      		<input type="checkbox" name="chk_usuarios[]" value="{{ $course->id_course }}" class="chkSelecionado"></input>
 	      	</td>
 	         <td>
-	         	<a href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
-	            	{{ $entry->name }}
+	         	<a href="{{ URL::route('admin.course.edit', $course->id_course) }}">
+	            	{{ $course->specialization }}
 	           </a>
 	         </td>
 
 	         <td>
-	         	<a href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
-	            	{{ $entry->fpp_total }}
+	         	<a href="{{ URL::route('admin.course.edit', $course->id_course) }}">
+	            	{{ $course->code }}
 	           </a>
 	         </td>
 
 	         <td>
-	         	<a href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
-	            	{{ $entry->mpp_total }}
+	         	<a href="{{ URL::route('admin.course.edit', $course->id_course) }}">
+	            	{{ $course->name }}
 	           </a>
 	         </td>
 
-	         <td>
-	         	<a href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
-	            	{{ date("m/d/Y", strtotime($entry->start_date)) }}
-	           </a>
-	         </td>
+	        
 	         
 	         <td align="center">
 	            <!-- Multiple-action button -->
 	            <div class="btn-group">
-		               <a class="btn btn-glow" href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
+		               <a class="btn btn-glow" href="{{ URL::route('admin.course.edit', $course->id_course) }}">
 			               <i class="fa fa-pencil"></i>
 			               <span>Edit</span>
 		               </a>
@@ -125,7 +121,7 @@
 		           	  <!-- Sub options -->
 	               	  <ul class="dropdown-menu pull-right">
 		                  <li>
-		                     <a href="#2" title="delete" onclick="deletar('{{ URL::route('admin.entry.delete', [$entry->id_entry]) }}');">
+		                     <a href="#2" title="delete" onclick="deletar('{{ URL::route('admin.course.delete', [$course->id_course]) }}');">
 			                     <i class="fa fa-trash-o"></i>
 			                     <span>Delete</span>
 		                     </a>
@@ -139,7 +135,7 @@
 	</table>
 	
 	<br>
-	<i>Displaying {{ sizeof ($entries) }} {{ sizeof ($entries) == 1 ? "item" : "items" }}</i>
+	<i>Displaying {{ sizeof ($courses) }} {{ sizeof ($courses) == 1 ? "item" : "items" }}</i>
 	<br><br>			
 		
 	{{ Form::close() }}

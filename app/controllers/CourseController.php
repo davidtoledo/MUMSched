@@ -192,7 +192,7 @@ class CourseController extends BaseController {
 		if (!$course) {
 			return FALSE;
 		}
-		$course->id_specialization = Input::get('id_specialization');
+		$course->specialization = Input::get('id_specialization');
 		$course->code = Input::get('code');
 		$course->name = Input::get('name');	
 			
