@@ -11,7 +11,7 @@ use MUMSched\DAOs\BlockDAO;
 class BlockService implements IBlockService {
 
 	public static function getBlockList() {
-		return BlockDAO::getEntryList();
+		return BlockDAO::getBlockList();
 	}
 	
 	public static function getBlockByID($id) {

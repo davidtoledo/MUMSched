@@ -15,7 +15,7 @@
 		</li>
 		<li>
 			<i class="ace-icon fa fa-lock"></i>
-			<a href="{{ URL::route('admin.entry.list') }}">
+			<a href="{{ URL::route('admin.block.list') }}">
 				Entries
 			</a>
 		</li>
@@ -26,15 +26,15 @@
 @endsection
 
 @section('content')
-	<!-- Screen ID: list-entry -->	    
+	<!-- Screen ID: list-block -->	    
 	<h4 class="pink">
    		<i class="ace-icon fa fa-plus-square green"></i>
-   		<a href="{{ URL::route('admin.entry.create') }}" class="blue">Create entry</a>
+   		<a href="{{ URL::route('admin.block.create') }}" class="blue">Create block</a>
    	</h4>
 
 	<div class="page-header">
 	   <h1>
-	      Entry
+	      Block
 	      <small>
 		      <i class="ace-icon fa fa-angle-double-right"></i>
 		      List
@@ -46,14 +46,14 @@
 		([
 			'id' => 'frm',
 			'autocomplete' => 'off',
-			'action' => ['admin.entry.list'],
+			'action' => ['admin.block.list'],
 			'files'  => 'true'
 		]) 
 	}}
 	
 	<!-- Navigation Controls -->
 	{{ Form::hidden('page', isset( $_GET['page'] ) ? $_GET['page'] : "", ['id' => 'page'] ) }}
-	{{ Form::hidden('id_entry', '', ['id' => 'id_entry']) }}
+	{{ Form::hidden('id_block', '', ['id' => 'id_block']) }}
 		
 	<table class="table table-striped table-bordered table-hover">
 	   <thead>
@@ -65,11 +65,11 @@
 			</th>							
 	      	
 	         <th style="width:25%;">
-	         	Entry
+	         	Block
 	         </th>
 
 	         <th style="width:25%;">
-	         	FPP total
+	         	Start date
 	         </th>
 	         
 	         <th style="width:25%;">

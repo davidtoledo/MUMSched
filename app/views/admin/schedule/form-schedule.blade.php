@@ -97,7 +97,7 @@
 					@if ( isset($schedule) )
 						<div class="form-group">
 							<label class="col-sm-2 control-label no-padding-right blue">Status</label>
-							<div class="col-sm-10">
+							<div class="col-sm-4">
 								{{ Form::select('status',
 									$status_list,
 									isset ($schedule) ? $schedule->status : Input::old('status'),
