@@ -138,6 +138,32 @@
 				'uses' => 'ScheduleController@delete',
 				'before' => 'isAdmin'
 		]);
+		################################
+		############# COURSE ############
+		
+		Route::any('course/list', [
+				'as' => 'admin.course.list',
+				'uses' => 'CourseController@showList',
+				'before' => 'isAdmin'
+		]);
+
+		Route::any('course/create', [
+				'as' => 'admin.course.create',
+				'uses' => 'CourseController@create',
+				'before' => 'isAdmin'
+		]);
+
+		Route::any('course/edit/{id_entry}', [
+				'as' => 'admin.course.edit',
+				'uses' => 'CourseController@edit',
+				'before' => 'isAdmin'
+		]);
+		
+		Route::any('course/delete/{id_entry}', [
+				'as' => 'admin.course.delete',
+				'uses' => 'CourseController@delete',
+				'before' => 'isAdmin'
+		]);
 		
 		################################
 		############# ENTRY ############
