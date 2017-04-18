@@ -62,7 +62,6 @@
 		Route::any('home/home', [
 				'as' => 'admin.home.home',
 				'uses' => 'LoginController@home',
-				'before' => 'isAdmin'
 		]);
 
 		#############################
@@ -71,25 +70,22 @@
 		Route::any('user/list', [
 				'as' => 'admin.user.list',
 				'uses' => 'UserController@showList',
-				'before' => 'isAdmin'
 		]);
 
 		Route::any('user/create', [
 				'as' => 'admin.user.create',
 				'uses' => 'UserController@create',
-				'before' => 'isAdmin'
+
 		]);
 
 		Route::any('user/edit/{id_user}', [
 				'as' => 'admin.user.edit',
 				'uses' => 'UserController@edit',
-				'before' => 'isAdmin'
 		]);
 		
 		Route::any('user/delete/{id_user}', [
 				'as' => 'admin.user.delete',
 				'uses' => 'UserController@delete',
-				'before' => 'isAdmin'
 		]);
 		
 		###############################################
@@ -98,19 +94,16 @@
 		Route::any('user/specialization/list/{id_user}', [
 				'as' => 'admin.user.specialization.list',
 				'uses' => 'UserSpecController@showList',
-				'before' => 'isAdmin'
 		]);		
 		
 		Route::any('user/specialization/create/{id_user}', [
 				'as' => 'admin.user.specialization.create',
 				'uses' => 'UserSpecController@create',
-				'before' => 'isAdmin'
 		]);
 
 		Route::any('user/specialization/delete/{id_fs}', [
 				'as' => 'admin.user.specialization.delete',
 				'uses' => 'UserSpecController@delete',
-				'before' => 'isAdmin'
 		]);
 		
 		################################
@@ -189,6 +182,7 @@
 		]);
 
 	});
+	
 
 	#######################
 	######## LOGOUT ########	

@@ -1,4 +1,4 @@
-@extends('admin/base')
+@extends( ( (Auth::user()->is_admin ) ? 'admin/base' : 'platform/base') )
 
 @section('page_title') MUM Schedule @endsection
 

@@ -214,5 +214,5 @@ class EntryController extends BaseController {
 		
 		return $entry;
 	}
-				
+
 }

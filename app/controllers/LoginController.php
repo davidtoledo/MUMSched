@@ -6,7 +6,7 @@ use MUMSched\Services\UserService;
 /**
  * Login Controller
  *
- * @author DTSC Engenharia de Sistemas
+ * @author Fantastic Five
  */
 class LoginController extends BaseController {
 
@@ -42,9 +42,14 @@ class LoginController extends BaseController {
 			
 			if ($user) {
 				Auth::login ($user);
-				return \Redirect::route('admin.home.home');
-			}								 
 				
+				if ($user->is_admin) {
+					return \Redirect::route('admin.home.home');
+				} else {
+					return \Redirect::route('admin.user.edit', $user->id_user);
+				}
+				
+			}								 
 		} 
 		 
 		return Redirect::route('login')->withErrors('Invalid user name or password!');	

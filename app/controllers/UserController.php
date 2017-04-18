@@ -128,14 +128,12 @@ class UserController extends BaseController {
 		
 		// Getting User from DB
 		$user = UserService::getUserByID($id);
-		
-		if ( !$user ) {
-			return Redirect::route('admin.user.list')->withErrors('User not found.');
+		if ( !$user || !Auth::user()->is_admin && Auth::user()->id_user != $id) {
+			return Redirect::route('login')->withErrors('User not found.');
 		}
 		
 		// Add select data
 		self::addCombos();
-					
 		
 		// Adding data in the view context
 		$this->data['user'] = & $user;

@@ -1,51 +1,60 @@
-@extends('admin/base')
+@extends( ( (Auth::user()->is_admin ) ? 'admin/base' : 'platform/base') )
 
 @section('page_title') MUM Schedule @endsection
 
 @section('css_header')
-	<link rel="stylesheet" href="{{ URL::to('_temas/_base/media/css/select2.css') }}" />
+	<link rel="stylesheet" href="{{ URL::to('_temas/_base/media/css/jqueryui-blue/jquery-ui.min.css') }}" />	
 @endsection
 
 @section('breadcrumb')
 	<ul class="breadcrumb">
 		<li>
 			<i class="ace-icon fa fa-home home-icon"></i>
-			<a href="#2">MUMSched</a>
+			<a href="{{ Config::get('app.plataforma.url') }}">MUMSched</a>
 		</li>
-		<li>
-			<i class="ace-icon fa fa-lock"></i>
-			<a href="{{ URL::route('admin.user.list') }}">
-				Users
-			</a>
-		</li>
-		<li>
-			<i class="ace-icon fa fa-lock"></i>
-			<a href="{{ URL::route('admin.user.specialization.list', $user->id_user) }}">Specialization</a>
-		</li>				
-		<li>
-			{{ isset ($user) ? 'Edit' : 'Add' }}
-		</li>
+		@if (Auth::user()->is_admin)
+			<li>
+				<i class="ace-icon fa fa-lock"></i>
+				<a href="{{ URL::route('admin.user.list') }}">
+					Users
+				</a>
+			</li>
+			<li>
+				Specialization
+			</li>
+			<li>
+				{{ isset ($user) ? 'Edit' : 'Create' }}
+			</li>
+		@else
+			<li>
+				{{ $user->type == \SystemUser::TYPE_FACULTY ? "Faculty" : "Student "}} Profile
+			</li>
+		@endif
 	</ul>
 @endsection
 
 @section('content')
-    <!-- Screen ID: lista-specialization -->
-	<h4 class="pink">
-	@if ( isset ($user) ) 
-		<i class="ace-icon fa fa-newspaper-o green"></i>
-		<a href="{{ URL::route('admin.user.list') }}" class="blue">User List</a>
-		&nbsp; &nbsp;
+    <!-- Screen ID: form-user -->
+    @if (Auth::user()->is_admin)
+		<h4 class="pink">
+			<i class="ace-icon fa fa-newspaper-o green"></i>
+			<a href="{{ URL::route('admin.user.list') }}" class="blue">User List</a>
+			&nbsp; &nbsp;
+		</h4>
+		<div class="page-header">
+			<h1>
+				User
+				<small>
+					<i class="ace-icon fa fa-angle-double-right"></i>
+					{{ isset ($user) ? 'Edit' : 'Create' }}
+				</small>
+			</h1>
+		</div>
+	@else
+		<!-- Header-->
+		@include('admin/user/user-header')
+	
 	@endif
-	</h4>
-	<div class="page-header">
-		<h1>
-			{{ $title }}
-			<small>
-				<i class="ace-icon fa fa-angle-double-right"></i>
-				{{ isset ($user) ? 'Edit' : 'Add' }}
-			</small>
-		</h1>
-	</div>
 
 	<div class="col-xs-12 col-sm-12">
 		<div class="tabbable">

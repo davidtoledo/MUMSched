@@ -4,7 +4,11 @@
 		<li class="{{ Request::is('admin/user/edit*') ? ' active ' : '' }}">
 			<a href="{{{ URL::route('admin.user.edit', $user->id_user) }}}">
 				<i class="blue ace-icon fa fa-pencil bigger-110"></i>
-				Edit user
+				@if (Auth::user()->is_admin)
+					Edit user
+				@else
+					Profile
+				@endif
 			</a>
 		</li>
 		
