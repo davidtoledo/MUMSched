@@ -75,7 +75,7 @@
 
 					<div class="form-group">
 						<label class="col-sm-2 control-label no-padding-right blue">FPP Total</label>
-						<div class="col-sm-8">
+						<div class="col-sm-3">
 							{{ Form::text('fpp_total',
 								isset ($entry) ? $entry->fpp_total : Input::old('fpp_total'),
 								[
@@ -95,7 +95,7 @@
 
 					<div class="form-group">
 						<label class="col-sm-2 control-label no-padding-right blue">MPP Total</label>
-						<div class="col-sm-8">
+						<div class="col-sm-3">
 							{{ Form::text('mpp_total',
 								isset ($entry) ? $entry->mpp_total : Input::old('mpp_total'),
 								[
@@ -115,7 +115,7 @@
 
 					<div class="form-group">
 						<label class="col-sm-2 control-label no-padding-right blue">OPT Percent</label>
-						<div class="col-sm-8">
+						<div class="col-sm-3">
 							{{ Form::text('opt_percent',
 								isset ($entry) ? $entry->opt_percent : Input::old('opt_percent'),
 								[
@@ -135,9 +135,9 @@
 
 					<div class="form-group">
 						<label class="col-sm-2 control-label no-padding-right blue">Start Date</label>
-						<div class="col-sm-8">
-							{{ Form::text('start_date',
-								isset ($entry) ? $entry->start_date : Input::old('start_date'),
+						<div class="col-sm-3">
+							{{ Form::text('dt_start_date',
+								isset ($entry) ? date("m/d/Y", strtotime($entry->start_date)) : Input::old('dt_start_date'),
 								[
 									'class' => 'col-xs-9 limited'
 								]
@@ -155,9 +155,9 @@
 
 					<div class="form-group">
 						<label class="col-sm-2 control-label no-padding-right blue">End Date</label>
-						<div class="col-sm-8">
-							{{ Form::text('end_date',
-								isset ($entry) ? $entry->end_date : Input::old('end_date'),
+						<div class="col-sm-3">
+							{{ Form::text('dt_end_date',
+								isset ($entry) ? date("m/d/Y", strtotime($entry->end_date)) : Input::old('dt_end_date'),
 								[
 									'class' => 'col-xs-9 limited'
 								]
@@ -185,10 +185,9 @@
 @stop
 
 @section('ace_scripts')
-	<script src="{{ URL::to('media/editor/ckeditor/ckeditor.js') }}"></script>
 	<script src="{{ URL::to('_plataforma/media/js/plugins/jquery-ui.js') }}"></script>
-	<script src="{{ URL::to('_plataforma/media/js/plugins/jquery.ui.datepicker-pt-BR.js') }}"></script>
 	<script src="{{ URL::to('_temas/_base/media/js/select2.js') }}"></script>
+	<script src="{{ URL::to('_temas/admin/media/js/dtsc/mumsched.js') }}"></script>
 @endsection
 
 @section('scripts_footer')

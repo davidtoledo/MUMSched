@@ -3,6 +3,7 @@
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use MUMSched\Services\EntryService;
+use MUMSched\Utils\AppUtil;
 
 /**
  * Entry Controller
@@ -30,11 +31,12 @@ class EntryController extends BaseController {
 		'opt_percent' => [
 			'required',
 		],
-		'start_date' => [
+		'dt_start_date' => [
 			'required',
 		],
-		'end_date' => [
+		'dt_end_date' => [
 			'required',
+			'after:dt_start_date',
 		],
 	];
 
@@ -42,8 +44,8 @@ class EntryController extends BaseController {
 		'fpp_total' => 'total of FPP',
 		'mpp_total' => 'total of MPP',
 		'opt_percent' => 'percentage of OPT',
-		'start_date' => 'start date',
-		'end_date' => 'end date',
+		'dt_start_date' => 'start date',
+		'dt_end_date' => 'end date',
 	];
 
 	/**
@@ -207,8 +209,8 @@ class EntryController extends BaseController {
 		$entry->fpp_total = Input::get('fpp_total');
 		$entry->mpp_total = Input::get('mpp_total');
 		$entry->opt_percent = Input::get('opt_percent');
-		$entry->start_date = Input::get('start_date');
-		$entry->end_date = Input::get('end_date');
+		$entry->start_date = AppUtil::date2db(Input::get("dt_start_date"));
+		$entry->end_date = AppUtil::date2db(Input::get("dt_end_date"));
 		
 		return $entry;
 	}

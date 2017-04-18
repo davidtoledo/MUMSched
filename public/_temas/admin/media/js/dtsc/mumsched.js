@@ -98,14 +98,14 @@
 		
 		// Progress bar control (simulating a busy server)
 		stripesAnimate();
-		setTimeout(function(){ setProgressBar (20); }, 1000);
-		setTimeout(function(){ setProgressBar (50); }, 3000);
-		setTimeout(function(){ setProgressBar (75); }, 5000);
+		setTimeout ( function() { setProgressBar (20); }, 1000 );
+		setTimeout ( function() { setProgressBar (50); }, 3000 );
+		setTimeout ( function() { setProgressBar (75); }, 5000 );
 		
 		// Async Call
 		setTimeout(function(){
 			
-			// Recuperar dados via ajax
+			// Retrieve data via Ajax
 			$.post ( action + "/" + $("#cbo-algorithm-type").val() + "/" + $("#cbo-order").val() )
 				.done ( function (json) {
 
@@ -113,7 +113,7 @@
 						alert ( json['messages'][0] );
 					}
 					
-					// Processo OK					
+					// Process OK					
 					setProgressBar (100);
 					
 					setTimeout(function(){ 

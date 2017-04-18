@@ -32,7 +32,7 @@ class ScheduleService implements IScheduleService {
 		return ScheduleDAO::saveSchedule($schedule);
 	}
 	
-	public static function generate ($id_schedule, $algorithm_type, $block_order) {
+	public static function generate($id_schedule, $algorithm_type, $block_order) {
 		
 		$json = [
 			'return' => 0,
