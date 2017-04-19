@@ -6,16 +6,14 @@
 				<i class="blue ace-icon fa fa-pencil bigger-110"></i>
 				Edit course
 			</a>
-		</li>		
-	</ul>	
-	@if ($user->type == \SystemUser::TYPE_FACULTY)
-			<li class="{{ Request::is('admin/course/prerequisite*') ? ' active ' : '' }}">
+		</li>
+		<li class="{{ Request::is('admin/course/prerequisite*') ? ' active ' : '' }}">
 				<a href="{{ URL::route('admin.course.prerequisite.list', $course->id_course) }}">
 					<i class="blue ace-icon fa fa-graduation-cap bigger-110"></i>
 					Prerequisite
 				</a>
-			</li>
-		@endif
+			</li>		
+	</ul>	
 	
 	
 @endif
