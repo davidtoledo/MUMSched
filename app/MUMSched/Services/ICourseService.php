@@ -3,7 +3,7 @@
 namespace MUMSched\Services;
 
 /**
- * Interface class for EntryService
+ * Interface class for CourseService
  *
  * @author Fantastic Five
  */

@@ -21,5 +21,9 @@ class CourseService implements ICourseService {
 	public static function deleteCourse($id) {
 		return CourseDAO::deleteCourse($id);
 	}	
+	public static function getCourseWithPrerequisite($id_course){
+		return CourseDAO::getCourseWithPrerequisite($id_course);
+	}
+	
 	
 }
