@@ -187,7 +187,7 @@
 				'before' => 'isAdmin'
 		]);
 		
-		Route::any('entry/delete/{id_entry}', [
+		Route::any('entry/delete/{id_en  	try}', [
 				'as' => 'admin.entry.delete',
 				'uses' => 'EntryController@delete',
 				'before' => 'isAdmin'
@@ -217,6 +217,34 @@
 		Route::any('block/delete/{id_block}', [
 				'as' => 'admin.block.delete',
 				'uses' => 'BlockController@delete',
+				'before' => 'isAdmin'
+		]);
+		
+		
+		################################
+		############# SECTION ############
+		
+		Route::any('section/list', [
+				'as' => 'admin.section.list',
+				'uses' => 'SectionController@showList',
+				'before' => 'isAdmin'
+		]);
+
+		Route::any('section/create', [
+				'as' => 'admin.section.create',
+				'uses' => 'SectionController@create',
+				'before' => 'isAdmin'
+		]);
+
+		Route::any('section/edit/{id_section}', [
+				'as' => 'admin.section.edit',
+				'uses' => 'SectionController@edit',
+				'before' => 'isAdmin'
+		]);
+		
+		Route::any('section/delete/{id_section}', [
+				'as' => 'admin.section.delete',
+				'uses' => 'SectionController@delete',
 				'before' => 'isAdmin'
 		]);
 	});
