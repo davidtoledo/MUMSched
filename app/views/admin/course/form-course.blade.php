@@ -55,7 +55,7 @@
 					
 					<div class="form-group">
 						<label class="col-sm-2 control-label no-padding-right blue"> Course Specialization</label>
-						<div class="col-sm-8">
+						<div class="col-sm-8"> 
 							{{ Form::text('id_specialization',
 								isset ($course) ? $course->id_specialization : Input::old('id_specialization'),
 								[
