@@ -36,7 +36,7 @@
 			Block
 			<small>
 				<i class="ace-icon fa fa-angle-double-right"></i>
-				{{ isset ($entry) ? 'Edit' : 'Create' }}
+				{{ isset ($block) ? 'Edit' : 'Create' }}
 			</small>
 		</h1>
 	</div>
