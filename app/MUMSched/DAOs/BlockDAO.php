@@ -43,7 +43,7 @@ class BlockDAO {
 				
 		$queries = [
 			'DELETE FROM student_section 
-					WHERE  id_section IN 
+					WHERE  id_section IN
 							(
 							  SELECT id_section 
 							  FROM    section 

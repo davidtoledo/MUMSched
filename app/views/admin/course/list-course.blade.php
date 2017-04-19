@@ -64,7 +64,7 @@
 				</center>
 			</th>							
 	         
-	         <th style="width:20%;">
+	         <th style="width:10%;">
 	         	Course Code
 	         </th>
 
@@ -72,7 +72,7 @@
 	         	Course Name
 	         </th>
 	         
-	         <th style="width:20%;">
+	         <th style="width:30%;">
 	         	Course Area
 	         </th>	         
 	         
