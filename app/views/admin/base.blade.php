@@ -188,7 +188,9 @@
 							<a href="{{ URL::to('/admin/section/list') }}">
 								<i class="menu-icon fa fa-th"></i>
 								<span class="menu-text">
+
 									Section
+
 								</span>
 							</a>
 						</li>
