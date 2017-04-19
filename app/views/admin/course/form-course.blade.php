@@ -54,26 +54,6 @@
 				]) }}
 					
 					<div class="form-group">
-						<label class="col-sm-2 control-label no-padding-right blue"> Course Specialization</label>
-						<div class="col-sm-8"> 
-							{{ Form::text('id_specialization',
-								isset ($course) ? $course->id_specialization : Input::old('id_specialization'),
-								[
-									'class' => 'col-xs-9 limited'
-								]
-							) }}
-							<span 
-								data-content="Please inform the specialization of the course." 
-								data-placement="right"
-								data-rel="popover" 
-								data-trigger="hover"
-								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
-								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
-							</span>							
-						</div>
-					</div>
-
-					<div class="form-group">
 						<label class="col-sm-2 control-label no-padding-right blue">Course Code</label>
 						<div class="col-sm-3">
 							{{ Form::text('code',
@@ -95,7 +75,7 @@
 
 					<div class="form-group">
 						<label class="col-sm-2 control-label no-padding-right blue">Course Name</label>
-						<div class="col-sm-3">
+						<div class="col-sm-8">
 							{{ Form::text('name',
 								isset ($course) ? $course->name : Input::old('name'),
 								[
@@ -113,7 +93,29 @@
 						</div>
 					</div>
 
-				
+					<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right blue">Course Area</label>
+						<div class="col-sm-10">
+							{{ Form::select('id_specialization',
+								$spec_list,
+								isset ($course) ? $course->id_specialization : Input::old('id_specialization'),
+									[
+										'id'       => 'specialization_list', 
+										'style'    => 'width:58%;',
+									]
+								)
+							}}
+							<span 
+								data-content="Please select a Specialization Area for this course." 
+								data-placement="right"
+								data-rel="popover" 
+								data-trigger="hover"
+								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+							</span>																						
+						</div>
+					</div>
+									
 					<button type="submit" class='btn btn-blue btn-info'>
 						<span class="ace-icon fa fa-calendar icon-on-right bigger-110"></span>
 						Save

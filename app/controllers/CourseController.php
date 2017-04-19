@@ -59,6 +59,9 @@ class CourseController extends BaseController {
 	 * @author Fantastic Five
 	 */
 	public function create() {
+		
+		// Add select data
+		self::addCombos();
 				
 		if ( Request::isMethod('post') ) {
 			
@@ -114,6 +117,9 @@ class CourseController extends BaseController {
 		if ( !$course ) {
 			return Redirect::route('admin.course.list')->withErrors('Course not found.');
 		}
+		
+		// Add select data
+		self::addCombos();		
 				
 		// Adding data in the view context
 		$this->data['course'] = & $course;
@@ -178,7 +184,22 @@ class CourseController extends BaseController {
 				$return->getMessage()]
 			);
 		}
-	}	
+	}
+	
+	/**
+	 * Add combo data
+	 * 
+	 * @author Fantastic Five
+	 */
+	private function addCombos() {
+		
+		// Specialization Selectbox
+		$spec_list = Specialization::orderBy('specialization')
+    					   		   ->lists('specialization', 'id_specialization');
+				
+		// Add to the view context
+		$this->data['spec_list'] =  $spec_list;
+	}		
 	
 	/**
 	 * Populate data from the view layer
@@ -192,7 +213,7 @@ class CourseController extends BaseController {
 		if (!$course) {
 			return FALSE;
 		}
-		$course->specialization = Input::get('id_specialization');
+		$course->id_specialization = Input::get('id_specialization');
 		$course->code = Input::get('code');
 		$course->name = Input::get('name');	
 			
