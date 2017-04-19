@@ -181,7 +181,7 @@
 							<a href="{{ URL::to('/admin/session/list') }}">
 								<i class="menu-icon fa fa-th"></i>
 								<span class="menu-text">
-									Session
+									Secion
 								</span>
 							</a>
 						</li>
