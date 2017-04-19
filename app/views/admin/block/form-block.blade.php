@@ -73,8 +73,30 @@
 						</div>
 					</div>
 
+				
+					<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right blue">Select the Entry</label>
+						<div class="col-sm-10">
+							{{ Form::select('id_entry',
+								$entry_list,
+								isset ($block) ? $block->id_entry : Input::old('id_entry'),
+									[
+										'id'       => 'entry_list', 
+										'style'    => 'width:58%;',
+									]
+								)
+							}}
+							<span 
+								data-content="Please select an Entry." 
+								data-placement="right"
+								data-rel="popover" 
+								data-trigger="hover"
+								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+							</span>																						
+						</div>
+					</div>
 					
-
 					
 
 					<div class="form-group">

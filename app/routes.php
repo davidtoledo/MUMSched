@@ -138,8 +138,9 @@
 				'uses' => 'ScheduleController@delete',
 				'before' => 'isAdmin'
 		]);
+		
 		################################
-		############# COURSE ############
+		############# COURSE ###########
 		
 		Route::any('course/list', [
 				'as' => 'admin.course.list',
@@ -193,7 +194,7 @@
 		]);
 		
 		################################
-		############# Block ############
+		############# BLOCK ############
 		
 		Route::any('block/list', [
 				'as' => 'admin.block.list',
@@ -219,11 +220,6 @@
 				'before' => 'isAdmin'
 		]);
 	});
-
-
-		
-		
-	
 	
 	###################################
 	######## SCHEDULE CALENDAR ########
@@ -231,7 +227,7 @@
 	Route::group ( array ('prefix'=>'calendar' ), function() {
 
 		##############################
-		########### GRADE ############
+		####### VIEW SCHEDULE ########
 
 		Route::any('view/{id_schedule}/{id_user?}', [
 				'as' => 'calendar.view',
