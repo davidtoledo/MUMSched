@@ -177,11 +177,13 @@
 							</a>
 						</li>	
 						
-						<li class="{{ Request::is('admin/session/*') ? 'active open' : '' }}">
-							<a href="{{ URL::to('/admin/session/list') }}">
+						<li class="{{ Request::is('admin/section/*') ? 'active open' : '' }}">
+							<a href="{{ URL::to('/admin/section/list') }}">
 								<i class="menu-icon fa fa-th"></i>
 								<span class="menu-text">
-									Secion
+
+									Section
+
 								</span>
 							</a>
 						</li>
