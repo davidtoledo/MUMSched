@@ -201,8 +201,7 @@ class ScheduleController extends BaseController {
 		$this->data['entry_list'] += $entry_list;
 		
 		// Status Selectbox
-		$this->data['status_list'] =  ['' => 'Select a status'];
-		$this->data['status_list'] += ['D' => 'Draft'];
+		$this->data['status_list'] =  ['D' => 'Draft'];
 		$this->data['status_list'] += ['O' => 'OK'];
 	}
 	

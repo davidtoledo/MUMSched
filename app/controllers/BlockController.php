@@ -214,6 +214,7 @@ class BlockController extends BaseController {
 			return FALSE;
 		}
 				
+		$block->id_entry = Input::get('id_entry');
 		$block->name = Input::get('name');	
 		$block->num_mpp_courses = Input::get('num_mpp_courses');
 		$block->num_fpp_courses = Input::get('num_fpp_courses');
