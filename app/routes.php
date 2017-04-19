@@ -89,6 +89,26 @@
 		]);
 		
 		###############################################
+		########## COURSE -> PREREQUISITE ############
+
+		Route::any('course/prerequisite/list/{id_course}', [
+				'as' => 'admin.course.prerequisite.list',
+				'uses' => 'CoursePrereqController@showList',
+		]);		
+		
+		Route::any('course/prerequisite/create/{id_course}', [
+				'as' => 'admin.user.prerequisite.create',
+				'uses' => 'CoursePrereqController@create',
+		]);
+
+		Route::any('course/prerequisite/delete/{id_fs}', [
+				'as' => 'admin.user.prerequisite.delete',
+				'uses' => 'CoursePrereqController@delete',
+		]);
+		
+		
+		
+		###############################################
 		########## USERS -> SPECIALIZATION ############
 
 		Route::any('user/specialization/list/{id_user}', [

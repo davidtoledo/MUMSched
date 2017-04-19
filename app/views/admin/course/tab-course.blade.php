@@ -1,4 +1,4 @@
-<!-- Screen ID: tab-entry -->
+<!-- Screen ID: tab-course -->
 @if ( isset($course) )
 	<ul class="nav nav-tabs" id="myTab3">
 		<li class="{{ Request::is('admin/course/edit*') ? ' active ' : '' }}">
@@ -8,4 +8,14 @@
 			</a>
 		</li>		
 	</ul>	
+	@if ($user->type == \SystemUser::TYPE_FACULTY)
+			<li class="{{ Request::is('admin/course/prerequisite*') ? ' active ' : '' }}">
+				<a href="{{ URL::route('admin.course.prerequisite.list', $course->id_course) }}">
+					<i class="blue ace-icon fa fa-graduation-cap bigger-110"></i>
+					Prerequisite
+				</a>
+			</li>
+		@endif
+	
+	
 @endif
