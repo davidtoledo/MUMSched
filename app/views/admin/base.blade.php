@@ -157,6 +157,15 @@
 							</a>
 						</li>
 
+						<li class="{{ Request::is('admin/course/*') ? 'active open' : '' }}">
+							<a href="{{ URL::to('/admin/course/list') }}">
+								<i class="menu-icon fa fa-book"></i>
+								<span class="menu-text">
+									Course
+								</span>
+							</a>
+						</li>
+												
 						<li class="{{ Request::is('admin/entry/*') ? 'active open' : '' }}">
 							<a href="{{ URL::to('/admin/entry/list') }}">
 								<i class="menu-icon fa fa-calendar-o"></i>
