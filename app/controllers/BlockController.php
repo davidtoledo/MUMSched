@@ -67,7 +67,7 @@ class BlockController extends BaseController {
 	 * @author Fantastic Five
 	 */
 	public function create() {
-				
+		self::addCombos();		
 		if ( Request::isMethod('post') ) {
 			
 			// Validator
@@ -188,6 +188,19 @@ class BlockController extends BaseController {
 		}
 	}	
 	
+	
+	private function addCombos() {
+		
+		// Entry Selectbox
+		$entry_list = Entry::orderBy('name')
+    					   ->lists('name', 'id_entry');
+		
+		$this->data['entry_list'] = ['' => 'Select an entry'];
+		$this->data['entry_list'] += $entry_list;
+		
+		
+	}
+
 	/**
 	 * Populate data from the view layer
 	 *

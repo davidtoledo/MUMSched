@@ -16,7 +16,7 @@
 		<li>
 			<i class="ace-icon fa fa-lock"></i>
 			<a href="{{ URL::route('admin.block.list') }}">
-				Entries
+				Blocks
 			</a>
 		</li>
 		<li>
@@ -84,39 +84,39 @@
 	      </tr>
 	   </thead>
 	   <tbody>
-	      @foreach ($entries as $entry)
+	      @foreach ($blocks as $block)
 	      <tr>
 	      	<td align="center">
-	      		<input type="checkbox" name="chk_usuarios[]" value="{{ $entry->id_entry }}" class="chkSelecionado"></input>
+	      		<input type="checkbox" name="chk_usuarios[]" value="{{ $block->id_block }}" class="chkSelecionado"></input>
 	      	</td>
 	         <td>
-	         	<a href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
-	            	{{ $entry->name }}
+	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
+	            	{{ $block->name }}
 	           </a>
 	         </td>
 
 	         <td>
-	         	<a href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
-	            	{{ $entry->fpp_total }}
+	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
+	            	{{ $block->fpp_total }}
 	           </a>
 	         </td>
 
 	         <td>
-	         	<a href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
-	            	{{ $entry->mpp_total }}
+	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
+	            	{{ $block->mpp_total }}
 	           </a>
 	         </td>
 
 	         <td>
-	         	<a href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
-	            	{{ date("m/d/Y", strtotime($entry->start_date)) }}
+	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
+	            	{{ date("m/d/Y", strtotime($block->start_date)) }}
 	           </a>
 	         </td>
 	         
 	         <td align="center">
 	            <!-- Multiple-action button -->
 	            <div class="btn-group">
-		               <a class="btn btn-glow" href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
+		               <a class="btn btn-glow" href="{{ URL::route('admin.block.edit', $block->id_block) }}">
 			               <i class="fa fa-pencil"></i>
 			               <span>Edit</span>
 		               </a>
@@ -125,7 +125,7 @@
 		           	  <!-- Sub options -->
 	               	  <ul class="dropdown-menu pull-right">
 		                  <li>
-		                     <a href="#2" title="delete" onclick="deletar('{{ URL::route('admin.entry.delete', [$entry->id_entry]) }}');">
+		                     <a href="#2" title="delete" onclick="deletar('{{ URL::route('admin.block.delete', [$block->id_block]) }}');">
 			                     <i class="fa fa-trash-o"></i>
 			                     <span>Delete</span>
 		                     </a>
@@ -139,7 +139,7 @@
 	</table>
 	
 	<br>
-	<i>Displaying {{ sizeof ($entries) }} {{ sizeof ($entries) == 1 ? "item" : "items" }}</i>
+	<i>Displaying {{ sizeof ($blocks) }} {{ sizeof ($blocks) == 1 ? "item" : "items" }}</i>
 	<br><br>			
 		
 	{{ Form::close() }}
