@@ -25,7 +25,7 @@
 @endsection
 
 @section('content')
-    <!-- Screen ID: form-entry -->
+    <!-- Screen ID: form-course -->
 	<h4 class="pink">
 		<i class="ace-icon fa fa-newspaper-o green"></i>
 		<a href="{{ URL::route('admin.course.list') }}" class="blue">Course List</a>
@@ -57,7 +57,7 @@
 						<label class="col-sm-2 control-label no-padding-right blue"> Course Specialization</label>
 						<div class="col-sm-8">
 							{{ Form::text('id_specialization',
-								isset ($course) ? $entry->id_specialization : Input::old('specialization'),
+								isset ($course) ? $course->id_specialization : Input::old('id_specialization'),
 								[
 									'class' => 'col-xs-9 limited'
 								]
