@@ -42,7 +42,14 @@ class BlockDAO {
 	public static function deleteBlock($id) {
 				
 		$queries = [
-			'DELETE FROM entry WHERE  id_block = ?',		
+			'DELETE FROM student_section WHERE  id_section IN 
+												(
+												  SELECT id_section 
+												  FROM    section 
+												  WHERE id_block = ?
+												) ',
+			'DELETE FROM section WHERE  id_block = ?',
+			'DELETE FROM block   WHERE  id_block = ?',		
 		];
 		
 		try	{
