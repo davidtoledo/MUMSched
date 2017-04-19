@@ -20,5 +20,10 @@ class Course extends Eloquent {
 	public function faculties() {
 		return $this->hasMany('FacultyCourse', 'id_course', 'id_course');
 	}
+
+	// Relationship with Specialization
+	public function specialization() {
+		return $this->hasOne('Specialization', 'id_specialization', 'id_specialization');
+	}
 	
 }
