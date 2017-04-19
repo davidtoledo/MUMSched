@@ -64,20 +64,28 @@
 				</center>
 			</th>							
 	      	
-	         <th style="width:25%;">
+	         <th style="width:20%;">
 	         	Block
 	         </th>
+	         
+	         <th style="width:10%;">
+	         	Entry
+	         </th>
 
-	         <th style="width:25%;">
+	         <th style="width:15%;">
 	         	Start date
 	         </th>
 	         
-	         <th style="width:25%;">
-	         	MPP Total
+	         <th style="width:15%;">
+	         	End Date
 	         </th>
 
 	         <th style="width:10%;">
-	         	Start Date
+	         	Number of MPP courses
+	         </th>
+	         
+	         <th style="width:10%;">
+	         	Number of FPP courses
 	         </th>
 	         
 	         <th style="width:10%;">Actions</th>
@@ -94,22 +102,34 @@
 	            	{{ $block->name }}
 	           </a>
 	         </td>
-
-	         <td>
+				
+			<td>
 	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
-	            	{{ $block->fpp_total }}
+	            	{{ $block->entry->name }}
 	           </a>
-	         </td>
-
-	         <td>
-	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
-	            	{{ $block->mpp_total }}
-	           </a>
-	         </td>
-
+	        </td>
+	         
 	         <td>
 	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
 	            	{{ date("m/d/Y", strtotime($block->start_date)) }}
+	           </a>
+	         </td>
+
+	         <td>
+	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
+	            	{{ date("m/d/Y", strtotime($block->end_date)) }}
+	           </a>
+	         </td>
+
+	         <td>
+	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
+	            	{{ $block->num_mpp_courses }}
+	           </a>
+	         </td>
+	         
+	         <td>
+	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
+	            	{{ $block->num_fpp_courses }}
 	           </a>
 	         </td>
 	         
