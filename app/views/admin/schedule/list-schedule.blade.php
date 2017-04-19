@@ -255,7 +255,7 @@
 						<div class="progress-bar"><div class="progress-stripes"></div><div class="percentage">0%</div></div>
 					</div>
 					
-	            	<div align="right"><img src="{{ URL::to('_plataforma/media/img/dtsc/logo_dtsc.png') }}" width="30"></div>
+	            	<div align="right"><img src="{{ URL::to('_plataforma/media/img/lgo/MUMSchedLogo.png') }}" width="80"></div>
 	            	
 	            </div>
 	        </div>
