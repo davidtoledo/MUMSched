@@ -19,6 +19,13 @@
 					Specialization
 				</a>
 			</li>
+			
+			<li class="{{ Request::is('admin/user/course*') ? ' active ' : '' }}">
+				<a href="{{ URL::route('admin.user.course.list', $user->id_user) }}">
+					<i class="blue ace-icon fa fa-book bigger-110"></i>
+					Courses
+				</a>
+			</li>
 		@endif
 	</ul>	
 @endif

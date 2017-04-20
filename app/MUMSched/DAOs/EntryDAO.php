@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class EntryDAO {
 
 	/**
-	 * Returns a list of schedules
+	 * Returns a list of Entries
 	 * 
 	 * @author Fantastic Five
 	 */
@@ -26,8 +26,8 @@ class EntryDAO {
 	 * @author Fantastic Five
 	 */
 	public static function getEntryByID($id) {
-		$entries = \Entry::find($id);
-		return $entries;
+		$entry = \Entry::find($id);
+		return $entry;
 	}
 	
 	public static function saveEntry($entry) {

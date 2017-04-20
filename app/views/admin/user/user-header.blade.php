@@ -12,7 +12,7 @@
 	                           <div class="row">
 	                              <div class="img-container pull-left">
 	                              	
-				                     <!-- Aba Perfil -->
+				                     <!-- tab -->
 				                     @if ( Request::is('*/perfil/*/*/perfil' ) )  
 	                              	 	<a href="#2" onclick="uploadPerfil();">
 	                              	 @endif
@@ -58,7 +58,7 @@
 	                                       <small>
 	                                       <br><b>
 	                                       		@if ( $user->type == \SystemUser::TYPE_STUDENT )
-	                                       			GPA 3.7
+	                                       			GPA 3.8
 	                                       		@else
 	                                       			&nbsp;
 	                                       		@endif
@@ -67,7 +67,11 @@
 	                                    </h3>
 	                                    <p></p>
 	                                    <div>
-	                                       <span class="form-answer"><b>Master's Degree</b></span>
+	                                    	@if ( $user->type == \SystemUser::TYPE_STUDENT )
+	                                       		<span class="form-answer"><b>Master's Degree</b></span>
+	                                       	@else
+	                                       		<span class="form-answer"><b>Doctor's Degree</b></span>
+	                                       	@endif
 	                                    </div>	                                    
 	                                    <div>
 	                                       <span class="form-answer"><b>Computer Science</b></span>
@@ -88,6 +92,7 @@
 	                              </div>
 	                              <div class="col-md-5">
 	                                 <div class="personal-preferences">
+	                                 		@if (Auth::user()->type == \SystemUser::TYPE_STUDENT)
 		                                    <div class="mentoring-preference">
 		                                       <h3 class="form-label">Availability</h3>
 		                                       <div class="form-answer">
@@ -98,7 +103,20 @@
 		                                          </div>
 		                                       </div>
 		                                    </div>
+		                                    @endif
+		                                    
+		                                    <div class="contatos-plataforma">
+		                                       <h3 class="form-label">University Contacts</h3>
+		                                       <div class="form-answer">
+		                                          <div style="overflow: hidden; max-height: 54px;">
+		                                             <div style="margin: 0px; padding: 0px; border: 0px;">
+		                                             	&bull; Joe Bruen
+		                                             </div>
+		                                          </div>
+		                                       </div>
+		                                    </div>		                                		                                    
                            	
+		                                    @if (Auth::user()->type == \SystemUser::TYPE_STUDENT)
 		                                    <div class="general-impression">
 		                                       <h3 class="form-label">General Impression</h3>
 		                                       <div class="form-answer">
@@ -109,17 +127,21 @@
 		                                          </div>
 		                                       </div>
 		                                    </div>
+		                                    @else
+		                                    <div class="general-impression">
+		                                       <h3 class="form-label">Courses</h3>
+		                                       <div class="form-answer">
+		                                          <div style="overflow: hidden; max-height: 54px;">
+		                                             <div style="margin: 0px; padding: 0px; border: 0px;">
+		                                             	@foreach ($user->courses as $crse)
+	                              							<li class="form-answer">{{ $crse->course->name }}</li>
+	                              						@endforeach
+		                                             </div>
+		                                          </div>
+		                                       </div>
+		                                    </div>		                                    
+		                                    @endif
 
-	                                    <div class="contatos-plataforma">
-	                                       <h3 class="form-label">Platform Contacts</h3>
-	                                       <div class="form-answer">
-	                                          <div style="overflow: hidden; max-height: 54px;">
-	                                             <div style="margin: 0px; padding: 0px; border: 0px;">
-	                                             	&bull; Maryam Naraghi
-	                                             </div>
-	                                          </div>
-	                                       </div>
-	                                    </div>		                                
 	                                 </div>
 	                              </div>
 	                           </div>
@@ -140,7 +162,7 @@
 	                              </ul>
 	                           </div>
 	                        </div>
-	                        	                        
+	                        
 	                     </div>
 	                  </div>
 	               </div>
