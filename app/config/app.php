@@ -21,7 +21,7 @@ return array(
 	
 	// URLs
 	   'url' => 'http://localhost/MUMSched/public',              // DEV
-	// 'url' => 'http://www.tolledo.net/MUMSched',               // PRD
+	// 'url' => 'http://www.mumsched.com',                       // PRD
 	
 	'timezone' => 'America/Los_Angeles',
 	'locale' => 'en',

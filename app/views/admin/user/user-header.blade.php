@@ -58,7 +58,7 @@
 	                                       <small>
 	                                       <br><b>
 	                                       		@if ( $user->type == \SystemUser::TYPE_STUDENT )
-	                                       			GPA 3.7
+	                                       			GPA 3.8
 	                                       		@else
 	                                       			&nbsp;
 	                                       		@endif
@@ -98,7 +98,19 @@
 		                                          </div>
 		                                       </div>
 		                                    </div>
+		                                    
+		                                    <div class="contatos-plataforma">
+		                                       <h3 class="form-label">University Contacts</h3>
+		                                       <div class="form-answer">
+		                                          <div style="overflow: hidden; max-height: 54px;">
+		                                             <div style="margin: 0px; padding: 0px; border: 0px;">
+		                                             	&bull; Maryam Naraghi
+		                                             </div>
+		                                          </div>
+		                                       </div>
+		                                    </div>		                                		                                    
                            	
+		                                    @if (Auth::user()->type == \SystemUser::TYPE_STUDENT)
 		                                    <div class="general-impression">
 		                                       <h3 class="form-label">General Impression</h3>
 		                                       <div class="form-answer">
@@ -109,17 +121,21 @@
 		                                          </div>
 		                                       </div>
 		                                    </div>
+		                                    @else
+		                                    <div class="general-impression">
+		                                       <h3 class="form-label">Courses</h3>
+		                                       <div class="form-answer">
+		                                          <div style="overflow: hidden; max-height: 54px;">
+		                                             <div style="margin: 0px; padding: 0px; border: 0px;">
+		                                             	@foreach ($user->courses as $crse)
+	                              							<li class="form-answer">{{ $crse->course->name }}</li>
+	                              						@endforeach
+		                                             </div>
+		                                          </div>
+		                                       </div>
+		                                    </div>		                                    
+		                                    @endif
 
-	                                    <div class="contatos-plataforma">
-	                                       <h3 class="form-label">Platform Contacts</h3>
-	                                       <div class="form-answer">
-	                                          <div style="overflow: hidden; max-height: 54px;">
-	                                             <div style="margin: 0px; padding: 0px; border: 0px;">
-	                                             	&bull; Maryam Naraghi
-	                                             </div>
-	                                          </div>
-	                                       </div>
-	                                    </div>		                                
 	                                 </div>
 	                              </div>
 	                           </div>
@@ -141,20 +157,6 @@
 	                           </div>
 	                        </div>
 	                        
-	                        @if (Auth::user()->type == \SystemUser::TYPE_FACULTY)
-	                        <div class="col-md-3 col-xs-height skills">
-	                           <div id="skill_rankings">
-	                              <h3 class="form-label">Courses</h3>
-	                              <ul>
-	                                	@foreach ($user->courses as $crse)
-	                              			<li class="form-answer">{{ $crse->course->name }}</li>
-	                              		@endforeach
-	                              	
-	                              	
-	                              </ul>
-	                           </div>
-	                        </div>
-	                        @endif
 	                        	                        
 	                     </div>
 	                  </div>
