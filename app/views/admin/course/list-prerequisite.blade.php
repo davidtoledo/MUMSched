@@ -20,10 +20,10 @@
 				</a>
 			</li>
 			<li>
-				Specialization
+				Prerequisite
 			</li>
 			<li>
-				{{ isset ($user) ? 'Edit' : 'Create' }}
+				{{ isset ($course) ? 'Edit' : 'Create' }}
 			</li>
 		@else
 			<li>

@@ -39,14 +39,14 @@ class CoursePrereqController extends BaseController {
 	 *
 	 * @author Fantastic Five
 	 */
-	public function showList ($id_prerequisite) {
+	public function showList ($id_course) {
 		
-		$course = CourseService::getCourseWithPrerequisite($id_prerequisite);
+		$course = CourseService::getCoursePrerequisite($id_course);
 		if ( !$user || !Auth::user()->is_admin && Auth::user()->id_user != $id_user) {
 			return Redirect::route('login')->withErrors('User does not exists.');
 		}	
 
-		$this->data['coursePrereq'] = & $course;
+		$this->data['course'] = & $course;
 		
 		return View::make('admin.course.list-prerequisite')->with($this->data);
 	}

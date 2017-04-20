@@ -27,4 +27,10 @@ return array(
 	'MUMSched\\Services\\ICourseService' => $baseDir . '/app/MUMSched/Services/ICourseService.php',
 	'MUMSched\\DAOs\\CourseDAO' => $baseDir . '/app/MUMSched/DAOs/CourseDAO.php',
 	'MUMSched\\Services\\CourseService' => $baseDir . '/app/MUMSched/Services/CourseService.php',
+	'MUMSched\\DAOs\\PrerequisiteCourseDAO' => $baseDir . '/app/MUMSched/DAOs/PrerequisiteCourseDAO.php',
+	
+	
+	
+	
+	
 );
