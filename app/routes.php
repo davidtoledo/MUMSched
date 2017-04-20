@@ -126,6 +126,24 @@
 				'uses' => 'UserSpecController@delete',
 		]);
 		
+		###############################################
+		############### USERS -> COURSE ###############
+
+		Route::any('user/course/list/{id_user}', [
+				'as' => 'admin.user.course.list',
+				'uses' => 'UserCourseController@showList',
+		]);		
+		
+		Route::any('user/course/create/{id_user}', [
+				'as' => 'admin.user.course.create',
+				'uses' => 'UserCourseController@create',
+		]);
+
+		Route::any('user/course/delete/{id_fs}', [
+				'as' => 'admin.user.course.delete',
+				'uses' => 'UserCourseController@delete',
+		]);
+		
 		################################
 		########### SCHEDULE ###########
 		

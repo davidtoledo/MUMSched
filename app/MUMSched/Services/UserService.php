@@ -46,4 +46,19 @@ class UserService {
 		return UserDAO::getFacultySpecialization($id_user, $id_specialization);
 	}
 	
+	// Added By AHMED for Faculty Assign Course Tab 04/18/2017
+	
+	public static function getUserWithCourses($id_user) {
+		return UserDAO::getUserWithCourses($id_user);
+	}
+	
+	public static function deleteFacultyCourse($id) {
+		return UserDAO::deleteFacultyCourse($id);
+	}
+
+	public static function getFacultyCourse($id_user, $id_course) {
+		return UserDAO::getFacultyCourse($id_user, $id_course);
+	}
+	//End Of AHMED Modification
+	
 }

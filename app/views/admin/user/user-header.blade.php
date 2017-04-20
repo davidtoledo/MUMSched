@@ -140,6 +140,21 @@
 	                              </ul>
 	                           </div>
 	                        </div>
+	                        
+	                        @if (Auth::user()->type == \SystemUser::TYPE_FACULTY)
+	                        <div class="col-md-3 col-xs-height skills">
+	                           <div id="skill_rankings">
+	                              <h3 class="form-label">Courses</h3>
+	                              <ul>
+	                                	@foreach ($user->courses as $crse)
+	                              			<li class="form-answer">{{ $crse->course->name }}</li>
+	                              		@endforeach
+	                              	
+	                              	
+	                              </ul>
+	                           </div>
+	                        </div>
+	                        @endif
 	                        	                        
 	                     </div>
 	                  </div>
