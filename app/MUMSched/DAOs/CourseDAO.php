@@ -68,7 +68,7 @@ class CourseDAO {
 	
 	
 	public static function getCourseWithPrerequisite($id_course){
-			$course = \SystemUser::with("prerequisit")
+			$course = \SystemUser::with("prerequisites")
 			       	       ->find($id_course);
 			      	      
 		return $course;
