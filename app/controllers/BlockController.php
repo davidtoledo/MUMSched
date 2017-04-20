@@ -27,12 +27,15 @@ class BlockController extends BaseController {
 		],
 		'dt_end_date' => [
 			'required',
+			'after:dt_start_date',
 		],
 		'num_mpp_courses' => [
 			'required',
+			'numeric',
 		],
 		'num_fpp_courses' => [
 			'required',
+			'numeric',
 		],
 		
 	];
