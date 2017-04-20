@@ -24,10 +24,7 @@ return array(
 	'MUMSched\\Services\\SectionService' => $baseDir . '/app/MUMSched/Services/SectionService.php',
 	'MUMSched\\Utils\\StringUtil' => $baseDir . '/app/MUMSched/Utils/StringUtil.php',
 	'MUMSched\\Utils\\AppUtil' => $baseDir . '/app/MUMSched/Utils/AppUtil.php',
-	
 	'MUMSched\\Services\\ICourseService' => $baseDir . '/app/MUMSched/Services/ICourseService.php',
 	'MUMSched\\DAOs\\CourseDAO' => $baseDir . '/app/MUMSched/DAOs/CourseDAO.php',
 	'MUMSched\\Services\\CourseService' => $baseDir . '/app/MUMSched/Services/CourseService.php',
-	
-	
 );
