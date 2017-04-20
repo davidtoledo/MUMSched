@@ -206,7 +206,7 @@
 							{{ Form::select('order', 
 		        				[
 		        					\Schedule::BLOCK_ORDER_DEFAULT => 'Same order as registered in the system',
-		        					\Schedule::BLOCK_ORDER_RANDOM  => 'Random order', 
+		        					\Schedule::BLOCK_ORDER_RANDOM  => 'Reorder the block rules', 
 		        				],
 		        				null,
 		            				[
