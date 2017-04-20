@@ -12,7 +12,7 @@
 	                           <div class="row">
 	                              <div class="img-container pull-left">
 	                              	
-				                     <!-- Aba Perfil -->
+				                     <!-- tab -->
 				                     @if ( Request::is('*/perfil/*/*/perfil' ) )  
 	                              	 	<a href="#2" onclick="uploadPerfil();">
 	                              	 @endif
@@ -157,7 +157,6 @@
 	                           </div>
 	                        </div>
 	                        
-	                        	                        
 	                     </div>
 	                  </div>
 	               </div>
