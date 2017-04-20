@@ -8,14 +8,10 @@
 			</a>
 		</li>
 		<li class="{{ Request::is('admin/course/prerequisite*') ? ' active ' : '' }}">
-				<a href="{{ URL::route('admin.course.prerequisite.list', $course->id_course) }}">
-					<i class="fa fa-sitemap" aria-hidden="true"></i>
-					
-					Prerequisite
-				</a>
-			</li>		
+			<a href="{{ URL::route('admin.course.prerequisite.list', $course->id_course) }}">
+				<i class="blue ace-icon fa fa-sitemap bigger-110" aria-hidden="true"></i>
+				Prerequisite
+			</a>
+		</li>		
 	</ul>	
-	
-	
-		
 @endif
