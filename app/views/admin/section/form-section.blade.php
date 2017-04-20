@@ -14,42 +14,42 @@
 		</li>
 		<li>
 			<i class="ace-icon fa fa-lock"></i>
-			<a href="{{ URL::route('admin.block.list') }}">
-				Blocks
+			<a href="{{ URL::route('admin.entry.list') }}">
+				Entries
 			</a>
 		</li>
 		<li>
-			{{ isset ($block) ? 'Edit' : 'Create' }}
+			{{ isset ($entry) ? 'Edit' : 'Create' }}
 		</li>
 	</ul>
 @endsection
 
 @section('content')
-    <!-- Screen ID: form-block -->
+    <!-- Screen ID: form-entry -->
 	<h4 class="pink">
 		<i class="ace-icon fa fa-newspaper-o green"></i>
-		<a href="{{ URL::route('admin.block.list') }}" class="blue">Block List</a>
+		<a href="{{ URL::route('admin.entry.list') }}" class="blue">Entry List</a>
 		&nbsp; &nbsp;
 	</h4>
 	<div class="page-header">
 		<h1>
-			Block
+			Entry
 			<small>
 				<i class="ace-icon fa fa-angle-double-right"></i>
-				{{ isset ($block) ? 'Edit' : 'Create' }}
+				{{ isset ($entry) ? 'Edit' : 'Create' }}
 			</small>
 		</h1>
 	</div>
 
 	<div class="col-xs-12 col-sm-12">
 		<div class="tabbable ">
-			@include('admin/block/tab-block')
+			@include('admin/entry/tab-entry')
 			<div class="tab-content">
 				{{ Form::open([
-					'route' => isset($block) ?
-							['admin.block.edit', $block->id_block]
+					'route' => isset($entry) ?
+							['admin.entry.edit', $entry->id_entry]
 					 	:
-					 		['admin.block.create'],
+					 		['admin.entry.create'],
 					'class' => 'form-horizontal'
 				]) }}
 					
@@ -57,13 +57,13 @@
 						<label class="col-sm-2 control-label no-padding-right blue">Name</label>
 						<div class="col-sm-8">
 							{{ Form::text('name',
-								isset ($block) ? $block->name : Input::old('name'),
+								isset ($entry) ? $entry->name : Input::old('name'),
 								[
 									'class' => 'col-xs-9 limited'
 								]
 							) }}
 							<span 
-								data-content="Please inform the name of the block." 
+								data-content="Please inform the name of the entry." 
 								data-placement="right"
 								data-rel="popover" 
 								data-trigger="hover"
@@ -73,59 +73,77 @@
 						</div>
 					</div>
 
-				
 					<div class="form-group">
-						<label class="col-sm-2 control-label no-padding-right blue">Select the Entry</label>
-						<div class="col-sm-10">
-							@if ( isset ($block) )
-							
-								{{ Form::hidden('id_entry', $block->id_entry) }}
-								
-								{{ Form::text('entry',
-									isset ($block) ? $block->entry->name : Input::old('entry'),
-									[
-										'class' => 'col-xs-7 limited',
-										'readonly' => 'readonly'
-									]
-								) }}
-								
-							@else
-							
-								{{ Form::select('id_entry',
-									$entry_list,
-									isset ($block) ? $block->id_entry : Input::old('id_entry'),
-										[
-											'id'       => 'entry_list', 
-											'style'    => 'width:58%;',
-										]
-									)
-								}}
-								
-							@endif
-							<span 
-								data-content="Please select an Entry." 
-								data-placement="right"
-								data-rel="popover" 
-								data-trigger="hover"
-								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
-								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
-							</span>																						
-						</div>
-					</div>
-					
-					
-
-					<div class="form-group">
-						<label class="col-sm-2 control-label no-padding-right blue">Start Date</label>
+						<label class="col-sm-2 control-label no-padding-right blue">FPP Total</label>
 						<div class="col-sm-3">
-							{{ Form::text('dt_start_date',
-								isset ($block) ? date("m/d/Y", strtotime($block->start_date)) : Input::old('dt_start_date'),
+							{{ Form::text('fpp_total',
+								isset ($entry) ? $entry->fpp_total : Input::old('fpp_total'),
 								[
 									'class' => 'col-xs-9 limited'
 								]
 							) }}
 							<span 
-								data-content="Please inform the Start date of the block." 
+								data-content="Please inform the FPP total of the entry." 
+								data-placement="right"
+								data-rel="popover" 
+								data-trigger="hover"
+								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+							</span>							
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right blue">MPP Total</label>
+						<div class="col-sm-3">
+							{{ Form::text('mpp_total',
+								isset ($entry) ? $entry->mpp_total : Input::old('mpp_total'),
+								[
+									'class' => 'col-xs-9 limited'
+								]
+							) }}
+							<span 
+								data-content="Please inform the MPP total of the entry." 
+								data-placement="right"
+								data-rel="popover" 
+								data-trigger="hover"
+								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+							</span>							
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right blue">OPT Percent</label>
+						<div class="col-sm-3">
+							{{ Form::text('opt_percent',
+								isset ($entry) ? $entry->opt_percent : Input::old('opt_percent'),
+								[
+									'class' => 'col-xs-9 limited'
+								]
+							) }}
+							<span 
+								data-content="Please inform the OPT percentage of the entry." 
+								data-placement="right"
+								data-rel="popover" 
+								data-trigger="hover"
+								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+							</span>							
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right blue">Start Date</label>
+						<div class="col-sm-3">
+							{{ Form::text('dt_start_date',
+								isset ($entry) ? date("m/d/Y", strtotime($entry->start_date)) : Input::old('dt_start_date'),
+								[
+									'class' => 'col-xs-9 limited'
+								]
+							) }}
+							<span 
+								data-content="Please inform the Start date of the entry." 
 								data-placement="right"
 								data-rel="popover" 
 								data-trigger="hover"
@@ -139,53 +157,13 @@
 						<label class="col-sm-2 control-label no-padding-right blue">End Date</label>
 						<div class="col-sm-3">
 							{{ Form::text('dt_end_date',
-								isset ($block) ? date("m/d/Y", strtotime($block->end_date)) : Input::old('dt_end_date'),
+								isset ($entry) ? date("m/d/Y", strtotime($entry->end_date)) : Input::old('dt_end_date'),
 								[
 									'class' => 'col-xs-9 limited'
 								]
 							) }}
 							<span 
-								data-content="Please inform the End date of the Block." 
-								data-placement="right"
-								data-rel="popover" 
-								data-trigger="hover"
-								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
-								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
-							</span>							
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label class="col-sm-2 control-label no-padding-right blue">Number of MPP courses</label>
-						<div class="col-sm-3">
-							{{ Form::text('num_mpp_courses',
-								isset ($block) ? $block->num_mpp_courses : Input::old('num_mpp_courses'),
-								[
-									'class' => 'col-xs-9 limited'
-								]
-							) }}
-							<span 
-								data-content="Please inform the number of MPP courses " 
-								data-placement="right"
-								data-rel="popover" 
-								data-trigger="hover"
-								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
-								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
-							</span>							
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-2 control-label no-padding-right blue">Number of FPP courses</label>
-						<div class="col-sm-3">
-							{{ Form::text('num_fpp_courses',
-								isset ($block) ? $block->num_fpp_courses : Input::old('num_fpp_courses'),
-								[
-									'class' => 'col-xs-9 limited'
-								]
-							) }}
-							<span 
-								data-content="Please inform the number of FPP courses" 
+								data-content="Please inform the End date of the entry." 
 								data-placement="right"
 								data-rel="popover" 
 								data-trigger="hover"

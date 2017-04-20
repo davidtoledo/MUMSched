@@ -2,75 +2,75 @@
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
-use MUMSched\Services\BlockService;
+use MUMSched\Services\SectionService;
 use MUMSched\Utils\AppUtil;
 
 /**
- * Block Controller
+ * Section Controller
  *
  * @author Fantastic Five
  */
-class BlockController extends BaseController {
+class SectionController extends BaseController {
 		
 	// View data
 	var $data = [
-		'block' => NULL,
-		'blocks' => []
+		'section' => NULL,
+		'sections' => []
 	];
 
 	var $rules = [
-		'name' => [
+		'track' => [
 			'required',
 		],
-		'dt_start_date' => [
-			'required',
-		],
-		'dt_end_date' => [
-			'required',
-			'after:dt_start_date',
-		],
-		'num_mpp_courses' => [
+		'id_block' => [
 			'required',
 			'numeric',
 		],
-		'num_fpp_courses' => [
+		'id_course' => [
+			'required',
+			'numeric',
+		],
+		'id_faculty' => [
 			'required',
 			'numeric',
 		],
 		
+		'capacity' => [
+			'required',
+			'numeric',
+		],
 	];
 
 	var $niceNames = [
-		'dt_start_date' => 'start date',
-		'dt_end_date' => 'end date',
-		'num_mpp_courses' => 'number of MPP courses',
-		'num_fpp_courses' => 'number of FPP courses'
+		'track' => 'Track for each student: FPP, MPP, US',
+		'capacity' => 'capacity of this section'
+		
 	];
 
 	/**
-	 * Show list
+	 * Show list of Section
 	 *
 	 * @author Fantastic Five
 	 */
 	public function showList() {
 					
-		// Getting Blocks List from DB
-		$blocks = BlockService::getBlockList();
+		// Getting Sections List from DB
+		$sections = SectionService::getSectionList();
 				
 		// Adding objects to the view context
-		$this->data['blocks'] = $blocks;
+		$this->data['sections'] = $sections;
 		
 		// Redirecting to the view layer
-		return View::make('admin.block.list-block', $this->data);
+		return View::make('admin.section.list-section', $this->data);
 	}
 	
 	/**
-	 * Creates a Block
+	 * Creates a Section
 	 *
 	 * @author Fantastic Five
 	 */
 	public function create() {
-		self::addCombos();		
+				
 		if ( Request::isMethod('post') ) {
 			
 			// Validator
@@ -85,49 +85,49 @@ class BlockController extends BaseController {
 				// Store fields
 				Input::flash();
 				
-				return View::make('admin.block.form-block')
+				return View::make('admin.section.form-section')
 					->with($this->data)
 					->withErrors($validator->messages()
 				);
 			}
 			
-			// Register Block
-			$block = self::populate();
+			// Register Section
+			$section = self::populate();
 			
-			if ( $block->save() ) {
+			if ( $section->save() ) {
 				
 				// Success
 				Session::flash('success', 'Successfully registered.');
 				
 				// Show view
-				return Redirect::route('admin.block.list');
+				return Redirect::route('admin.section.list');
 			}
 			
-			return View::make('admin.block.form-block')
+			return View::make('admin.section.form-section')
 				->with($this->data)
 				->withErrors('An error occurred while trying to register.')
 			;
 		}
 		
-		return View::make('admin.block.form-block')->with($this->data);
+		return View::make('admin.section.form-section')->with($this->data);
 	}
 	
 	/**
-	 * Edit entity
+	 * Edit a Section
 	 *
 	 * @author Fantastic Five
 	 */
 	public function edit ($id) {
 		
-		// Getting Block from DB
-		$block = BlockService::getBlockByID($id);
+		// Getting Section from DB
+		$section = SectionService::getSectionByID($id);
 		
-		if ( !$block ) {
-			return Redirect::route('admin.block.list')->withErrors('Block not found.');
+		if ( !$section ) {
+			return Redirect::route('admin.section.list')->withErrors('Section not found.');
 		}
 				
 		// Adding data in the view context
-		$this->data['block'] = & $block;
+		$this->data['section'] = & $section;
 		
 		if ( Request::isMethod('post') ) {
 						
@@ -144,30 +144,30 @@ class BlockController extends BaseController {
 				// Store fields
 				Input::flash();
 				
-				return View::make('admin.block.form-block')
+				return View::make('admin.section.form-section')
 					->with($this->data)
 					->withErrors($validator->messages()
 				);
 			}
 			
 			// Edit
-			$block = self::populate($id);
+			$section = self::populate($id);
 			
-			if ( $block->save() ) {
+			if ( $section->save() ) {
 				
 				Session::flash('success', 'Successfully edited.');
 				
 				// show view
-				return Redirect::route('admin.block.list');
+				return Redirect::route('admin.section.list');
 			}
 
 			// show view
-			return View::make('admin.block.form-block')->with($this->data)
+			return View::make('admin.section.form-section')->with($this->data)
 				->withErrors('An error occurred while trying to edit.');
 		}
 
 		// show view
-		return View::make('admin.block.form-block')->with($this->data);
+		return View::make('admin.section.form-section')->with($this->data);
 	}	
 
 	/**
@@ -177,33 +177,20 @@ class BlockController extends BaseController {
 	 */
 	public function delete ($id) {
 				
-		$return = BlockService::deleteBlock($id);
+		$return = SectionService::deleteSection($id);
 		
 		if ($return === TRUE) {	
 			Session::flash('success', 'Successfully removed.');
 			return ( self::showList() );
 
 		} else {
-			return Redirect::route('admin.block.list')
+			return Redirect::route('admin.section.list')
 				->withErrors(['An error occurred while trying to delete:', 
 				$return->getMessage()]
 			);
 		}
 	}	
 	
-	
-	private function addCombos() {
-		
-		// Entry Selectbox
-		$entry_list = Entry::orderBy('name')
-    					   ->lists('name', 'id_entry');
-		
-		$this->data['entry_list'] = ['' => 'Select an entry'];
-		$this->data['entry_list'] += $entry_list;
-		
-		
-	}
-
 	/**
 	 * Populate data from the view layer
 	 *
@@ -211,20 +198,20 @@ class BlockController extends BaseController {
 	 */
 	private function populate ($id = NULL) {
 		
-		$block = is_null($id) ? new Block() : Block::find($id);
+		$section = is_null($id) ? new Section() : Section::find($id);
 		
-		if (!$block) {
+		if (!$section) {
 			return FALSE;
 		}
 				
-		$block->id_entry = Input::get('id_entry');
-		$block->name = Input::get('name');	
-		$block->num_mpp_courses = Input::get('num_mpp_courses');
-		$block->num_fpp_courses = Input::get('num_fpp_courses');
-		$block->start_date = AppUtil::date2db(Input::get("start_date"));
-		$block->end_date = AppUtil::date2db(Input::get("end_date"));
+		$section->track = Input::get('track');
+		$section->fpp_total = Input::get('fpp_total');
+		$section->mpp_total = Input::get('mpp_total');
+		$section->opt_percent = Input::get('opt_percent');
+		$section->start_date = AppUtil::date2db(Input::get("dt_start_date"));
+		$section->end_date = AppUtil::date2db(Input::get("dt_end_date"));
 		
-		return $block;
+		return $section;
 	}
 
 }
