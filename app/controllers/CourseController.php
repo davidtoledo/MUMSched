@@ -194,11 +194,11 @@ class CourseController extends BaseController {
 	private function addCombos() {
 		
 		// Specialization Selectbox
-		$spec_list = Specialization::orderBy('specialization')
-    					   		   ->lists('specialization', 'id_specialization');
+		$prereq_list = Prerequisite::orderBy('prerequisites')
+    					   		   ->lists('prerequisite', 'id_prerequisite');
 				
 		// Add to the view context
-		$this->data['spec_list'] =  $spec_list;
+		$this->data['prereq'] =  $prereq_list;
 	}		
 	
 	/**
