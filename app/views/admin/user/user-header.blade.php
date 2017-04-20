@@ -118,11 +118,11 @@
                            	
 		                                    @if (Auth::user()->type == \SystemUser::TYPE_STUDENT)
 		                                    <div class="general-impression">
-		                                       <h3 class="form-label">General Impression</h3>
+		                                       <h3 class="form-label">Student Entry</h3>
 		                                       <div class="form-answer">
 		                                          <div style="overflow: hidden; max-height: 54px;">
 		                                             <div style="margin: 0px; padding: 0px; border: 0px;">
-		                                                Awesome {{ $user->type == \SystemUser::TYPE_STUDENT ? "Student" : "Faculty" }}
+		                                                &bull; {{ sizeof($user->entry) > 0 ? $user->entry->name : "Not assigned yet" }}
 		                                             </div>
 		                                          </div>
 		                                       </div>
