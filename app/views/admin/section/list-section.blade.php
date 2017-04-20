@@ -64,59 +64,71 @@
 				</center>
 			</th>							
 	      	
-	         <th style="width:25%;">
-	         	Section
-	         </th>
 
-	         <th style="width:25%;">
-	         	FPP total
+	         <th style="width:1%;">
+	         	Track
 	         </th>
 	         
-	         <th style="width:25%;">
-	         	MPP Total
+	         <th style="width:20%;">
+	         	Block
 	         </th>
 
+	         <th style="width:20%;">
+	         	Course
+	         </th>
+	         
+	         <th style="width:20%;">
+	         	Faculty
+	         </th>
+	         
 	         <th style="width:10%;">
-	         	Start Date
+	         	Capacity
 	         </th>
-	         
 	         <th style="width:10%;">Actions</th>
 	      </tr>
 	   </thead>
 	   <tbody>
-	      @foreach ($entries as $entry)
+	      @foreach ($sections as $section)
 	      <tr>
 	      	<td align="center">
-	      		<input type="checkbox" name="chk_usuarios[]" value="{{ $entry->id_entry }}" class="chkSelecionado"></input>
+	      		<input type="checkbox" name="chk_usuarios[]" value="{{ $section->id_section }}" class="chkSelecionado"></input>
 	      	</td>
 	         <td>
-	         	<a href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
-	            	{{ $entry->name }}
+	         	<a href="{{ URL::route('admin.section.edit', $section->id_section) }}">
+	            	{{ $section->track }}
 	           </a>
 	         </td>
 
 	         <td>
-	         	<a href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
-	            	{{ $entry->fpp_total }}
+	         	<a href="{{ URL::route('admin.section.edit', $section->id_section) }}">
+	            	{{ $section->block->name }}
 	           </a>
 	         </td>
 
 	         <td>
-	         	<a href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
-	            	{{ $entry->mpp_total }}
+	         	<a href="{{ URL::route('admin.section.edit', $section->id_section) }}">
+	            	{{ $section->course->name }}
 	           </a>
 	         </td>
 
-	         <td>
-	         	<a href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
-	            	{{ date("m/d/Y", strtotime($entry->start_date)) }}
+ 			<td>
+	         	<a href="{{ URL::route('admin.section.edit', $section->id_section) }}">
+	            	{{ $section->faculty->name }}
 	           </a>
-	         </td>
+	        </td>
+	        
+	        <td>
+	         	<a href="{{ URL::route('admin.section.edit', $section->id_section) }}">
+	            	{{ $section->capacity}}
+	           </a>
+	        </td>
+	        
+
 	         
 	         <td align="center">
 	            <!-- Multiple-action button -->
 	            <div class="btn-group">
-		               <a class="btn btn-glow" href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
+		               <a class="btn btn-glow" href="{{ URL::route('admin.section.edit', $section->id_section) }}">
 			               <i class="fa fa-pencil"></i>
 			               <span>Edit</span>
 		               </a>
@@ -125,7 +137,7 @@
 		           	  <!-- Sub options -->
 	               	  <ul class="dropdown-menu pull-right">
 		                  <li>
-		                     <a href="#2" title="delete" onclick="deletar('{{ URL::route('admin.entry.delete', [$entry->id_entry]) }}');">
+		                     <a href="#2" title="delete" onclick="deletar('{{ URL::route('admin.section.delete', [$section->id_section]) }}');">
 			                     <i class="fa fa-trash-o"></i>
 			                     <span>Delete</span>
 		                     </a>
@@ -139,7 +151,7 @@
 	</table>
 	
 	<br>
-	<i>Displaying {{ sizeof ($entries) }} {{ sizeof ($entries) == 1 ? "item" : "items" }}</i>
+	<i>Displaying {{ sizeof ($sections) }} {{ sizeof ($sections) == 1 ? "item" : "items" }}</i>
 	<br><br>			
 		
 	{{ Form::close() }}
