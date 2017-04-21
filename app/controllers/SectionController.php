@@ -234,8 +234,8 @@ class SectionController extends BaseController {
 		$this->data['status_list'] += ['O' => 'OK'];
 		
 		// Faculty Selectbox
-		$faculty_list = Faculty::orderBy('name')
-    					   ->lists('name', 'id_faculty');
+		$faculty_list = Faculty::orderBy('first_name')
+    					   ->lists('first_name', 'id_user');
 		
 		$this->data['faculty_list'] = ['' => 'Select a Faculty'];
 		$this->data['faculty_list'] += $faculty_list;

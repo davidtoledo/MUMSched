@@ -47,7 +47,7 @@
 			<div class="tab-content">
 				{{ Form::open([
 					'route' => isset($section) ?
-							['admin.$section.edit', $section->id_section]
+							['admin.section.edit', $section->id_section]
 					 	:
 					 		['admin.section.create'],
 					'class' => 'form-horizontal'
