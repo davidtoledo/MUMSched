@@ -30,7 +30,7 @@
 	<div>
 		<center>
 			<font size=4>
-			<b>Welcome to MUMSched v1.0.0</b><br>
+			<b>Welcome to MUMSched v1.0.0<br>
 			By Team Fantastic Five<br>
 			<br>Software Engineering<br>
 			Professor Steve Nolle

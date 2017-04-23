@@ -27,12 +27,15 @@ class BlockController extends BaseController {
 		],
 		'dt_end_date' => [
 			'required',
+			'after:dt_start_date',
 		],
 		'num_mpp_courses' => [
 			'required',
+			'numeric',
 		],
 		'num_fpp_courses' => [
 			'required',
+			'numeric',
 		],
 		
 	];
@@ -67,7 +70,7 @@ class BlockController extends BaseController {
 	 * @author Fantastic Five
 	 */
 	public function create() {
-				
+		self::addCombos();		
 		if ( Request::isMethod('post') ) {
 			
 			// Validator
@@ -188,6 +191,19 @@ class BlockController extends BaseController {
 		}
 	}	
 	
+	
+	private function addCombos() {
+		
+		// Entry Selectbox
+		$entry_list = Entry::orderBy('name')
+    					   ->lists('name', 'id_entry');
+		
+		$this->data['entry_list'] = ['' => 'Select an entry'];
+		$this->data['entry_list'] += $entry_list;
+		
+		
+	}
+
 	/**
 	 * Populate data from the view layer
 	 *
@@ -201,6 +217,7 @@ class BlockController extends BaseController {
 			return FALSE;
 		}
 				
+		$block->id_entry = Input::get('id_entry');
 		$block->name = Input::get('name');	
 		$block->num_mpp_courses = Input::get('num_mpp_courses');
 		$block->num_fpp_courses = Input::get('num_fpp_courses');

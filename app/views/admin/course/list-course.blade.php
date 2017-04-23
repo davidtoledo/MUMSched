@@ -16,7 +16,7 @@
 		<li>
 			<i class="ace-icon fa fa-lock"></i>
 			<a href="{{ URL::route('admin.course.list') }}">
-				Course
+				Courses
 			</a>
 		</li>
 		<li>
@@ -63,24 +63,20 @@
 					<input type="checkbox" onchange="checkAll(this);"></input>
 				</center>
 			</th>							
-	      	
-	         <th style="width:25%;">
-	         	Course Specialization
-	         </th>
-
-	         <th style="width:25%;">
-	         	
-	         </th>
 	         
-	         <th style="width:25%;">
+	         <th style="width:10%;">
 	         	Course Code
 	         </th>
 
-	         <th style="width:10%;">
+	         <th style="width:40%;">
 	         	Course Name
 	         </th>
 	         
-	         <th style="width:10%;">Actions</th>
+	         <th style="width:30%;">
+	         	Course Area
+	         </th>	         
+	         
+	         <th style="width:12%;">Actions</th>
 	      </tr>
 	   </thead>
 	   <tbody>
@@ -89,12 +85,7 @@
 	      	<td align="center">
 	      		<input type="checkbox" name="chk_usuarios[]" value="{{ $course->id_course }}" class="chkSelecionado"></input>
 	      	</td>
-	         <td>
-	         	<a href="{{ URL::route('admin.course.edit', $course->id_course) }}">
-	            	{{ $course->specialization }}
-	           </a>
-	         </td>
-
+	      	
 	         <td>
 	         	<a href="{{ URL::route('admin.course.edit', $course->id_course) }}">
 	            	{{ $course->code }}
@@ -107,7 +98,11 @@
 	           </a>
 	         </td>
 
-	        
+	         <td>
+	         	<a href="{{ URL::route('admin.course.edit', $course->id_course) }}">
+	            	{{ $course->specialization->specialization }}
+	           </a>
+	         </td>	        
 	         
 	         <td align="center">
 	            <!-- Multiple-action button -->

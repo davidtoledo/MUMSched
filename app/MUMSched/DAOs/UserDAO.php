@@ -41,7 +41,8 @@ class UserDAO {
 	 * @author Fantastic Five
 	 */
 	public static function getUserByID($id) {
-		$user = \SystemUser::with("specializations")
+		$user = \SystemUser::with("entry")
+						   ->with("specializations")
 						   ->find($id);
 		return $user;
 	}
@@ -145,5 +146,55 @@ class UserDAO {
 		return ($fs);
 	}
 	
+	//Added By AHMED For Assigning Faculty Course 04/18/2017
+	public static function getUserWithCourses($id_user) {
+		
+		$user = \SystemUser::with("courses")
+			       	       ->find($id_user);
+			      	      
+		return $user;
+	}
+	
+	/**
+	 * Delete a Faculty Course Association
+	 *
+	 * @author Fantastic Five
+	 */
+	public static function deleteFacultyCourse($id) {
+		
+		$queries = [
+			'DELETE FROM faculty_course WHERE id_fc = ?',
+		];
+		
+		try	{
+			
+			foreach ($queries as $query) {
+				DB::delete($query, [
+					$id
+				]);
+			}
+			DB::commit();
+			return TRUE;
+		}
+		catch (\Exception $e)
+		{
+			DB::rollback();
+			return $e;
+		}
+	}			
+	
+	/**
+	 * Get a Faculty Course Association
+	 *
+	 * @author Fantastic Five
+	 */
+	public static function getFacultyCourse($id_user, $id_course) {
+		
+		$fs = \FacultyCourse::where("id_faculty", $id_user)
+						   			->where("id_course", $id_course)
+						   			->first();
+		return ($fs);
+	}
+	//End Of AHMED Modifications
 	
 }

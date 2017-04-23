@@ -36,7 +36,7 @@
 			Block
 			<small>
 				<i class="ace-icon fa fa-angle-double-right"></i>
-				{{ isset ($entry) ? 'Edit' : 'Create' }}
+				{{ isset ($block) ? 'Edit' : 'Create' }}
 			</small>
 		</h1>
 	</div>
@@ -73,15 +73,53 @@
 						</div>
 					</div>
 
+				
+					<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right blue">Select the Entry</label>
+						<div class="col-sm-10">
+							@if ( isset ($block) )
+							
+								{{ Form::hidden('id_entry', $block->id_entry) }}
+								
+								{{ Form::text('entry',
+									isset ($block) ? $block->entry->name : Input::old('entry'),
+									[
+										'class' => 'col-xs-7 limited',
+										'readonly' => 'readonly'
+									]
+								) }}
+								
+							@else
+							
+								{{ Form::select('id_entry',
+									$entry_list,
+									isset ($block) ? $block->id_entry : Input::old('id_entry'),
+										[
+											'id'       => 'entry_list', 
+											'style'    => 'width:58%;',
+										]
+									)
+								}}
+								
+							@endif
+							<span 
+								data-content="Please select an Entry." 
+								data-placement="right"
+								data-rel="popover" 
+								data-trigger="hover"
+								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+							</span>																						
+						</div>
+					</div>
 					
-
 					
 
 					<div class="form-group">
 						<label class="col-sm-2 control-label no-padding-right blue">Start Date</label>
 						<div class="col-sm-3">
 							{{ Form::text('dt_start_date',
-								isset ($entry) ? date("m/d/Y", strtotime($entry->start_date)) : Input::old('dt_start_date'),
+								isset ($block) ? date("m/d/Y", strtotime($block->start_date)) : Input::old('dt_start_date'),
 								[
 									'class' => 'col-xs-9 limited'
 								]
@@ -101,7 +139,7 @@
 						<label class="col-sm-2 control-label no-padding-right blue">End Date</label>
 						<div class="col-sm-3">
 							{{ Form::text('dt_end_date',
-								isset ($entry) ? date("m/d/Y", strtotime($entry->end_date)) : Input::old('dt_end_date'),
+								isset ($block) ? date("m/d/Y", strtotime($block->end_date)) : Input::old('dt_end_date'),
 								[
 									'class' => 'col-xs-9 limited'
 								]

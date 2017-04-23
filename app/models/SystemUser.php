@@ -21,7 +21,17 @@ class SystemUser extends Eloquent implements UserInterface, RemindableInterface 
 	// Relationship with FacultySpecialization
 	public function specializations() {
 		return $this->hasMany('FacultySpecialization', 'id_faculty', 'id_user');
-	}		
+	}
+	
+	// Relationship with FacultyCourse
+	public function courses() {
+		return $this->hasMany('FacultyCourse', 'id_faculty', 'id_user');
+	}			
+
+	// Relationship with Entry
+	public function entry() {
+		return $this->hasOne('Entry', 'id_entry', 'student_entry');
+	}			
 
 	protected $hidden = array(
 		'password'

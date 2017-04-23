@@ -15,17 +15,16 @@ return array(
 	'MUMSched\\Libraries\\CustomValidator' => $baseDir . '/app/MUMSched/Libraries/CustomValidator.php',
 	'MUMSched\\Services\\UserService' => $baseDir . '/app/MUMSched/Services/UserService.php',
 	'MUMSched\\Services\\IScheduleService' => $baseDir . '/app/MUMSched/Services/IScheduleService.php',
-	'MUMSched\\Services\\IBlockService' => $baseDir . '/app/MUMSched/Services/IBlockService.php',
 	'MUMSched\\Services\\IEntryService' => $baseDir . '/app/MUMSched/Services/IEntryService.php',
+	'MUMSched\\Services\\IBlockService' => $baseDir . '/app/MUMSched/Services/IBlockService.php',
+	'MUMSched\\Services\\ISectionService' => $baseDir . '/app/MUMSched/Services/ISectionService.php',
 	'MUMSched\\Services\\ScheduleService' => $baseDir . '/app/MUMSched/Services/ScheduleService.php',
 	'MUMSched\\Services\\EntryService' => $baseDir . '/app/MUMSched/Services/EntryService.php',
 	'MUMSched\\Services\\BlockService' => $baseDir . '/app/MUMSched/Services/BlockService.php',
+	'MUMSched\\Services\\SectionService' => $baseDir . '/app/MUMSched/Services/SectionService.php',
 	'MUMSched\\Utils\\StringUtil' => $baseDir . '/app/MUMSched/Utils/StringUtil.php',
 	'MUMSched\\Utils\\AppUtil' => $baseDir . '/app/MUMSched/Utils/AppUtil.php',
-	
 	'MUMSched\\Services\\ICourseService' => $baseDir . '/app/MUMSched/Services/ICourseService.php',
 	'MUMSched\\DAOs\\CourseDAO' => $baseDir . '/app/MUMSched/DAOs/CourseDAO.php',
 	'MUMSched\\Services\\CourseService' => $baseDir . '/app/MUMSched/Services/CourseService.php',
-	
-	
 );

@@ -42,7 +42,9 @@ class CourseDAO {
 	public static function deleteCourse($id) {
 				
 		$queries = [
-			'DELETE FROM course WHERE  id_course = ?',		
+			'DELETE FROM faculty_course WHERE  id_course = ?',
+			'DELETE FROM section        WHERE  id_course = ?',
+			'DELETE FROM course         WHERE  id_course = ?',		
 		];
 		
 		try	{
@@ -63,5 +65,13 @@ class CourseDAO {
 		}
 		
 	}	
+	
+	
+	public static function getCourseWithPrerequisite($id_course){
+			$course = \SystemUser::with("prerequisites")
+			       	       ->find($id_course);
+			      	      
+		return $course;
+	}
 	
 }

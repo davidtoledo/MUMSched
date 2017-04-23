@@ -1,6 +1,6 @@
 @extends('admin/base')
 
-@section('page_title') MUM Section @endsection
+@section('page_title') MUM Schedule @endsection
 
 @section('css_header')
 	<link rel="stylesheet" href="{{ URL::to('_temas/_base/media/css/jqueryui-blue/jquery-ui.min.css') }}" />
@@ -15,8 +15,8 @@
 		</li>
 		<li>
 			<i class="ace-icon fa fa-lock"></i>
-			<a href="{{ URL::route('admin.block.list') }}">
-				Blocks
+			<a href="{{ URL::route('admin.section.list') }}">
+				Sections
 			</a>
 		</li>
 		<li>
@@ -26,15 +26,15 @@
 @endsection
 
 @section('content')
-	<!-- Screen ID: list-block -->	    
+	<!-- Screen ID: list-section -->	    
 	<h4 class="pink">
    		<i class="ace-icon fa fa-plus-square green"></i>
-   		<a href="{{ URL::route('admin.block.create') }}" class="blue">Create block</a>
+   		<a href="{{ URL::route('admin.section.create') }}" class="blue">Create Section</a>
    	</h4>
 
 	<div class="page-header">
 	   <h1>
-	      Block
+	      Section
 	      <small>
 		      <i class="ace-icon fa fa-angle-double-right"></i>
 		      List
@@ -46,14 +46,14 @@
 		([
 			'id' => 'frm',
 			'autocomplete' => 'off',
-			'action' => ['admin.block.list'],
+			'action' => ['admin.section.list'],
 			'files'  => 'true'
 		]) 
 	}}
 	
 	<!-- Navigation Controls -->
 	{{ Form::hidden('page', isset( $_GET['page'] ) ? $_GET['page'] : "", ['id' => 'page'] ) }}
-	{{ Form::hidden('id_block', '', ['id' => 'id_block']) }}
+	{{ Form::hidden('id_section', '', ['id' => 'id_section']) }}
 		
 	<table class="table table-striped table-bordered table-hover">
 	   <thead>
@@ -64,79 +64,71 @@
 				</center>
 			</th>							
 	      	
+
+	         <th style="width:1%;">
+	         	Track
+	         </th>
+	         
 	         <th style="width:20%;">
 	         	Block
 	         </th>
-	         
-	         <th style="width:10%;">
-	         	Entry
-	         </th>
 
-	         <th style="width:15%;">
-	         	Start date
+	         <th style="width:20%;">
+	         	Course
 	         </th>
 	         
-	         <th style="width:15%;">
-	         	End Date
-	         </th>
-
-	         <th style="width:10%;">
-	         	Number of MPP courses
+	         <th style="width:20%;">
+	         	Faculty
 	         </th>
 	         
 	         <th style="width:10%;">
-	         	Number of FPP courses
+	         	Capacity
 	         </th>
-	         
 	         <th style="width:10%;">Actions</th>
 	      </tr>
 	   </thead>
 	   <tbody>
-	      @foreach ($blocks as $block)
+	      @foreach ($sections as $section)
 	      <tr>
 	      	<td align="center">
-	      		<input type="checkbox" name="chk_usuarios[]" value="{{ $block->id_block }}" class="chkSelecionado"></input>
+	      		<input type="checkbox" name="chk_usuarios[]" value="{{ $section->id_section }}" class="chkSelecionado"></input>
 	      	</td>
 	         <td>
-	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
-	            	{{ $block->name }}
+	         	<a href="{{ URL::route('admin.section.edit', $section->id_section) }}">
+	            	{{ $section->track }}
 	           </a>
 	         </td>
-				
-			<td>
-	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
-	            	{{ $block->entry->name }}
+
+	         <td>
+	         	<a href="{{ URL::route('admin.section.edit', $section->id_section) }}">
+	            	{{ $section->block->name }}
+	           </a>
+	         </td>
+
+	         <td>
+	         	<a href="{{ URL::route('admin.section.edit', $section->id_section) }}">
+	            	{{ $section->course->name }}
+	           </a>
+	         </td>
+
+ 			<td>
+	         	<a href="{{ URL::route('admin.section.edit', $section->id_section) }}">
+	            	{{ $section->faculty->name }}
 	           </a>
 	        </td>
-	         
-	         <td>
-	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
-	            	{{ date("m/d/Y", strtotime($block->start_date)) }}
+	        
+	        <td>
+	         	<a href="{{ URL::route('admin.section.edit', $section->id_section) }}">
+	            	{{ $section->capacity}}
 	           </a>
-	         </td>
+	        </td>
+	        
 
-	         <td>
-	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
-	            	{{ date("m/d/Y", strtotime($block->end_date)) }}
-	           </a>
-	         </td>
-
-	         <td>
-	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
-	            	{{ $block->num_mpp_courses }}
-	           </a>
-	         </td>
-	         
-	         <td>
-	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
-	            	{{ $block->num_fpp_courses }}
-	           </a>
-	         </td>
 	         
 	         <td align="center">
 	            <!-- Multiple-action button -->
 	            <div class="btn-group">
-		               <a class="btn btn-glow" href="{{ URL::route('admin.block.edit', $block->id_block) }}">
+		               <a class="btn btn-glow" href="{{ URL::route('admin.section.edit', $section->id_section) }}">
 			               <i class="fa fa-pencil"></i>
 			               <span>Edit</span>
 		               </a>
@@ -145,7 +137,7 @@
 		           	  <!-- Sub options -->
 	               	  <ul class="dropdown-menu pull-right">
 		                  <li>
-		                     <a href="#2" title="delete" onclick="deletar('{{ URL::route('admin.block.delete', [$block->id_block]) }}');">
+		                     <a href="#2" title="delete" onclick="deletar('{{ URL::route('admin.section.delete', [$section->id_section]) }}');">
 			                     <i class="fa fa-trash-o"></i>
 			                     <span>Delete</span>
 		                     </a>
@@ -159,7 +151,7 @@
 	</table>
 	
 	<br>
-	<i>Displaying {{ sizeof ($blocks) }} {{ sizeof ($blocks) == 1 ? "item" : "items" }}</i>
+	<i>Displaying {{ sizeof ($sections) }} {{ sizeof ($sections) == 1 ? "item" : "items" }}</i>
 	<br><br>			
 		
 	{{ Form::close() }}

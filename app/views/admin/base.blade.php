@@ -157,16 +157,15 @@
 							</a>
 						</li>
 
-						<li class="{{ Request::is('admin/course/*') ? 'active open' : '' }}">
+							<li class="{{ Request::is('admin/course/*') ? 'active open' : '' }}">
 							<a href="{{ URL::to('/admin/course/list') }}">
-								<i class="menu-icon fa fa-book" ></i>
+								<i class="menu-icon fa fa-book"></i>
 								<span class="menu-text">
 									Course
 								</span>
 							</a>
 						</li>
-
-
+												
 						<li class="{{ Request::is('admin/entry/*') ? 'active open' : '' }}">
 							<a href="{{ URL::to('/admin/entry/list') }}">
 								<i class="menu-icon fa fa-calendar-o"></i>
@@ -185,14 +184,18 @@
 							</a>
 						</li>	
 						
-						<li class="{{ Request::is('admin/session/*') ? 'active open' : '' }}">
-							<a href="{{ URL::to('/admin/session/list') }}">
+						<li class="{{ Request::is('admin/section/*') ? 'active open' : '' }}">
+							<a href="{{ URL::to('/admin/section/list') }}">
 								<i class="menu-icon fa fa-th"></i>
 								<span class="menu-text">
+
 									Section
+
 								</span>
 							</a>
 						</li>
+						
+					
 						
 						<li class="{{ Request::is('admin/schedule/*') ? 'active open' : '' }}">
 							<a href="{{ URL::to('/admin/schedule/list') }}">

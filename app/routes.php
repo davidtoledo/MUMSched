@@ -89,6 +89,26 @@
 		]);
 		
 		###############################################
+		########## COURSE -> PREREQUISITE ############
+
+		Route::any('course/prerequisite/list/{id_course}', [
+				'as' => 'admin.course.prerequisite.list',
+				'uses' => 'CoursePrereqController@showList',
+		]);		
+		
+		Route::any('course/prerequisite/create/{id_course}', [
+				'as' => 'admin.user.prerequisite.create',
+				'uses' => 'CoursePrereqController@create',
+		]);
+
+		Route::any('course/prerequisite/delete/{id_fs}', [
+				'as' => 'admin.user.prerequisite.delete',
+				'uses' => 'CoursePrereqController@delete',
+		]);
+		
+		
+		
+		###############################################
 		########## USERS -> SPECIALIZATION ############
 
 		Route::any('user/specialization/list/{id_user}', [
@@ -104,6 +124,24 @@
 		Route::any('user/specialization/delete/{id_fs}', [
 				'as' => 'admin.user.specialization.delete',
 				'uses' => 'UserSpecController@delete',
+		]);
+		
+		###############################################
+		############### USERS -> COURSE ###############
+
+		Route::any('user/course/list/{id_user}', [
+				'as' => 'admin.user.course.list',
+				'uses' => 'UserCourseController@showList',
+		]);		
+		
+		Route::any('user/course/create/{id_user}', [
+				'as' => 'admin.user.course.create',
+				'uses' => 'UserCourseController@create',
+		]);
+
+		Route::any('user/course/delete/{id_fs}', [
+				'as' => 'admin.user.course.delete',
+				'uses' => 'UserCourseController@delete',
 		]);
 		
 		################################
@@ -187,7 +225,7 @@
 				'before' => 'isAdmin'
 		]);
 		
-		Route::any('entry/delete/{id_entry}', [
+		Route::any('entry/delete/{id_en  	try}', [
 				'as' => 'admin.entry.delete',
 				'uses' => 'EntryController@delete',
 				'before' => 'isAdmin'
@@ -217,6 +255,34 @@
 		Route::any('block/delete/{id_block}', [
 				'as' => 'admin.block.delete',
 				'uses' => 'BlockController@delete',
+				'before' => 'isAdmin'
+		]);
+		
+		
+		################################
+		############# SECTION ############
+		
+		Route::any('section/list', [
+				'as' => 'admin.section.list',
+				'uses' => 'SectionController@showList',
+				'before' => 'isAdmin'
+		]);
+
+		Route::any('section/create', [
+				'as' => 'admin.section.create',
+				'uses' => 'SectionController@create',
+				'before' => 'isAdmin'
+		]);
+
+		Route::any('section/edit/{id_section}', [
+				'as' => 'admin.section.edit',
+				'uses' => 'SectionController@edit',
+				'before' => 'isAdmin'
+		]);
+		
+		Route::any('section/delete/{id_section}', [
+				'as' => 'admin.section.delete',
+				'uses' => 'SectionController@delete',
 				'before' => 'isAdmin'
 		]);
 	});
