@@ -54,48 +54,11 @@
 				]) }}
 					
 					
-					<div class="form-group">
-						<label class="col-sm-2 control-label no-padding-right blue">Select the Entry</label>
-						<div class="col-sm-10">
-							@if ( isset ($section) )
-							
-								{{ Form::hidden('id_entry', $section->id_entry) }}
-								
-								{{ Form::text('entry',
-									isset ($section) ? $section->entry->name : Input::old('entry'),
-									[
-										'class' => 'col-xs-7 limited',
-										'readonly' => 'readonly'
-									]
-								) }}
-								
-							@else
-							
-								{{ Form::select('id_entry',
-									$block_list,
-									isset ($section) ? $section->id_entry : Input::old('id_entry'),
-										[
-											'id'       => 'entry_list', 
-											'style'    => 'width:58%;',
-										]
-									)
-								}}
-
-							@endif
-							<span 
-								data-content="Please select an Entry." 
-								data-placement="right"
-								data-rel="popover" 
-								data-trigger="hover"
-								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
-								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
-							</span>																						
-						</div>
-					</div>
+					
 					
 					
 					<div class="form-group">
-						<label class="col-sm-2 control-label no-padding-right blue">Select the Block</label>
+						<label class="col-sm-2 control-label no-padding-right blue">Select the Entry - Block</label>
 						<div class="col-sm-10">
 							@if ( isset ($section) )
 							
