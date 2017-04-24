@@ -37,7 +37,7 @@ class SectionController extends BaseController {
 		
 		'capacity' => [
 			'required',
-			'numeric',
+			'integer','min:0'
 		],
 	];
 

@@ -53,6 +53,47 @@
 					'class' => 'form-horizontal'
 				]) }}
 					
+					
+					<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right blue">Select the Entry</label>
+						<div class="col-sm-10">
+							@if ( isset ($section) )
+							
+								{{ Form::hidden('id_entry', $section->id_entry) }}
+								
+								{{ Form::text('entry',
+									isset ($section) ? $section->entry->name : Input::old('entry'),
+									[
+										'class' => 'col-xs-7 limited',
+										'readonly' => 'readonly'
+									]
+								) }}
+								
+							@else
+							
+								{{ Form::select('id_entry',
+									$block_list,
+									isset ($section) ? $section->id_entry : Input::old('id_entry'),
+										[
+											'id'       => 'entry_list', 
+											'style'    => 'width:58%;',
+										]
+									)
+								}}
+
+							@endif
+							<span 
+								data-content="Please select an Entry." 
+								data-placement="right"
+								data-rel="popover" 
+								data-trigger="hover"
+								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+							</span>																						
+						</div>
+					</div>
+					
+					
 					<div class="form-group">
 						<label class="col-sm-2 control-label no-padding-right blue">Select the Block</label>
 						<div class="col-sm-10">
@@ -79,11 +120,6 @@
 										]
 									)
 								}}
-								
-								
-
-								
-								
 							@endif
 							<span 
 								data-content="Please select a Block." 
@@ -96,6 +132,106 @@
 						</div>
 					</div>
 
+					<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right blue">Select the Course</label>
+						<div class="col-sm-10">
+							@if ( isset ($section) )
+							
+								{{ Form::hidden('id_block', $section->id_block) }}
+								
+								{{ Form::text('block',
+									isset ($section) ? $section->block->name : Input::old('block'),
+									[
+										'class' => 'col-xs-7 limited',
+										'readonly' => 'readonly'
+									]
+								) }}
+								
+							@else
+							
+								{{ Form::select('id_block',
+									$block_list,
+									isset ($section) ? $section->id_block : Input::old('id_block'),
+										[
+											'id'       => 'block_list', 
+											'style'    => 'width:58%;',
+										]
+									)
+								}}
+							@endif
+							<span 
+								data-content="Please select a Course." 
+								data-placement="right"
+								data-rel="popover" 
+								data-trigger="hover"
+								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+							</span>																						
+						</div>
+					</div>
+					
+					
+					
+					<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right blue">Select the Faculty</label>
+						<div class="col-sm-10">
+							@if ( isset ($section) )
+							
+								{{ Form::hidden('id_block', $section->id_block) }}
+								
+								{{ Form::text('block',
+									isset ($section) ? $section->block->name : Input::old('block'),
+									[
+										'class' => 'col-xs-7 limited',
+										'readonly' => 'readonly'
+									]
+								) }}
+								
+							@else
+							
+								{{ Form::select('id_block',
+									$block_list,
+									isset ($section) ? $section->id_block : Input::old('id_block'),
+										[
+											'id'       => 'block_list', 
+											'style'    => 'width:58%;',
+										]
+									)
+								}}
+							@endif
+							<span 
+								data-content="Please select a Faculty." 
+								data-placement="right"
+								data-rel="popover" 
+								data-trigger="hover"
+								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+							</span>																						
+						</div>
+					</div>
+					
+					
+					<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right blue">Track</label>
+						<div class="col-sm-3">
+							{{ Form::text('track',
+								isset ($section) ? $section->track : Input::old('track'),
+								[
+									'class' => 'col-xs-9 limited'
+								]
+							) }}
+							<span 
+								data-content="Please inform the track for this section." 
+								data-placement="right"
+								data-rel="popover" 
+								data-trigger="hover"
+								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+							</span>							
+						</div>
+					</div>
+					
+					
 					<div class="form-group">
 						<label class="col-sm-2 control-label no-padding-right blue">Capacity of this Section</label>
 						<div class="col-sm-3">
