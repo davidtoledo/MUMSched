@@ -86,7 +86,7 @@ class ScheduleController extends BaseController {
 			// Register Schedule
 			$schedule = self::populate();
 			
-			if ( $schedule->save() ) {
+			if ( ScheduleService::saveSchedule($schedule) ) {
 				
 				// Success
 				Session::flash('success', 'Successfully registered.');

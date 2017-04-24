@@ -51,6 +51,16 @@ class SectionDAO {
 	}
 
 	/**
+	 * Returns a list of Sections
+	 * 
+	 * @author Fantastic Five
+	 */
+	public static function getSectionListByBlockID($idBlock) {
+		$sections = \Section::get();
+		return $sections;
+	}
+	
+	/**
 	 * Return a Section by ID
 	 * 
 	 * @author Fantastic Five

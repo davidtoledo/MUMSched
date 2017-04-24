@@ -14,56 +14,235 @@
 		</li>
 		<li>
 			<i class="ace-icon fa fa-lock"></i>
-			<a href="{{ URL::route('admin.entry.list') }}">
-				Entries
+			<a href="{{ URL::route('admin.section.list') }}">
+				Sections
 			</a>
 		</li>
 		<li>
-			{{ isset ($entry) ? 'Edit' : 'Create' }}
+			{{ isset ($section) ? 'Edit' : 'Create' }}
 		</li>
 	</ul>
 @endsection
 
 @section('content')
-    <!-- Screen ID: form-entry -->
+    <!-- Screen ID: form-section -->
 	<h4 class="pink">
 		<i class="ace-icon fa fa-newspaper-o green"></i>
-		<a href="{{ URL::route('admin.entry.list') }}" class="blue">Entry List</a>
+		<a href="{{ URL::route('admin.section.list') }}" class="blue">Section List</a>
 		&nbsp; &nbsp;
 	</h4>
 	<div class="page-header">
 		<h1>
-			Entry
+			Section
 			<small>
 				<i class="ace-icon fa fa-angle-double-right"></i>
-				{{ isset ($entry) ? 'Edit' : 'Create' }}
+				{{ isset ($section) ? 'Edit' : 'Create' }}
 			</small>
 		</h1>
 	</div>
 
 	<div class="col-xs-12 col-sm-12">
 		<div class="tabbable ">
-			@include('admin/entry/tab-entry')
+			@include('admin/section/tab-section')
 			<div class="tab-content">
 				{{ Form::open([
-					'route' => isset($entry) ?
-							['admin.entry.edit', $entry->id_entry]
+					'route' => isset($section) ?
+							['admin.section.edit', $section->id_section]
 					 	:
-					 		['admin.entry.create'],
+					 		['admin.section.create'],
 					'class' => 'form-horizontal'
 				]) }}
 					
+					
 					<div class="form-group">
-						<label class="col-sm-2 control-label no-padding-right blue">Name</label>
-						<div class="col-sm-8">
-							{{ Form::text('name',
-								isset ($entry) ? $entry->name : Input::old('name'),
+						<label class="col-sm-2 control-label no-padding-right blue">Select the Entry</label>
+						<div class="col-sm-10">
+							@if ( isset ($section) )
+							
+								{{ Form::hidden('id_entry', $section->id_entry) }}
+								
+								{{ Form::text('entry',
+									isset ($section) ? $section->entry->name : Input::old('entry'),
+									[
+										'class' => 'col-xs-7 limited',
+										'readonly' => 'readonly'
+									]
+								) }}
+								
+							@else
+							
+								{{ Form::select('id_entry',
+									$block_list,
+									isset ($section) ? $section->id_entry : Input::old('id_entry'),
+										[
+											'id'       => 'entry_list', 
+											'style'    => 'width:58%;',
+										]
+									)
+								}}
+
+							@endif
+							<span 
+								data-content="Please select an Entry." 
+								data-placement="right"
+								data-rel="popover" 
+								data-trigger="hover"
+								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+							</span>																						
+						</div>
+					</div>
+					
+					
+					<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right blue">Select the Block</label>
+						<div class="col-sm-10">
+							@if ( isset ($section) )
+							
+								{{ Form::hidden('id_block', $section->id_block) }}
+								
+								{{ Form::text('block',
+									isset ($section) ? $section->block->name : Input::old('block'),
+									[
+										'class' => 'col-xs-7 limited',
+										'readonly' => 'readonly'
+									]
+								) }}
+								
+							@else
+							
+								{{ Form::select('id_block',
+									$block_list,
+									isset ($section) ? $section->id_block : Input::old('id_block'),
+										[
+											'id'       => 'block_list', 
+											'style'    => 'width:58%;',
+										]
+									)
+								}}
+							@endif
+							<span 
+								data-content="Please select a Block." 
+								data-placement="right"
+								data-rel="popover" 
+								data-trigger="hover"
+								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+							</span>																						
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right blue">Select the Course</label>
+						<div class="col-sm-10">
+							@if ( isset ($section) )
+							
+								{{ Form::hidden('id_block', $section->id_block) }}
+								
+								{{ Form::text('block',
+									isset ($section) ? $section->block->name : Input::old('block'),
+									[
+										'class' => 'col-xs-7 limited',
+										'readonly' => 'readonly'
+									]
+								) }}
+								
+							@else
+							
+								{{ Form::select('id_block',
+									$block_list,
+									isset ($section) ? $section->id_block : Input::old('id_block'),
+										[
+											'id'       => 'block_list', 
+											'style'    => 'width:58%;',
+										]
+									)
+								}}
+							@endif
+							<span 
+								data-content="Please select a Course." 
+								data-placement="right"
+								data-rel="popover" 
+								data-trigger="hover"
+								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+							</span>																						
+						</div>
+					</div>
+					
+					
+					
+					<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right blue">Select the Faculty</label>
+						<div class="col-sm-10">
+							@if ( isset ($section) )
+							
+								{{ Form::hidden('id_block', $section->id_block) }}
+								
+								{{ Form::text('block',
+									isset ($section) ? $section->block->name : Input::old('block'),
+									[
+										'class' => 'col-xs-7 limited',
+										'readonly' => 'readonly'
+									]
+								) }}
+								
+							@else
+							
+								{{ Form::select('id_block',
+									$block_list,
+									isset ($section) ? $section->id_block : Input::old('id_block'),
+										[
+											'id'       => 'block_list', 
+											'style'    => 'width:58%;',
+										]
+									)
+								}}
+							@endif
+							<span 
+								data-content="Please select a Faculty." 
+								data-placement="right"
+								data-rel="popover" 
+								data-trigger="hover"
+								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+							</span>																						
+						</div>
+					</div>
+					
+					
+					<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right blue">Track</label>
+						<div class="col-sm-3">
+							{{ Form::text('track',
+								isset ($section) ? $section->track : Input::old('track'),
 								[
 									'class' => 'col-xs-9 limited'
 								]
 							) }}
 							<span 
-								data-content="Please inform the name of the entry." 
+								data-content="Please inform the track for this section." 
+								data-placement="right"
+								data-rel="popover" 
+								data-trigger="hover"
+								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+							</span>							
+						</div>
+					</div>
+					
+					
+					<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right blue">Capacity of this Section</label>
+						<div class="col-sm-3">
+							{{ Form::text('capacity',
+								isset ($section) ? $section->capacity : Input::old('capacity'),
+								[
+									'class' => 'col-xs-9 limited'
+								]
+							) }}
+							<span 
+								data-content="Please inform the capacity of this section." 
 								data-placement="right"
 								data-rel="popover" 
 								data-trigger="hover"
@@ -73,105 +252,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label class="col-sm-2 control-label no-padding-right blue">FPP Total</label>
-						<div class="col-sm-3">
-							{{ Form::text('fpp_total',
-								isset ($entry) ? $entry->fpp_total : Input::old('fpp_total'),
-								[
-									'class' => 'col-xs-9 limited'
-								]
-							) }}
-							<span 
-								data-content="Please inform the FPP total of the entry." 
-								data-placement="right"
-								data-rel="popover" 
-								data-trigger="hover"
-								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
-								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
-							</span>							
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-2 control-label no-padding-right blue">MPP Total</label>
-						<div class="col-sm-3">
-							{{ Form::text('mpp_total',
-								isset ($entry) ? $entry->mpp_total : Input::old('mpp_total'),
-								[
-									'class' => 'col-xs-9 limited'
-								]
-							) }}
-							<span 
-								data-content="Please inform the MPP total of the entry." 
-								data-placement="right"
-								data-rel="popover" 
-								data-trigger="hover"
-								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
-								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
-							</span>							
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-2 control-label no-padding-right blue">OPT Percent</label>
-						<div class="col-sm-3">
-							{{ Form::text('opt_percent',
-								isset ($entry) ? $entry->opt_percent : Input::old('opt_percent'),
-								[
-									'class' => 'col-xs-9 limited'
-								]
-							) }}
-							<span 
-								data-content="Please inform the OPT percentage of the entry." 
-								data-placement="right"
-								data-rel="popover" 
-								data-trigger="hover"
-								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
-								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
-							</span>							
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-2 control-label no-padding-right blue">Start Date</label>
-						<div class="col-sm-3">
-							{{ Form::text('dt_start_date',
-								isset ($entry) ? date("m/d/Y", strtotime($entry->start_date)) : Input::old('dt_start_date'),
-								[
-									'class' => 'col-xs-9 limited'
-								]
-							) }}
-							<span 
-								data-content="Please inform the Start date of the entry." 
-								data-placement="right"
-								data-rel="popover" 
-								data-trigger="hover"
-								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
-								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
-							</span>							
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-2 control-label no-padding-right blue">End Date</label>
-						<div class="col-sm-3">
-							{{ Form::text('dt_end_date',
-								isset ($entry) ? date("m/d/Y", strtotime($entry->end_date)) : Input::old('dt_end_date'),
-								[
-									'class' => 'col-xs-9 limited'
-								]
-							) }}
-							<span 
-								data-content="Please inform the End date of the entry." 
-								data-placement="right"
-								data-rel="popover" 
-								data-trigger="hover"
-								class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
-								<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
-							</span>							
-						</div>
-					</div>
+					
 					
 					<button type="submit" class='btn btn-blue btn-info'>
 						<span class="ace-icon fa fa-calendar icon-on-right bigger-110"></span>

@@ -41,7 +41,8 @@ class UserDAO {
 	 * @author Fantastic Five
 	 */
 	public static function getUserByID($id) {
-		$user = \SystemUser::with("specializations")
+		$user = \SystemUser::with("entry")
+						   ->with("specializations")
 						   ->find($id);
 		return $user;
 	}

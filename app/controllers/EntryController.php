@@ -24,15 +24,15 @@ class EntryController extends BaseController {
 		],
 		'fpp_total' => [
 			'required',
-			'numeric',
+			'integer','min:0',
 		],
 		'mpp_total' => [
 			'required',
-			'numeric',
+			'integer','min:0',
 		],
 		'opt_percent' => [
 			'required',
-			'numeric',
+			'numeric','min:0',
 		],
 		'dt_start_date' => [
 			'required',

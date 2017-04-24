@@ -19,4 +19,17 @@ class Section extends Eloquent {
 	public function course() {
 		return $this->hasOne('Course', 'id_course', 'id_course');
 	}
+	
+	// Relationship with Block
+	public function block() {
+		return $this->hasOne('Block', 'id_block', 'id_block');
+	}
+	
+	// Relationship with Faculty
+	public function faculty() {
+		return $this->hasOne('SystemUser', 'id_user', 'id_faculty');
+	}
+	
+
+	
 }

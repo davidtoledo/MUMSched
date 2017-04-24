@@ -28,6 +28,11 @@ class SystemUser extends Eloquent implements UserInterface, RemindableInterface 
 		return $this->hasMany('FacultyCourse', 'id_faculty', 'id_user');
 	}			
 
+	// Relationship with Entry
+	public function entry() {
+		return $this->hasOne('Entry', 'id_entry', 'student_entry');
+	}			
+
 	protected $hidden = array(
 		'password'
 	);

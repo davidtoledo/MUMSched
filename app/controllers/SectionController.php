@@ -37,7 +37,7 @@ class SectionController extends BaseController {
 		
 		'capacity' => [
 			'required',
-			'numeric',
+			'integer','min:0'
 		],
 	];
 
@@ -70,7 +70,9 @@ class SectionController extends BaseController {
 	 * @author Fantastic Five
 	 */
 	public function create() {
-				
+		
+		// Add select data
+		self::addCombos();		
 		if ( Request::isMethod('post') ) {
 			
 			// Validator
@@ -205,13 +207,52 @@ class SectionController extends BaseController {
 		}
 				
 		$section->track = Input::get('track');
-		$section->fpp_total = Input::get('fpp_total');
-		$section->mpp_total = Input::get('mpp_total');
-		$section->opt_percent = Input::get('opt_percent');
-		$section->start_date = AppUtil::date2db(Input::get("dt_start_date"));
-		$section->end_date = AppUtil::date2db(Input::get("dt_end_date"));
-		
+		$section->id_block = Input::get('id_block');
+		$section->id_course = Input::get('id_course');
+		$section->id_faculty = Input::get('id_faculty');
+		$section->capacity = Input::get('capacity');
+	
 		return $section;
 	}
 
+	/**
+	 * Add combo data
+	 * 
+	 * @author Fantastic Five
+	 */
+	private function addCombos() {
+		
+		// Block Selectbox
+		$block_list = Block::orderBy('name')
+    					   ->lists('name', 'id_block');
+		
+		$this->data['block_list'] = ['' => 'Select a Block'];
+		$this->data['block_list'] += $block_list;
+		
+		// Status Selectbox
+		$this->data['status_list'] =  ['D' => 'Draft'];
+		$this->data['status_list'] += ['O' => 'OK'];
+		
+		// Faculty Selectbox
+		$faculty_list = Faculty::orderBy('first_name')
+    					   ->lists('first_name', 'id_user');
+		
+		$this->data['faculty_list'] = ['' => 'Select a Faculty'];
+		$this->data['faculty_list'] += $faculty_list;
+		
+		// Status Selectbox
+		$this->data['status_list'] =  ['D' => 'Draft'];
+		$this->data['status_list'] += ['O' => 'OK'];
+		
+		// Course Selectbox
+		$course_list = Course::orderBy('name')
+    					   ->lists('name', 'id_course');
+		
+		$this->data['course_list'] = ['' => 'Select a Course'];
+		$this->data['course_list'] += $course_list;
+		
+		// Status Selectbox
+		$this->data['status_list'] =  ['D' => 'Draft'];
+		$this->data['status_list'] += ['O' => 'OK'];
+	}
 }
