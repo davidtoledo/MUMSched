@@ -223,8 +223,11 @@ class SectionController extends BaseController {
 	private function addCombos() {
 		
 		// Block Selectbox
-		$block_list = Block::orderBy('name')
-    					   ->lists('name', 'id_block');
+		$block_list = Block::selectRaw( \DB::raw('id_block, block.name, CONCAT(entry.name, " - ", block.name) as EntryBlockName'))
+						   ->leftJoin('entry', 'entry.id_entry', '=', 'block.id_entry')
+						   ->orderBy('entry.id_entry')
+						   ->orderBy('block.id_block')
+    					   ->lists( \DB::raw('EntryBlockName'),  'id_block');
 		
 		$this->data['block_list'] = ['' => 'Select a Block'];
 		$this->data['block_list'] += $block_list;
