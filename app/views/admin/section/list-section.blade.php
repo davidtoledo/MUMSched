@@ -29,7 +29,7 @@
 	<!-- Screen ID: list-section -->	    
 	<h4 class="pink">
    		<i class="ace-icon fa fa-plus-square green"></i>
-   		<a href="{{ URL::route('admin.section.create') }}" class="blue">Create Section</a>
+   		<a href="{{ URL::route('admin.section.create') }}" class="blue">Create a new Section</a>
    	</h4>
 
 	<div class="page-header">
@@ -65,15 +65,20 @@
 			</th>							
 	      	
 
-	         <th style="width:1%;">
-	         	Track
+	         <th style="width:10%;">
+	         	Entry
 	         </th>
 	         
-	         <th style="width:20%;">
+	         
+	         <th style="width:10%;">
 	         	Block
 	         </th>
+	         
+	         <th style="width:5%;">
+	         	Track
+	         </th>
 
-	         <th style="width:20%;">
+	         <th style="width:25%;">
 	         	Course
 	         </th>
 	         
@@ -81,7 +86,7 @@
 	         	Faculty
 	         </th>
 	         
-	         <th style="width:10%;">
+	         <th style="width:5%;">
 	         	Capacity
 	         </th>
 	         <th style="width:10%;">Actions</th>
@@ -93,17 +98,27 @@
 	      	<td align="center">
 	      		<input type="checkbox" name="chk_usuarios[]" value="{{ $section->id_section }}" class="chkSelecionado"></input>
 	      	</td>
+	         
+	         <td>
+	         	<a href="{{ URL::route('admin.section.edit', $section->id_section) }}">
+	            	{{ $section->block->entry->name }}
+	           </a>
+	         </td>
+	         
+	         <td>
+	         	<a href="{{ URL::route('admin.section.edit', $section->id_section) }}">
+	            	{{ $section->block->name }}
+	           </a>
+	         </td>
+	         
+	         
 	         <td>
 	         	<a href="{{ URL::route('admin.section.edit', $section->id_section) }}">
 	            	{{ $section->track }}
 	           </a>
 	         </td>
 
-	         <td>
-	         	<a href="{{ URL::route('admin.section.edit', $section->id_section) }}">
-	            	{{ $section->block->name }}
-	           </a>
-	         </td>
+	         
 
 	         <td>
 	         	<a href="{{ URL::route('admin.section.edit', $section->id_section) }}">
@@ -113,7 +128,7 @@
 
  			<td>
 	         	<a href="{{ URL::route('admin.section.edit', $section->id_section) }}">
-	            	{{ $section->faculty->name }}
+	            	{{ $section->faculty->first_name}} {{ $section->faculty->last_name}}
 	           </a>
 	        </td>
 	        

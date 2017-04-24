@@ -27,8 +27,9 @@ class Section extends Eloquent {
 	
 	// Relationship with Faculty
 	public function faculty() {
-		return $this->hasOne('Faculty', 'id_user', 'id_faculty');
+		return $this->hasOne('SystemUser', 'id_user', 'id_faculty');
 	}
 	
+
 	
 }
