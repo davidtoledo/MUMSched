@@ -31,11 +31,11 @@ class BlockController extends BaseController {
 		],
 		'num_mpp_courses' => [
 			'required',
-			'numeric', 'integer','min:0',
+			'integer','min:0',
 		],
 		'num_fpp_courses' => [
 			'required',
-			'numeric','integer','min:0', 
+			'integer','min:0', 
 		],
 		
 	];

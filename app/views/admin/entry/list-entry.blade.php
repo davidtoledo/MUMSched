@@ -29,7 +29,7 @@
 	<!-- Screen ID: list-entry -->	    
 	<h4 class="pink">
    		<i class="ace-icon fa fa-plus-square green"></i>
-   		<a href="{{ URL::route('admin.entry.create') }}" class="blue">Create entry</a>
+   		<a href="{{ URL::route('admin.entry.create') }}" class="blue">Create a new Entry</a>
    	</h4>
 
 	<div class="page-header">
@@ -68,19 +68,23 @@
 	         	Entry
 	         </th>
 
-	         <th style="width:25%;">
+	         <th style="width:20%;">
 	         	FPP total
 	         </th>
 	         
-	         <th style="width:25%;">
+	         <th style="width:20%;">
 	         	MPP Total
 	         </th>
-
+	         
+			<th style="width:10%;">
+	         	OPT percent
+	        </th>
+	         
 	         <th style="width:10%;">
 	         	Start Date
 	         </th>
 	         
-	         <th style="width:10%;">Actions</th>
+	         <th style="width:15%;">Actions</th>
 	      </tr>
 	   </thead>
 	   <tbody>
@@ -106,7 +110,15 @@
 	            	{{ $entry->mpp_total }}
 	           </a>
 	         </td>
-
+			
+			
+			<td>
+	         	<a href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
+	            	{{ $entry->opt_percent }}
+	           </a>
+	         </td>
+	         
+	         
 	         <td>
 	         	<a href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
 	            	{{ date("m/d/Y", strtotime($entry->start_date)) }}

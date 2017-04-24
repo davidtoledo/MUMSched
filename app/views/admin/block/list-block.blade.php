@@ -29,7 +29,7 @@
 	<!-- Screen ID: list-block -->	    
 	<h4 class="pink">
    		<i class="ace-icon fa fa-plus-square green"></i>
-   		<a href="{{ URL::route('admin.block.create') }}" class="blue">Create block</a>
+   		<a href="{{ URL::route('admin.block.create') }}" class="blue">Create a new Block</a>
    	</h4>
 
 	<div class="page-header">
@@ -64,12 +64,12 @@
 				</center>
 			</th>							
 	      	
-	         <th style="width:20%;">
-	         	Block
+	         <th style="width:15%;">
+	         	Entry
 	         </th>
 	         
-	         <th style="width:10%;">
-	         	Entry
+	         <th style="width:15%;">
+	         	Block
 	         </th>
 
 	         <th style="width:15%;">
@@ -97,17 +97,19 @@
 	      	<td align="center">
 	      		<input type="checkbox" name="chk_usuarios[]" value="{{ $block->id_block }}" class="chkSelecionado"></input>
 	      	</td>
-	         <td>
-	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
-	            	{{ $block->name }}
-	           </a>
-	         </td>
+	         
 				
 			<td>
 	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
 	            	{{ $block->entry->name }}
 	           </a>
 	        </td>
+	         
+	         <td>
+	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
+	            	{{ $block->name }}
+	           </a>
+	         </td>
 	         
 	         <td>
 	         	<a href="{{ URL::route('admin.block.edit', $block->id_block) }}">
