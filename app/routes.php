@@ -144,6 +144,14 @@
 				'uses' => 'UserCourseController@delete',
 		]);
 		
+		#############################################################
+		############### USERS -> Section Registration ###############
+
+		Route::any('user/section/list/{id_user}', [
+				'as' => 'admin.user.section.list',
+				'uses' => 'UserSectionController@showList',
+		]);		
+		
 		################################
 		########### SCHEDULE ###########
 		
