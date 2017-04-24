@@ -43,15 +43,12 @@ class UserSectionController extends BaseController {
 		
 		$blocks=UserService::getUserByID($id_user)->entry->blocks();
 		// Getting Sections List from DB
-		$sections = SectionService::getSectionListByBlockID($idBlock);
+		//$sections = SectionService::getSectionListByBlockID($idBlock);
 				
 		// Adding objects to the view context
-		$this->data['sections'] = $sections;
+		$this->data['blocks'] = $blocks;
 		
 		// Redirecting to the view layer
-		return View::make('admin.section.list-section', $this->data);
-		
-		
 		return View::make('admin.user.list-Sections')->with($this->data);
 	}
 	
