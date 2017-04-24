@@ -9,8 +9,9 @@
 				@else
 					Profile
 				@endif
+				</li>
 			</a>
-		</li>
+		
 		
 		@if ($user->type == \SystemUser::TYPE_FACULTY)
 			<li class="{{ Request::is('admin/user/specialization*') ? ' active ' : '' }}">
@@ -27,5 +28,15 @@
 				</a>
 			</li>
 		@endif
+		
+		@if ($user->type == \SystemUser::TYPE_STUDENT)
+			<li class="{{ Request::is('user/section/list*') ? ' active ' : '' }}">
+				<a href="{{ URL::route('admin.user.section.list', $user->id_user) }}">
+					<i class="blue ace-icon fa fa-plus-square" aria-hidden="true"></i>
+					Section Registration
+				</a>
+			</li>
+		@endif
+		
 	</ul>	
 @endif

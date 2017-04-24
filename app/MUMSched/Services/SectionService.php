@@ -13,6 +13,9 @@ class SectionService implements ISectionService {
 	public static function getSectionList() {
 		return SectionDAO::getSectionList();
 	}
+	public static function getSectionList($idBlock) {
+		return SectionDAO::getSectionList();
+	}
 	
 	public static function getSectionByID($id) {
 		return SectionDAO::getSectionByID($id);
