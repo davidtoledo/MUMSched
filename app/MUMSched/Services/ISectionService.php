@@ -9,6 +9,7 @@ namespace MUMSched\Services;
  */
 interface ISectionService {
 	public static function getSectionList();
+	public static function getSectionListByBlockID($idBlock);
 	public static function getSectionByID($id);
 	public static function deleteSection($id);	
 }

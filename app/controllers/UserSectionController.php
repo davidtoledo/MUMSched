@@ -43,7 +43,7 @@ class UserSectionController extends BaseController {
 		
 		$blocks=UserService::getUserByID($id_user)->entry->blocks();
 		// Getting Sections List from DB
-		$sections = SectionService::getSectionList($idBlock);
+		$sections = SectionService::getSectionListByBlockID($idBlock);
 				
 		// Adding objects to the view context
 		$this->data['sections'] = $sections;
