@@ -14,12 +14,9 @@
 		</li>
 		<li>
 			<i class="ace-icon fa fa-lock"></i>
-			<a href="{{ URL::route('admin.user.list') }}">
-				Users
+			<a href="{{ URL::route('admin.course.list') }}">
+				Courses
 			</a>
-		</li>
-		<li>
-			Specialization
 		</li>
 		<li>
 			{{ isset ($course) ? 'Edit' : 'Create' }}
@@ -28,15 +25,15 @@
 @endsection
 
 @section('content')
-    <!-- Screen ID: list-prerequisite -->
+    <!-- Screen ID: form-course -->
 	<h4 class="pink">
 		<i class="ace-icon fa fa-newspaper-o green"></i>
-		<a href="{{ URL::route('admin.user.list') }}" class="blue">User List</a>
+		<a href="{{ URL::route('admin.course.list') }}" class="blue">Course List</a>
 		&nbsp; &nbsp;
 	</h4>
 	<div class="page-header">
 		<h1>
-			User
+			Course
 			<small>
 				<i class="ace-icon fa fa-angle-double-right"></i>
 				{{ isset ($course) ? 'Edit' : 'Create' }}
