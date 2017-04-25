@@ -58,7 +58,7 @@ class UserSectionController extends BaseController {
 		$this->data['user'] = & $user;
 		
 		// Add combo objects
-		self::addCombos();
+		self::addCombos($user);
 		
 		if (Request::isMethod('post')) {
 			
@@ -148,13 +148,20 @@ class UserSectionController extends BaseController {
 	 * 
 	 * @author Fantastic Five
 	 */
-	private function addCombos() {
+	private function addCombos($user = null) {
 		
-		// Selectbox
-		//SystemUser::with('entry')->find($id_user);
-						$section_list = \Section::with("course")
-					  	     ->lists('id_section', 'id_section');
-		//$section_list = Section::orderBy('name')->lists('name', 'id_course');
+		$section_list = Section::
+			selectRaw( \DB::raw('id_section, block.id_block, section.id_block, course.id_course, course.name, 
+								 system_user.id_user, system_user.first_name, system_user.last_name, section.track, 
+								 system_user.student_track, block.id_entry, course.code,
+									CONCAT(block.name, " - ", course.name, " - ", system_user.first_name, " ", system_user.last_name) as SectionName') )
+								->leftJoin('block', 'section.id_block', '=', 'block.id_block')
+								->leftJoin('course', 'section.id_course', '=', 'course.id_course')
+								->leftJoin('system_user', 'section.id_faculty', '=', 'system_user.id_user')
+								->where('section.track', '=', $user->student_track)
+								->where('block.id_entry', '=', $user->student_entry)
+								->whereNotIn('course.code', [Course::COURSE_CRS_CODE, Course::COURSE_SCI_CODE])
+		   						->lists('SectionName', 'id_section');
 		
 		$this->data['section_list'] = ['' => 'Select the sections'];
 		$this->data['section_list'] += $section_list;

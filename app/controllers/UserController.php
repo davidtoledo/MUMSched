@@ -41,6 +41,12 @@ class UserController extends BaseController {
 		'is_admin' => [
 			'required',
 		],
+		'student_entry' => [
+			'required_if:type,S',
+		],
+		'student_track' => [
+			'required_if:type,S',
+		]
 	];
 
 	var $niceNames = [
@@ -49,6 +55,8 @@ class UserController extends BaseController {
 		'username' => 'user name',
 		'perfil' => 'perfil do usuário',
 		'is_admin' => 'is admin',
+		'student_entry' => 'student entry',
+		'student_track' => 'student track',
 	];
 
 	/**
