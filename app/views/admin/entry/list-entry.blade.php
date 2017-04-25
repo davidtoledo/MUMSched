@@ -77,7 +77,7 @@
 	         </th>
 	         
 			<th style="width:10%;">
-	         	OPT percent
+	         	OPT percent (%)
 	        </th>
 	         
 	         <th style="width:10%;">
