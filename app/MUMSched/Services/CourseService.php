@@ -2,6 +2,7 @@
 
 namespace MUMSched\Services;
 use MUMSched\DAOs\CourseDAO;
+use MUMSched\DAOs\PrerequisiteCourseDAO;
 
 /**
  * Service class for Course
@@ -21,9 +22,18 @@ class CourseService implements ICourseService {
 	public static function deleteCourse($id) {
 		return CourseDAO::deleteCourse($id);
 	}	
-	public static function getCourseWithPrerequisite($id_course){
-		return CourseDAO::getCourseWithPrerequisite($id_course);
+	public static function getCoursePrerequisite($id_course){
+		return PrerequisiteCourseDAO::getPrerequisiteByID($id_course);
 	}
+	public static function savePrerequisite($prerequisite){
+		return PrerequisiteCourseDAO::savePrerequisite($prerequisite);
+	}
+	public static function deletePrerequisite($id_course){
+		return PrerequisiteCourseDAO::deletePrerequisite($id_course);
+	}
+	
+	
+	
 	
 	
 }

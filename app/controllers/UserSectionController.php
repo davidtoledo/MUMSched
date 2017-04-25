@@ -35,6 +35,11 @@ class UserSectionController extends BaseController {
 	public function showList ($id_user) {
 		
 		$ss = StudentSectionService::getSectionsByStudent($id_user);
+		$blocks=UserService::getUserByID($id_user)->entry->blocks();
+=======
+>>>>>>> 44a070f2b7f37a27e86e8f5f193a8cdbb2a2b02b		// Getting Sections List from DB
+		$ss = SectionService::getSectionsByStudent($id_user);
+		//$sections = SectionService::getSectionListByBlockID($idBlock);
 				
 		// Adding objects to the view context
 		$this->data['ss'] = $ss;
