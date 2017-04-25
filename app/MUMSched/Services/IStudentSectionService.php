@@ -7,9 +7,9 @@ namespace MUMSched\Services;
  *
  * @author Fantastic Five
  */
-interface ISectionService {
+interface IStudentSectionService {
 	public static function getSectionList();
-	public static function getSectionListByBlockID($idBlock);
 	public static function getSectionByID($id);
 	public static function deleteSection($id);	
+	public static function getSectionsByStudent($studentID);
 }

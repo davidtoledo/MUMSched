@@ -25,8 +25,4 @@ class SectionService implements ISectionService {
 		return SectionDAO::deleteSection($id);
 	}
 	
-	public static function getSectionsByStudent($id) {
-		return SectionDAO::getSectionsByStudent($id);
-	}
-	
 }

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
  *
  * @author Fantastic Five
  */
-class PrerequisiteDAO {
+class PrerequisiteCourseDAO {
 
 	/**
 	 * Returns a list of prerequisites

@@ -1,7 +1,7 @@
 <?php
 
 use MUMSched\Services\UserService;
-use MUMSched\Services\SectionService;
+use MUMSched\Services\StudentSectionService;
 
 /**
  * User Section Controller
@@ -34,17 +34,10 @@ class UserSectionController extends BaseController {
 	 */
 	public function showList ($id_user) {
 		
-		/*$user = UserService::getUserWithCourses($id_user);
-		if ( !$user || !Auth::user()->is_admin && Auth::user()->id_user != $id_user) {
-			return Redirect::route('login')->withErrors('User does not exists.');
-		}	
-
-		$this->data['user'] = & $user;*/
-		
-		
-		//$blocks=UserService::getUserByID($id_user)->entry->blocks->get();
-		
-		// Getting Sections List from DB
+		$ss = StudentSectionService::getSectionsByStudent($id_user);
+		$blocks=UserService::getUserByID($id_user)->entry->blocks();
+=======
+>>>>>>> 44a070f2b7f37a27e86e8f5f193a8cdbb2a2b02b		// Getting Sections List from DB
 		$ss = SectionService::getSectionsByStudent($id_user);
 		//$sections = SectionService::getSectionListByBlockID($idBlock);
 				
@@ -52,6 +45,8 @@ class UserSectionController extends BaseController {
 		$this->data['ss'] = $ss;
 				
 		$this->data['user'] = SystemUser::find($id_user);
+		
+		
 		
 		// Redirecting to the view layer
 		return View::make('admin.user.list-sections')->with($this->data);
