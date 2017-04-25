@@ -254,8 +254,13 @@ class SectionController extends BaseController {
 		$this->data['course_list'] = ['' => 'Select a Course'];
 		$this->data['course_list'] += $course_list;
 		
-		// Status Selectbox
-		$this->data['status_list'] =  ['D' => 'Draft'];
-		$this->data['status_list'] += ['O' => 'OK'];
+		// Track Selectbox
+		$this->data['track_type_list'] = [
+			'MPP' => 'MPP',
+			'FPP' => 'FPP',
+			'US' => 'US'
+		];
+		
+	
 	}
 }

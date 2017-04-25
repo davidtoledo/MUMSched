@@ -100,10 +100,10 @@
 						<div class="col-sm-10">
 							@if ( isset ($section) )
 							
-								{{ Form::hidden('id_block', $section->id_block) }}
+								{{ Form::hidden('id_course', $section->id_course) }}
 								
-								{{ Form::text('block',
-									isset ($section) ? $section->block->name : Input::old('block'),
+								{{ Form::text('course',
+									isset ($section) ? $section->course->name : Input::old('course'),
 									[
 										'class' => 'col-xs-7 limited',
 										'readonly' => 'readonly'
@@ -112,11 +112,11 @@
 								
 							@else
 							
-								{{ Form::select('id_block',
-									$block_list,
-									isset ($section) ? $section->id_block : Input::old('id_block'),
+								{{ Form::select('id_course',
+									$course_list,
+									isset ($section) ? $section->id_course : Input::old('id_course'),
 										[
-											'id'       => 'block_list', 
+											'id'       => 'course_list', 
 											'style'    => 'width:58%;',
 										]
 									)
@@ -140,10 +140,10 @@
 						<div class="col-sm-10">
 							@if ( isset ($section) )
 							
-								{{ Form::hidden('id_block', $section->id_block) }}
+								{{ Form::hidden('id_faculty', $section->id_faculty) }}
 								
-								{{ Form::text('block',
-									isset ($section) ? $section->block->name : Input::old('block'),
+								{{ Form::text('faculty',
+									isset ($section) ? $section->faculty->name : Input::old('faculty'),
 									[
 										'class' => 'col-xs-7 limited',
 										'readonly' => 'readonly'
@@ -152,11 +152,11 @@
 								
 							@else
 							
-								{{ Form::select('id_block',
-									$block_list,
-									isset ($section) ? $section->id_block : Input::old('id_block'),
+								{{ Form::select('id_faculty',
+									$faculty_list,
+									isset ($section) ? $section->id_faculty : Input::old('id_faculty'),
 										[
-											'id'       => 'block_list', 
+											'id'       => 'faculty_list', 
 											'style'    => 'width:58%;',
 										]
 									)
@@ -177,12 +177,10 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label no-padding-right blue">Track</label>
 						<div class="col-sm-3">
-							{{ Form::text('track',
-								isset ($section) ? $section->track : Input::old('track'),
-								[
-									'class' => 'col-xs-9 limited'
-								]
-							) }}
+							{{ Form::select('track', 
+									$track_type_list, 
+									isset ($section) ? $section->track : Input::old('track'))
+								}}
 							<span 
 								data-content="Please inform the track for this section." 
 								data-placement="right"

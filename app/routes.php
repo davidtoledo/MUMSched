@@ -151,6 +151,14 @@
 				'as' => 'admin.user.section.list',
 				'uses' => 'UserSectionController@showList',
 		]);		
+
+		##################################################
+		############### USERS -> Schedules ###############
+
+		Route::any('user/schedule/list/{id_user}', [
+				'as' => 'admin.user.schedule.list',
+				'uses' => 'UserScheduleController@showList',
+		]);		
 		
 		################################
 		########### SCHEDULE ###########

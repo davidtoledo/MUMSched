@@ -37,6 +37,13 @@
 				</a>
 			</li>
 		@endif
+
+		<li class="{{ Request::is('admin/user/schedule/list*') ? ' active ' : '' }}">
+			<a href="{{ URL::route('admin.user.schedule.list', $user->id_user) }}">
+				<i class="blue ace-icon fa fa-plus-square" aria-hidden="true"></i>
+				Schedules
+			</a>
+		</li>
 		
 	</ul>	
 @endif
