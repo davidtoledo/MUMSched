@@ -71,6 +71,6 @@ class ScheduleDAO {
 			return $e;
 		}
 		
-	}	
-	
+	}
+		
 }

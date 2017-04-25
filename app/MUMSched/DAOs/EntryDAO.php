@@ -64,4 +64,12 @@ class EntryDAO {
 		
 	}	
 	
+	public static function getEntriesList() {
+		
+		$entry_list = \Entry::orderBy('name')
+    					    ->lists('name', 'id_entry');
+						   
+		return $entry_list;
+	}	
+		
 }

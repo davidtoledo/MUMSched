@@ -1,6 +1,7 @@
 <?php
 
 use MUMSched\Services\UserService;
+use MUMSched\Services\SectionService;
 
 /**
  * User Section Controller
@@ -41,15 +42,19 @@ class UserSectionController extends BaseController {
 		$this->data['user'] = & $user;*/
 		
 		
-		$blocks=UserService::getUserByID($id_user)->entry->blocks();
+		//$blocks=UserService::getUserByID($id_user)->entry->blocks->get();
+		
 		// Getting Sections List from DB
-		$sections = SectionService::getSectionListByBlockID($idBlock);
+		$ss = SectionService::getSectionsByStudent($id_user);
+		//$sections = SectionService::getSectionListByBlockID($idBlock);
 				
 		// Adding objects to the view context
-		$this->data['sections'] = $blocks;
+		$this->data['ss'] = $ss;
+				
+		$this->data['user'] = SystemUser::find($id_user);
 		
 		// Redirecting to the view layer
-		return View::make('admin.user.list-Sections')->with($this->data);
+		return View::make('admin.user.list-sections')->with($this->data);
 	}
 	
 	/**

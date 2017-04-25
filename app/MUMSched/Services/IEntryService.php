@@ -10,5 +10,6 @@ namespace MUMSched\Services;
 interface IEntryService {
 	public static function getEntryList();
 	public static function getEntryByID($id);
-	public static function deleteEntry($id);	
+	public static function deleteEntry($id);
+	public static function getEntriesList();
 }

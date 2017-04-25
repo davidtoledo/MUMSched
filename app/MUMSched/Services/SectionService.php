@@ -23,6 +23,10 @@ class SectionService implements ISectionService {
 
 	public static function deleteSection($id) {
 		return SectionDAO::deleteSection($id);
-	}	
+	}
+	
+	public static function getSectionsByStudent($id) {
+		return SectionDAO::getSectionsByStudent($id);
+	}
 	
 }
