@@ -12,19 +12,17 @@ class UserSectionController extends BaseController {
 		
 	// Dados para a view
 	var $data = [
-		'title' => 'User',
-		'userSpec' => NULL,
-		'userSpecs' => []
+		'title' => 'Section Registration',
 	];
 
 	var $rules = [
-		'id_course' => [
+		'id_section' => [
 			'required',
 		],
 	];
 
 	var $niceNames = [
-		'id_course' => 'course',
+		'id_section' => 'section',
 	];
 
 	/**
@@ -73,17 +71,17 @@ class UserSectionController extends BaseController {
 				
 				// store fields
 				Input::flash();
-				return View::make('admin.user.form-course')->with($this->data)
+				return View::make('admin.user.form-sections')->with($this->data)
 					->withErrors($validator->messages());
 			}
 			
 			// Checks if association already exists
-			$fs = UserService::getFacultyCourse($id_user, Input::get('id_course'));
+			/*$fs = UserService::getFacultyCourse($id_user, Input::get('id_course'));
 			
 			if ($fs) {
 				return Redirect::route('admin.user.list-sections', [$user->id_user])
 					->withErrors(['Association already exists.']);
-			}
+			}*/
 						
 			// create
 			$spec = self::populate();
@@ -131,15 +129,14 @@ class UserSectionController extends BaseController {
 	 */
 	private function populate ($id = NULL) {
 		
-		$fc = is_null($id) ? new FacultyCourse() : FacultyCourse::find($id);
+		$fc = is_null($id) ? new StudentSection() : StudentSection::find($id);
 		
 		if (!$fc) {
 			return FALSE;
 		}
 		
-		$fc->id_course = Input::get('id_course');
-		$fc->id_faculty = Input::get('id_user');
-
+		$fc->id_section = Input::get('id_section');
+		$fc->id_student = Input::get('id_user');
 		return $fc;
 	}
 	
