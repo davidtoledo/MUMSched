@@ -150,6 +150,10 @@
 				'as' => 'admin.user.section.list',
 				'uses' => 'UserSectionController@showList',
 		]);		
+		Route::any('user/section/create/{id_user}', [
+				'as' => 'admin.user.section.create',
+				'uses' => 'UserSectionController@create',
+		]);
 
 		##################################################
 		############### USERS -> Schedules ###############

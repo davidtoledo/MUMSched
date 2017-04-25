@@ -178,6 +178,44 @@
 								</span>							
 							</div>
 						</div>
+						<div id="studentData">
+						<div class="form-group">
+							<label class="col-sm-2 control-label no-padding-right blue">Student Track</label>
+							<div class="col-sm-10">
+								{{ Form::select('student_track', 
+									["FFP" => "FPP", "MPP" => "MPP","US"=>"US"], 
+									isset ($user) ? $user->student_track : Input::old('student_track'))
+								}}
+								<span 
+									data-content="Please inform the track of student" 
+									data-placement="right"
+									data-rel="popover" 
+									data-trigger="hover"
+									class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+									<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+								</span>							
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-sm-2 control-label no-padding-right blue">Student Entry</label>
+							<div class="col-sm-10">
+								{{ Form::select('student_entry', 
+									$entry_list, 
+									isset ($user) ? $user->student_entry : Input::old('student_entry'))
+								}}
+								<span 
+									data-content="Please inform the track of student" 
+									data-placement="right"
+									data-rel="popover" 
+									data-trigger="hover"
+									class="btn btn-blue btn-sm popover-success popover-notitle btn-ajuda">
+									<i class="ace-icon fa fa-question-circle bigger-150 white"></i>
+								</span>							
+							</div>
+						</div>
+						</div>
+						
 					@else
 						{{ Form::hidden('type', $user->type, array('id' => 'type')) }}
 						{{ Form::hidden('is_admin', '0', array('id' => 'is_admin')) }}
@@ -212,5 +250,18 @@
 			$("#password").focus();
 			$("#password").attr("readonly", false);
 		}		
+		
+		if($("select[name='type']").val() == "S")
+		  $("#studentData").show();
+		else
+		  $("#studentData").hide();
+		  
+		$("select[name='type']").change(function(){
+			if($(this).val() == "S")
+		  		$("#studentData").show();
+			else
+		  		$("#studentData").hide();
+		  
+		});
 	</script>
 @stop
