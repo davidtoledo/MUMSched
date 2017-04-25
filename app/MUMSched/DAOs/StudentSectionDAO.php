@@ -45,8 +45,8 @@ class StudentSectionDAO {
 	 * 
 	 * @author Fantastic Five
 	 */
-	public static function getSectionListByStudentID() {
-		$sections = \Section::get();
+	public static function getSectionListByStudentID($studentID) {
+		$sections = \StudentSection::where("id_student", $studentID);
 		return $sections;
 	}
 
