@@ -8,11 +8,17 @@
 class Prerequisite extends Eloquent {
 	
 	protected $table = 'prerequisite';
-	protected $primaryKey = 'id_prerequisite';
+	protected $primaryKey = 'id';
 	public $timestamps = FALSE;
 	
-	//Relationship with course
+	// Relationship with course
 	public function course(){
 		 return $this->hasOne('Course', 'id_course', 'id_course');
 	}
+	
+	// Relationship with Prerequisite Course
+	public function prerequisite(){
+		 return $this->hasOne('Course', 'id_course', 'id_prerequisite');
+	}
+	
 }

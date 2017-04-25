@@ -18,22 +18,25 @@ class CourseService implements ICourseService {
 	public static function getCourseByID($id) {
 		return CourseDAO::getCourseByID($id);
 	}
+	
+	public static function getCourseByIDWithPrerequisites($id) {
+		return CourseDAO::getCourseByIDWithPrerequisites($id);
+	}	
 
 	public static function deleteCourse($id) {
 		return CourseDAO::deleteCourse($id);
-	}	
+	}
+		
 	public static function getCoursePrerequisite($id_course){
 		return PrerequisiteCourseDAO::getPrerequisiteByID($id_course);
 	}
+	
 	public static function savePrerequisite($prerequisite){
 		return PrerequisiteCourseDAO::savePrerequisite($prerequisite);
 	}
-	public static function deletePrerequisite($id_course){
-		return PrerequisiteCourseDAO::deletePrerequisite($id_course);
+	
+	public static function deletePrerequisite($id_prerequisite){
+		return PrerequisiteCourseDAO::deletePrerequisite($id_prerequisite);
 	}
-	
-	
-	
-	
 	
 }

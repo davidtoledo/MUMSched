@@ -39,10 +39,10 @@ class PrerequisiteCourseDAO {
 	 * 
 	 * @author Fantatisc Five
 	 */
-	public static function deletePrerequisite($id) {
+	public static function deletePrerequisite($id_prerequisite) {
 				
 		$queries = [
-			'DELETE FROM prerequisite WHERE  id_prerequisite = ?',
+			'DELETE FROM prerequisite WHERE  id = ?',
 				
 		];
 		
@@ -50,7 +50,7 @@ class PrerequisiteCourseDAO {
 			
 			foreach ($queries as $query) {
 				DB::delete($query, [
-					$id
+					$id_prerequisite
 				]);
 			}
 			

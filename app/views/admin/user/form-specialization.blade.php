@@ -31,7 +31,7 @@
 @endsection
 
 @section('content')
-    <!-- Screen ID: form-user -->
+    <!-- Screen ID: form-specialization -->
     @if (Auth::user()->is_admin)
 		<h4 class="pink">
 			<i class="ace-icon fa fa-newspaper-o green"></i>
