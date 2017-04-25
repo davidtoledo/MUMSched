@@ -88,8 +88,8 @@
 									<td>
 							            <!-- Multi-action button -->
 							            <div class="btn-group">
-							               <a class="btn btn-glow delete_confirmation"  href="{{-- URL::route('admin.user.course.delete', [$us->id_fc]) --}}">
-								               <i class="fa fa-ban red"></i>
+							               <a class="btn btn-glow"  href="{{ URL::route('calendar.view', [$sched->id_schedule]) }}" target="_new">
+								               <i class="fa fa-calendar"></i>
 								               <span>View</span>
 							               </a>
 							            </div>
@@ -98,10 +98,10 @@
 								@endforeach
 							</tbody>
 						</table>
-						<a href="{{ URL::route('admin.user.course.create', [$user->id_user]) }}" class="btn btn-blue btn-info" >
+						<!--<a href="{{ URL::route('admin.user.course.create', [$user->id_user]) }}" class="btn btn-blue btn-info" >
 							<span class="ace-icon fa fa-plus icon-on-right bigger-110"></span>
 							Add
-						</a>
+						</a>-->
 					@endif
 
 				{{ Form::close() }}
