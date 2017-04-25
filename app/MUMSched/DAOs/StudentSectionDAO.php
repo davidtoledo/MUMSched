@@ -54,7 +54,7 @@ class StudentSectionDAO {
 		return $studentSections;
 	}
 	
-	public static function getStudentSection($sectionID,$studentID) {
+	public static function getStudentSection($sectionID, $studentID) {
 				$studentSection = \StudentSection::where("id_student", $studentID)
 				->where("id_section", $sectionID)->first();
 		

@@ -34,8 +34,7 @@ class UserSectionController extends BaseController {
 		
 		// Getting Sections List from DB
 		$ss = StudentSectionService::getSectionsByStudent($id_user);
-	
-				
+						
 		// Adding objects to the view context
 		$this->data['ss'] = $ss;
 				
@@ -76,8 +75,7 @@ class UserSectionController extends BaseController {
 			}
 			
 			// Checks if association already exists
-			$ss = StudentSectionService::getStudentSection(Input::get('id_section'),$id_user);
-			
+			$ss = StudentSectionService::getStudentSection(Input::get('id_section'), $id_user);
 			if ($ss) {
 				return Redirect::route('admin.user.section.list', [$user->id_user])
 					->withErrors(['Association already exists.']);
@@ -106,17 +104,17 @@ class UserSectionController extends BaseController {
 	 *
 	 * @author Fantastic Five
 	 */
-	public function delete ($id) {
-
+	public function delete ($id_user, $id) {
+		
 		$ss = StudentSection::find ($id);
 		$ret = StudentSectionService::deleteSection($id);
 				
 		if ($ret === TRUE) {	
-			Session::flash('success', 'student section Successfully deleted.');
-			return Redirect::route('admin.user.section.list', [$ss->id_ss]);
+			Session::flash('success', 'Successfully deleted.');
+			return Redirect::route('admin.user.section.list', [$id_user]);
 
 		} else {
-			return Redirect::route('admin.user.section.list', [$ss->id_ss])
+			return Redirect::route('admin.user.section.list', [$id_user])
 				->withErrors(['An error occurred while trying to delete:', 
 				$retorno->getMessage()]
 			);
