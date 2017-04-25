@@ -4,11 +4,11 @@ namespace MUMSched\DAOs;
 use Illuminate\Support\Facades\DB;
 
 /**
- * Data Access Object for Section
+ * Data Access Object for StudentSection
  *
  * @author Fantastic Five
  */
-class SectionDAO {
+class StudentSectionDAO {
 	
 	/**
 	 * Delete Section by Block
@@ -45,43 +45,24 @@ class SectionDAO {
 	 * 
 	 * @author Fantastic Five
 	 */
-	public static function getSectionList() {
+	public static function getSectionListByStudentID() {
 		$sections = \Section::get();
 		return $sections;
 	}
 
-	/**
-	 * Returns a list of Sections
-	 * 
-	 * @author Fantastic Five
-	 */
-	public static function getSectionListByBlockID($idBlock) {
-		$sections = \Section::get();
-		return $sections;
-	}
 	
 	/**
-	 * Return a Section by ID
+	 * Return a StudentSection by ID
 	 * 
 	 * @author Fantastic Five
 	 */
-	public static function getSectionByID($id) {
+	public static function getStudentSectionByID($id) {
 		$section = \Section::find($id);
 		return $section;
 	}
 	
 	public static function saveSection($section) {
 		return $section->save();
-	}
-	
-	public static function getSectionsByStudent($id) {
-		
-		$ss = \StudentSection::with("section")
-							 ->with("student")
-							 ->where("id_student", $id)
-					  	     ->get();
-		
-		return $ss;
 	}
 	
 	/**

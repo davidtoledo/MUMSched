@@ -15,6 +15,15 @@ use Section;
  * @author Fantastic Five
  */
 class ScheduleService implements IScheduleService {
+	
+	static $sci_course;
+	static $mpp_course;
+	static $fpp_course;
+	static $crs_course;
+
+	public static function getEntryList() {
+		return ScheduleDAO::getEntryList();
+	}
 
 	public static function getScheduleList() {
 		return ScheduleDAO::getScheduleList();
@@ -80,56 +89,10 @@ class ScheduleService implements IScheduleService {
 				return $json;
 			}
 			
-			/*************************************************************
-			 * 
-			 * GENERATE SCHDULE PROCESS - BEGIN
-			 * 
-			 * @author David Toledo Costa (david.oracle@gmail.com)
-			 * 
-			 */
-			
-			// Getting SCI course data
-			$sci_course = Course::with("faculties")
-								->where("code", Course::COURSE_SCI_CODE)
-								->first();
-								
-			if (!$sci_course || sizeof ($sci_course->faculties) == 0) {
-				$json['return'] = 5;
-				$json['messages'][] = 'SCI course error. Please create a course with the code "' . Course::COURSE_SCI_CODE . '" and make sure there is at least one faculty assigned to teach this course.';
-				return $json;
-			}
-			
-			// Getting MPP course data
-			$mpp_course = Course::with("faculties")
-								->where("code", Course::COURSE_MPP_CODE)
-								->first();
-			
-			if (!$mpp_course || sizeof($mpp_course->faculties) == 0) {
-				$json['return'] = 6;
-				$json['messages'][] = 'MPP course error. Please create a course with the code "' . Course::COURSE_MPP_CODE . '" and make sure there is at least one faculty assigned to teach this course.';
-				return $json;
-			}
-
-			// Getting FPP course data
-			$fpp_course = Course::with("faculties")
-								->where("code", Course::COURSE_FPP_CODE)
-								->first();
-			
-			if (!$fpp_course || sizeof($fpp_course->faculties) == 0) {
-				$json['return'] = 7;
-				$json['messages'][] = 'FPP course error. Please create a course with the code "' . Course::COURSE_FPP_CODE . '" and make sure there is at least one faculty assigned to teach this course.';
-				return $json;
-			}
-
-			// Getting Carrer Strategies course data
-			$crs_course = Course::with("faculties")
-								->where("code", Course::COURSE_CRS_CODE)
-								->first();
-			
-			if (!$crs_course || sizeof($crs_course->faculties) == 0) {
-				$json['return'] = 8;
-				$json['messages'][] = 'Carrer Strategies course error. Please create a course with the code "' . Course::COURSE_CRS_CODE . '" and make sure there is at least one faculty assigned to teach this course.';
-				return $json;
+			// Check if the main courses exist
+			$tmp = self::verifyIfSciFppMppCrsCoursesExist();
+			if ( $tmp !== TRUE) {
+				return $tmp;
 			}
 
 			// Cleaning previous data
@@ -158,8 +121,8 @@ class ScheduleService implements IScheduleService {
 						$section = new Section();
 						$section->track = ($i == 0 ? Section::TRACK_MPP : Section::TRACK_FPP);
 						$section->id_block = $block->id_block;
-						$section->id_course = $sci_course->id_course;
-						$section->id_faculty = $sci_course->faculties->first()->id_faculty;
+						$section->id_course = self::$sci_course->id_course;
+						$section->id_faculty = self::$sci_course->faculties->first()->id_faculty;
 						$section->capacity = Section::DEFAULT_CAPACITY;
 						$section->save();
 					}					
@@ -174,11 +137,11 @@ class ScheduleService implements IScheduleService {
 						$section = new Section();
 						$section->track = ($i == 0 ? Section::TRACK_MPP : Section::TRACK_FPP);
 						$section->id_block = $block->id_block;
-						$section->id_course = ($i == 0 ? $mpp_course->id_course : $fpp_course->id_course);
+						$section->id_course = ($i == 0 ? self::$mpp_course->id_course : self::$fpp_course->id_course);
 						
-						$section->id_faculty = ($i == 0 ? $mpp_course->faculties->first()->id_faculty 
+						$section->id_faculty = ($i == 0 ? self::$mpp_course->faculties->first()->id_faculty 
 															: 
-															$fpp_course->faculties->first()->id_faculty
+														  self::$fpp_course->faculties->first()->id_faculty
 											   );
 											   
 						$section->capacity = Section::DEFAULT_CAPACITY;
@@ -310,7 +273,7 @@ class ScheduleService implements IScheduleService {
 							  ->first();
 	  		
 			if ($section) {
-				$section->id_course = $crs_course->id_course;
+				$section->id_course = self::$crs_course->id_course;
 				$section->save();
 	
 				// Update the generated date
@@ -325,4 +288,60 @@ class ScheduleService implements IScheduleService {
 		
 		return $json;
 	}
+
+	/*************************************************************
+	 * 
+	 * Check if courses exist
+	 * 
+	 * @author David Toledo Costa (david.oracle@gmail.com)
+	 * 
+	 */		
+	public static function verifyIfSciFppMppCrsCoursesExist() {
+		
+		// Getting SCI course data
+		self::$sci_course = Course::with("faculties")
+								  ->where("code", Course::COURSE_SCI_CODE)
+								  ->first();
+							
+		if (!self::$sci_course || sizeof (self::$sci_course->faculties) == 0) {
+			$json['return'] = 5;
+			$json['messages'][] = 'SCI course error. Please create a course with the code "' . Course::COURSE_SCI_CODE . '" and make sure there is at least one faculty assigned to teach this course.';
+			return $json;
+		}
+		
+		// Getting MPP course data
+		self::$mpp_course = Course::with("faculties")
+								  ->where("code", Course::COURSE_MPP_CODE)
+								  ->first();
+		
+		if (!self::$mpp_course || sizeof(self::$mpp_course->faculties) == 0) {
+			$json['return'] = 6;
+			$json['messages'][] = 'MPP course error. Please create a course with the code "' . Course::COURSE_MPP_CODE . '" and make sure there is at least one faculty assigned to teach this course.';
+			return $json;
+		}
+
+		// Getting FPP course data
+		self::$fpp_course = Course::with("faculties")
+								  ->where("code", Course::COURSE_FPP_CODE)
+								  ->first();
+		
+		if (!self::$fpp_course || sizeof(self::$fpp_course->faculties) == 0) {
+			$json['return'] = 7;
+			$json['messages'][] = 'FPP course error. Please create a course with the code "' . Course::COURSE_FPP_CODE . '" and make sure there is at least one faculty assigned to teach this course.';
+			return $json;
+		}
+
+		// Getting Carrer Strategies course data
+		self::$crs_course = Course::with("faculties")
+								  ->where("code", Course::COURSE_CRS_CODE)
+								  ->first();
+		
+		if (!self::$crs_course || sizeof(self::$crs_course->faculties) == 0) {
+			$json['return'] = 8;
+			$json['messages'][] = 'Carrer Strategies course error. Please create a course with the code "' . Course::COURSE_CRS_CODE . '" and make sure there is at least one faculty assigned to teach this course.';
+			return $json;
+		}
+
+		return TRUE;
+	} 
 }

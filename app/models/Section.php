@@ -30,6 +30,9 @@ class Section extends Eloquent {
 		return $this->hasOne('SystemUser', 'id_user', 'id_faculty');
 	}
 	
-
+	// Relationship with StudentSection
+	public function students() {
+		return $this->hasMany('StudentSection', 'id_section', 'id_section');
+	}
 	
 }

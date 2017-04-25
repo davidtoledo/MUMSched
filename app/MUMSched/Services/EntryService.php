@@ -20,6 +20,10 @@ class EntryService implements IEntryService {
 
 	public static function deleteEntry($id) {
 		return EntryDAO::deleteEntry($id);
-	}	
+	}
+	
+	public static function getEntriesList() {
+		return EntryDAO::getEntriesList();
+	}		
 	
 }
