@@ -1,10 +1,10 @@
-<!-- Screen ID: tab-entry -->
-@if ( isset($entry) )
+<!-- Screen ID: tab-section -->
+@if ( isset($section) )
 	<ul class="nav nav-tabs" id="myTab3">
-		<li class="{{ Request::is('admin/entry/edit*') ? ' active ' : '' }}">
-			<a href="{{{ URL::route('admin.entry.edit', $entry->id_entry) }}}">
+		<li class="{{ Request::is('admin/section/edit*') ? ' active ' : '' }}">
+			<a href="{{{ URL::route('admin.section.edit', $section->id_section) }}}">
 				<i class="blue ace-icon fa fa-pencil bigger-110"></i>
-				Edit entry
+				Edit Section
 			</a>
 		</li>		
 	</ul>	

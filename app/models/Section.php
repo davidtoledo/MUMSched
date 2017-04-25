@@ -9,6 +9,7 @@ class Section extends Eloquent {
 	
 	const TRACK_MPP = "MPP";
 	const TRACK_FPP = "FPP";
+	const TRACK_US = "US";
 	const DEFAULT_CAPACITY = 30;
 	
 	protected $table = 'section';

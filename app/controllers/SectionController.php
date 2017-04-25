@@ -121,6 +121,8 @@ class SectionController extends BaseController {
 	 */
 	public function edit ($id) {
 		
+		// Add select data
+		self::addCombos();	
 		// Getting Section from DB
 		$section = SectionService::getSectionByID($id);
 		
