@@ -33,6 +33,29 @@
 	</ul>
 @endsection
 
+@section('content')
+    <!-- Screen ID: list-prerequisite -->
+     @if (Auth::user()->is_admin)
+		<h4 class="pink">
+			<i class="ace-icon fa fa-newspaper-o green"></i>
+			<a href="{{ URL::route('admin.course.prerequisite.list') }}" class="blue">User List</a>
+			&nbsp; &nbsp;
+		</h4>
+		<div class="page-header">
+			<h1>
+				User
+				<small>
+					<i class="ace-icon fa fa-angle-double-right"></i>
+					{{ isset ($user) ? 'Edit' : 'Create' }}
+				</small>
+			</h1>
+		</div>
+	@else
+		<!-- Header-->
+		@include('admin/user/user-header')
+	
+	@endif
+
 
 
 @section('scripts_footer')

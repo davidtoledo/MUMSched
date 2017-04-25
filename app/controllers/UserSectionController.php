@@ -33,14 +33,6 @@ class UserSectionController extends BaseController {
 	 */
 	public function showList ($id_user) {
 		
-		/*$user = UserService::getUserWithCourses($id_user);
-		if ( !$user || !Auth::user()->is_admin && Auth::user()->id_user != $id_user) {
-			return Redirect::route('login')->withErrors('User does not exists.');
-		}	
-
-		$this->data['user'] = & $user;*/
-		
-		
 		$blocks=UserService::getUserByID($id_user)->entry->blocks();
 		// Getting Sections List from DB
 		//$sections = SectionService::getSectionListByBlockID($idBlock);
