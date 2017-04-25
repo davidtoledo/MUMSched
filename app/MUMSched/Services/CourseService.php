@@ -2,6 +2,7 @@
 
 namespace MUMSched\Services;
 use MUMSched\DAOs\CourseDAO;
+use MUMSched\DAOs\PrerequisiteCourseDAO;
 
 /**
  * Service class for Course
