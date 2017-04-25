@@ -31,4 +31,9 @@ class Course extends Eloquent {
 		return $this->hasMany('Prerequisite','id_prerequisite','id_prerequisite');
 	}
 	
+	//Relationship with Sections
+	public function sections(){
+		return $this->hasMany('Section','id_section','id_section');
+	}
+	
 }
