@@ -21,6 +21,10 @@ class ScheduleService implements IScheduleService {
 	static $fpp_course;
 	static $crs_course;
 
+	public static function getEntryList() {
+		return ScheduleDAO::getEntryList();
+	}
+
 	public static function getScheduleList() {
 		return ScheduleDAO::getScheduleList();
 	}

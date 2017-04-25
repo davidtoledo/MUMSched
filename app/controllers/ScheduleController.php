@@ -3,6 +3,7 @@
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use MUMSched\Services\ScheduleService;
+use MUMSched\Services\EntryService;
 
 /**
  * Schedule Controller
@@ -171,6 +172,13 @@ class ScheduleController extends BaseController {
 	 * @author Fantastic Five
 	 */
 	public function delete ($id) {
+		
+		$sched = ScheduleService::getScheduleByID($id);
+		if ($sched->status == Schedule::STATUS_OK) {
+			return Redirect::route('admin.schedule.list')
+				->withErrors(['This schedule is approved. In order to be able to delete a schedule, please change the status to DRAFT.']
+			);
+		}
 				
 		$return = ScheduleService::deleteSchedule($id);
 		
@@ -194,8 +202,7 @@ class ScheduleController extends BaseController {
 	private function addCombos() {
 		
 		// Entry Selectbox
-		$entry_list = Entry::orderBy('name')
-    					   ->lists('name', 'id_entry');
+		$entry_list = EntryService::getEntriesList();
 		
 		$this->data['entry_list'] = ['' => 'Select an entry'];
 		$this->data['entry_list'] += $entry_list;

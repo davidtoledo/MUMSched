@@ -74,6 +74,16 @@ class SectionDAO {
 		return $section->save();
 	}
 	
+	public static function getSectionsByStudent($id) {
+		
+		$ss = \StudentSection::with("section")
+							 ->with("student")
+							 ->where("id_student", $id)
+					  	     ->get();
+		
+		return $ss;
+	}
+	
 	/**
 	 * Delete Section
 	 * 
