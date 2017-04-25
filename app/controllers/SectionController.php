@@ -19,9 +19,7 @@ class SectionController extends BaseController {
 	];
 
 	var $rules = [
-		'track' => [
-			'required',
-		],
+		
 		'id_block' => [
 			'required',
 			'numeric',
@@ -33,8 +31,10 @@ class SectionController extends BaseController {
 		'id_faculty' => [
 			'required',
 			'numeric',
+		],		
+		'track' => [
+			'required',
 		],
-		
 		'capacity' => [
 			'required',
 			'integer','min:0'
@@ -239,8 +239,10 @@ class SectionController extends BaseController {
 		$this->data['status_list'] += ['O' => 'OK'];
 		
 		// Faculty Selectbox
-		$faculty_list = Faculty::orderBy('first_name')
-    					   ->lists('first_name', 'id_user');
+		$faculty_list = Faculty::selectRaw( \DB::raw('id_user, CONCAT(system_user.first_name, " ", system_user.last_name) as FullName'))
+							->where('type',SystemUser::TYPE_FACULTY)
+							->orderBy('first_name')
+    					   ->lists('FullName', 'id_user');
 		
 		$this->data['faculty_list'] = ['' => 'Select a Faculty'];
 		$this->data['faculty_list'] += $faculty_list;

@@ -60,19 +60,9 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label no-padding-right blue">Select the Entry - Block</label>
 						<div class="col-sm-10">
-							@if ( isset ($section) )
+						
+								
 							
-								{{ Form::hidden('id_block', $section->id_block) }}
-								
-								{{ Form::text('block',
-									isset ($section) ? $section->block->name : Input::old('block'),
-									[
-										'class' => 'col-xs-7 limited',
-										'readonly' => 'readonly'
-									]
-								) }}
-								
-							@else
 							
 								{{ Form::select('id_block',
 									$block_list,
@@ -83,9 +73,9 @@
 										]
 									)
 								}}
-							@endif
+						
 							<span 
-								data-content="Please select a Block." 
+								data-content="Please select a Block of an Entry." 
 								data-placement="right"
 								data-rel="popover" 
 								data-trigger="hover"
@@ -98,19 +88,7 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label no-padding-right blue">Select the Course</label>
 						<div class="col-sm-10">
-							@if ( isset ($section) )
 							
-								{{ Form::hidden('id_course', $section->id_course) }}
-								
-								{{ Form::text('course',
-									isset ($section) ? $section->course->name : Input::old('course'),
-									[
-										'class' => 'col-xs-7 limited',
-										'readonly' => 'readonly'
-									]
-								) }}
-								
-							@else
 							
 								{{ Form::select('id_course',
 									$course_list,
@@ -121,7 +99,7 @@
 										]
 									)
 								}}
-							@endif
+						
 							<span 
 								data-content="Please select a Course." 
 								data-placement="right"
@@ -138,20 +116,7 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label no-padding-right blue">Select the Faculty</label>
 						<div class="col-sm-10">
-							@if ( isset ($section) )
-							
-								{{ Form::hidden('id_faculty', $section->id_faculty) }}
-								
-								{{ Form::text('faculty',
-									isset ($section) ? $section->faculty->name : Input::old('faculty'),
-									[
-										'class' => 'col-xs-7 limited',
-										'readonly' => 'readonly'
-									]
-								) }}
-								
-							@else
-							
+						
 								{{ Form::select('id_faculty',
 									$faculty_list,
 									isset ($section) ? $section->id_faculty : Input::old('id_faculty'),
@@ -161,7 +126,7 @@
 										]
 									)
 								}}
-							@endif
+						
 							<span 
 								data-content="Please select a Faculty." 
 								data-placement="right"
