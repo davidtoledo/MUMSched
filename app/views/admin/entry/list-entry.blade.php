@@ -68,11 +68,11 @@
 	         	Entry
 	         </th>
 
-	         <th style="width:20%;">
+	         <th style="width:15%;">
 	         	FPP total
 	         </th>
 	         
-	         <th style="width:20%;">
+	         <th style="width:15%;">
 	         	MPP Total
 	         </th>
 	         
@@ -82,6 +82,10 @@
 	         
 	         <th style="width:10%;">
 	         	Start Date
+	         </th>
+	         
+	         <th style="width:10%;">
+	         	End Date
 	         </th>
 	         
 	         <th style="width:15%;">Actions</th>
@@ -122,6 +126,12 @@
 	         <td>
 	         	<a href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
 	            	{{ date("m/d/Y", strtotime($entry->start_date)) }}
+	           </a>
+	         </td>
+	         
+	         <td>
+	         	<a href="{{ URL::route('admin.entry.edit', $entry->id_entry) }}">
+	            	{{ date("m/d/Y", strtotime($entry->end_date)) }}
 	           </a>
 	         </td>
 	         
