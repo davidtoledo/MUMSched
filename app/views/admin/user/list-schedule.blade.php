@@ -90,7 +90,7 @@
 							            <div class="btn-group">
 							               <a class="btn btn-glow"  href="{{ URL::route('calendar.view', [$sched->id_schedule]) }}" target="_new">
 								               <i class="fa fa-calendar"></i>
-								               <span>View</span>
+								               <span>View Schedule</span>
 							               </a>
 							            </div>
 									</td>

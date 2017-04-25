@@ -1,4 +1,4 @@
-@extends( ( (Auth::user()->is_admin ) ? 'admin/base' : 'platform/base') )
+@extends('admin/base')
 
 @section('page_title') MUM Schedule @endsection
 
@@ -12,54 +12,42 @@
 			<i class="ace-icon fa fa-home home-icon"></i>
 			<a href="{{ Config::get('app.plataforma.url') }}">MUMSched</a>
 		</li>
-		@if (Auth::user()->is_admin)
-			<li>
-				<i class="ace-icon fa fa-lock"></i>
-				<a href="{{ URL::route('admin.user.list') }}">
-					Users
-				</a>
-			</li>
-			<li>
-				{{ isset ($user) ? 'Edit' : 'Create' }}
-			</li>
-		@else
-			<li>
-				{{ $user->type == \SystemUser::TYPE_FACULTY ? "Faculty" : "Student "}} Profile
-			</li>
-		@endif
+		<li>
+			<i class="ace-icon fa fa-lock"></i>
+			<a href="{{ URL::route('admin.user.list') }}">
+				Users
+			</a>
+		</li>
+		<li>
+			{{ isset ($course) ? 'Edit' : 'Create' }}
+		</li>
 	</ul>
 @endsection
 
 @section('content')
-    <!-- Screen ID: form-user -->
-    @if (Auth::user()->is_admin)
-		<h4 class="pink">
-			<i class="ace-icon fa fa-newspaper-o green"></i>
-			<a href="{{ URL::route('admin.user.list') }}" class="blue">User List</a>
-			&nbsp; &nbsp;
-		</h4>
-		<div class="page-header">
-			<h1>
-				User
-				<small>
-					<i class="ace-icon fa fa-angle-double-right"></i>
-					{{ isset ($user) ? 'Edit' : 'Create' }}
-				</small>
-			</h1>
-		</div>
-	@else
-		<!-- Header-->
-		@include('admin/user/user-header')
-	
-	@endif
+    <!-- Screen ID: form-prerequisite -->
+	<h4 class="pink">
+		<i class="ace-icon fa fa-newspaper-o green"></i>
+		<a href="{{ URL::route('admin.course.list') }}" class="blue">Course List</a>
+		&nbsp; &nbsp;
+	</h4>
+	<div class="page-header">
+		<h1>
+			Course
+			<small>
+				<i class="ace-icon fa fa-angle-double-right"></i>
+				{{ isset ($course) ? 'Edit' : 'Create' }}
+			</small>
+		</h1>
+	</div>
 
 	<div class="col-xs-12 col-sm-12">
 		<div class="tabbable">
-			@include('admin/user/tab-user')
+			@include('admin/course/tab-course')
 			<div class="tab-content">
 
-				<a href="{{ URL::route('admin.user.specialization.list', $user->id_user) }}">
-					Back to specialization list
+				<a href="{{ URL::route('admin.course.prerequisite.list', $course->id_course) }}">
+					Back to prerequisite list
 				</a>
 				<br><br>
 
@@ -68,18 +56,18 @@
 					'class' => 'form-horizontal'
 				]) }}
 
-					{{ Form::hidden('id_user', $user->id_user) }}
+					{{ Form::hidden('id_course', $course->id_course) }}
 
 					<div class="form-group">
-						<label class="col-sm-2 control-label no-padding-right blue">Specialization</label>
+						<label class="col-sm-2 control-label no-padding-right blue">Prerequisite</label>
 						<div class="col-sm-10">
-							{{ Form::select('id_specialization',
-								$specialization_list,
-								isset ($spec) ? $spec->id_faculty : Input::old('id_faculty'),
+							{{ Form::select('id_prerequisite',
+								$prerequisite_list,
+								null,
 								array('id' => 'specialization_list', 'style' => 'width:60%;'))
 							}}
 							<span 
-								data-content="Select a Specialization Area to this Faculty." 
+								data-content="Select a Prerequisite to this course." 
 								data-placement="right"
 								data-rel="popover" 
 								data-trigger="hover"
