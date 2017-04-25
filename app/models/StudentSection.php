@@ -20,5 +20,5 @@ class StudentSection extends Eloquent {
 	public function section() {
 		return $this->hasOne('Section', 'id_section', 'id_section');
 	}
-
+	
 }

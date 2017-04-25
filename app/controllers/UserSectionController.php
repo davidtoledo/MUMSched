@@ -34,19 +34,14 @@ class UserSectionController extends BaseController {
 	 */
 	public function showList ($id_user) {
 		
+		// Getting Sections List from DB
 		$ss = StudentSectionService::getSectionsByStudent($id_user);
-		$blocks=UserService::getUserByID($id_user)->entry->blocks();
-=======
->>>>>>> 44a070f2b7f37a27e86e8f5f193a8cdbb2a2b02b		// Getting Sections List from DB
-		$ss = SectionService::getSectionsByStudent($id_user);
-		//$sections = SectionService::getSectionListByBlockID($idBlock);
+	
 				
 		// Adding objects to the view context
 		$this->data['ss'] = $ss;
 				
 		$this->data['user'] = SystemUser::find($id_user);
-		
-		
 		
 		// Redirecting to the view layer
 		return View::make('admin.user.list-sections')->with($this->data);
@@ -59,11 +54,11 @@ class UserSectionController extends BaseController {
 	 */
 	public function create ($id_user) {
 		
-		$user = SystemUser::with('courses')->find($id_user);
+		$user = SystemUser::with('entry')->find($id_user);
 		$this->data['user'] = & $user;
 		
 		// Add combo objects
-		self::addCombos();
+		self::addCombos($user);
 		
 		if (Request::isMethod('post')) {
 			
@@ -86,7 +81,7 @@ class UserSectionController extends BaseController {
 			$fs = UserService::getFacultyCourse($id_user, Input::get('id_course'));
 			
 			if ($fs) {
-				return Redirect::route('admin.user.course.list', [$user->id_user])
+				return Redirect::route('admin.user.list-sections', [$user->id_user])
 					->withErrors(['Association already exists.']);
 			}
 						
@@ -97,14 +92,14 @@ class UserSectionController extends BaseController {
 				
 				// success
 				Session::flash('success', 'Successfully added.');
-				return Redirect::route('admin.user.course.list', [$user->id_user]);
+				return Redirect::route('admin.user.list-sections', [$user->id_user]);
 			}
 			
-			return View::make('admin.user.form-course')->with($this->data)
+			return View::make('admin.user.form-sections')->with($this->data)
 				->withErrors('Error while trying to add.');
 		}
 
-		return View::make('admin.user.form-course')->with($this->data);
+		return View::make('admin.user.form-sections')->with($this->data);
 	}
 
 	/**
@@ -153,14 +148,23 @@ class UserSectionController extends BaseController {
 	 * 
 	 * @author Fantastic Five
 	 */
-	private function addCombos() {
+	private function addCombos($user = null) {
 		
-		// Selectbox
-		$course_list = Course::orderBy('name')
-    										  ->lists('name', 'id_course');
+		$section_list = Section::
+			selectRaw( \DB::raw('id_section, block.id_block, section.id_block, course.id_course, course.name, 
+								 system_user.id_user, system_user.first_name, system_user.last_name, section.track, 
+								 system_user.student_track, block.id_entry, course.code,
+									CONCAT(block.name, " - ", course.name, " - ", system_user.first_name, " ", system_user.last_name) as SectionName') )
+								->leftJoin('block', 'section.id_block', '=', 'block.id_block')
+								->leftJoin('course', 'section.id_course', '=', 'course.id_course')
+								->leftJoin('system_user', 'section.id_faculty', '=', 'system_user.id_user')
+								->where('section.track', '=', $user->student_track)
+								->where('block.id_entry', '=', $user->student_entry)
+								->whereNotIn('course.code', [Course::COURSE_CRS_CODE, Course::COURSE_SCI_CODE])
+		   						->lists('SectionName', 'id_section');
 		
-		$this->data['course_list'] = ['' => 'Select a course area'];
-		$this->data['course_list'] += $course_list;
+		$this->data['section_list'] = ['' => 'Select the sections'];
+		$this->data['section_list'] += $section_list;
 	} 	
 	
 }

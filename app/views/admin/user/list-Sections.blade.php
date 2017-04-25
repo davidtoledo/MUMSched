@@ -68,19 +68,23 @@
 
 					{{ Form::hidden('id_user', $user->id_user) }}
 
-					@if ( isset ($user->courses) )
+					@if ( isset ($ss) )
 						<table class="table table-striped table-bordered table-hover">
 							<thead>
 								<tr>
 									<th>{{ $user->first_name }} {{ $user->last_name }}'s Section</th>
+									<th width="11%">Block</th>
 									<th width="11%">Actions</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($user->courses as $us)
+								@foreach ($ss as $us)
 								<tr>
 									<td>
-										{{ $us->course->name }}
+										{{ $us->section->course->name }}
+									</td>
+									<td>
+										{{ $us->section->block->name }}
 									</td>
 									<td>
 							            <!-- Multi-action button -->
@@ -95,7 +99,7 @@
 								@endforeach
 							</tbody>
 						</table>
-						<a href="{{ URL::route('admin.user.course.create', [$user->id_user]) }}" class="btn btn-blue btn-info" >
+						<a href="{{ URL::route('admin.user.section.create', [$user->id_user]) }}" class="btn btn-blue btn-info" >
 							<span class="ace-icon fa fa-plus icon-on-right bigger-110"></span>
 							Add
 						</a>

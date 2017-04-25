@@ -97,15 +97,14 @@
 		]);		
 		
 		Route::any('course/prerequisite/create/{id_course}', [
-				'as' => 'admin.user.prerequisite.create',
+				'as' => 'admin.course.prerequisite.create',
 				'uses' => 'CoursePrereqController@create',
 		]);
 
-		Route::any('course/prerequisite/delete/{id_fs}', [
-				'as' => 'admin.user.prerequisite.delete',
+		Route::any('course/prerequisite/delete/{id_course}/{id_prerequisite}', [
+				'as' => 'admin.course.prerequisite.delete',
 				'uses' => 'CoursePrereqController@delete',
 		]);
-		
 		
 		
 		###############################################
@@ -151,6 +150,10 @@
 				'as' => 'admin.user.section.list',
 				'uses' => 'UserSectionController@showList',
 		]);		
+		Route::any('user/section/create/{id_user}', [
+				'as' => 'admin.user.section.create',
+				'uses' => 'UserSectionController@create',
+		]);
 
 		##################################################
 		############### USERS -> Schedules ###############

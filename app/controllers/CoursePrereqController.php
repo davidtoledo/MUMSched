@@ -1,6 +1,7 @@
 <?php
 
 use MUMSched\Services\CourseService;
+use MUMSched\Services\CoursePrereqService;
 
 /**
  * Course Prerequisite Controller
@@ -8,30 +9,22 @@ use MUMSched\Services\CourseService;
  * @author Fantastic Five
  */
 class CoursePrereqController extends BaseController {
-		
+
 	// Dados para a view
 	var $data = [
-		'title' => 'Course',
+		'title' => 'Prerequisite',
 		'coursePrereq' => NULL,
 		'coursePrereqs' => []
 	];
-
+		
 	var $rules = [
 		'id_prerequisite' => [
 			'required',
 		],
-		'id_course' =>[
-			'required',
-		],
-		'id_prerequisite_course' =>[
-			'required'
-		],
 	];
 
 	var $niceNames = [
-		'id_prerequisite' => 'prerequisite id',
-		'id_course' => 'course',
-		'id_prerequisite_course' => 'prerequisite course'
+		'id_prerequisite' => 'course prerequisite',
 	];
 
 	/**
@@ -41,27 +34,22 @@ class CoursePrereqController extends BaseController {
 	 */
 	public function showList ($id_course) {
 		
-		$course = CourseService::getCourseByID($id_course);
-		// if ( !$user || !Auth::user()->is_admin && Auth::user()->id_user != $id_user) {
-			// return Redirect::route('login')->withErrors('User does not exists.');
-		// }	
+		$course = CoursePrereqService::getCourseByIDWithPrerequisites($id_course);
 
 		$this->data['course'] = & $course;
-		
+				
 		return View::make('admin.course.list-prerequisite')->with($this->data);
 	}
-	
+
 	/**
-	 * Associate an Course to a Prerequisite
+	 * Associate an Prerequisite to a Course
 	 *
 	 * @author Fantastic Five
 	 */
 	public function create ($id_course) {
 		
-		// $course = SystemUser::with('prerequisite')->find($id_course);
-		// $this->data['courseprereq'] = & $course;
-		$course = CourseService::getCourseByID($id_course);
-		$this -> data['courseprereq'] = & $course;
+		$course = CoursePrereqService::getCourseByIDWithPrerequisites($id_course);
+		$this->data['course'] = & $course;
 		
 		// Add combo objects
 		self::addCombos();
@@ -79,15 +67,17 @@ class CoursePrereqController extends BaseController {
 				
 				// store fields
 				Input::flash();
-				return View::make('admin.course.form-prerequisition')->with($this->data)
+				return View::make('admin.course.form-prerequisite')->with($this->data)
 					->withErrors($validator->messages());
 			}
 			
 			// Checks if association already exists
-			$prc = CourseService::get($id_course, Input::get('id_prerequisite'));
+			$pre = Prerequisite::where("id_course", $id_course)
+							   ->where("id_prerequisite", Input::get("id_prerequisite"))
+							   ->first();
 			
-			if ($prc) {
-				return Redirect::route('admin.course.prerequisition.list', [$course->id_course])
+			if ($pre) {
+				return Redirect::route('admin.course.prerequisite.list', [$course->id_course])
 					->withErrors(['Association already exists.']);
 			}
 						
@@ -98,14 +88,14 @@ class CoursePrereqController extends BaseController {
 				
 				// success
 				Session::flash('success', 'Successfully added.');
-				return Redirect::route('admin.course.prerequisition.list', [$course->id_course]);
+				return Redirect::route('admin.course.prerequisite.list', [$course->id_course]);
 			}
 			
-			return View::make('admin.user.form-prerequisition')->with($this->data)
+			return View::make('admin.course.form-prerequisite')->with($this->data)
 				->withErrors('Error while trying to add.');
 		}
 
-		return View::make('admin.user.form-prerequisition')->with($this->data);
+		return View::make('admin.course.form-prerequisite')->with($this->data);
 	}
 
 	/**
@@ -113,19 +103,18 @@ class CoursePrereqController extends BaseController {
 	 *
 	 * @author Fantastic Five
 	 */
-	public function delete ($id_course) {
+	public function delete ($id_course, $id_prerequisite) {
 
-		$prec = Prerequisite::find ($id_course);
-		$ret = CourseService::deleteCoursePrerequisition($id_course);
+		$ret = CoursePrereqService::deletePrerequisite($id_prerequisite);
 				
 		if ($ret === TRUE) {	
 			Session::flash('success', 'Successfully deleted.');
-			return Redirect::route('admin.course.prerequisite.list', [$prec->id_course]);
+			return Redirect::route('admin.course.prerequisite.list', [$id_course]);
 
 		} else {
-			return Redirect::route('admin.course.prerequisite.list', [$prec->id_course])
+			return Redirect::route('admin.course.prerequisite.list', [$id_course])
 				->withErrors(['An error occurred while trying to delete:', 
-				$retorno->getMessage()]
+				$ret->getMessage()]
 			);
 		}
 	}
@@ -143,8 +132,8 @@ class CoursePrereqController extends BaseController {
 			return FALSE;
 		}
 		
-		$prec->id_prerequisite = Input::get('id_prerequisite');
 		$prec->id_course = Input::get('id_course');
+		$prec->id_prerequisite = Input::get('id_prerequisite');
 
 		return $prec;
 	}
@@ -157,14 +146,12 @@ class CoursePrereqController extends BaseController {
 	private function addCombos() {
 		
 		// Selectbox
-		/*
-		$specialization_list = Specialization::orderBy('prerequisition')
-    										  ->lists('prerequisition', 'id_prerequisition');
+		$prerequisite_list = Course::orderBy('name')
+									->lists('name', 'id_course');
 		
-		$this->data['prerequisition_list'] = ['' => 'Select a specialization area'];
-		$this->data['prerequisition_list'] += $prerequisition_list;
-	
-		 */
+		$this->data['prerequisite_list'] = ['' => 'Select a prerequisite course'];
+		$this->data['prerequisite_list'] += $prerequisite_list;
+		 
 	} 	
 	
 }

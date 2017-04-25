@@ -31,7 +31,7 @@
 @endsection
 
 @section('content')
-    <!-- Screen ID: form-specialization -->
+    <!-- Screen ID: form-user -->
     @if (Auth::user()->is_admin)
 		<h4 class="pink">
 			<i class="ace-icon fa fa-newspaper-o green"></i>
@@ -58,8 +58,8 @@
 			@include('admin/user/tab-user')
 			<div class="tab-content">
 
-				<a href="{{ URL::route('admin.user.specialization.list', $user->id_user) }}">
-					Back to specialization list
+				<a href="{{ URL::route('admin.user.section.list', $user->id_user) }}">
+					Back to section list
 				</a>
 				<br><br>
 
@@ -71,15 +71,15 @@
 					{{ Form::hidden('id_user', $user->id_user) }}
 
 					<div class="form-group">
-						<label class="col-sm-2 control-label no-padding-right blue">Specialization</label>
+						<label class="col-sm-2 control-label no-padding-right blue">Section</label>
 						<div class="col-sm-10">
-							{{ Form::select('id_specialization',
-								$specialization_list,
+							{{ Form::select('id_section',
+								$section_list,
 								isset ($spec) ? $spec->id_faculty : Input::old('id_faculty'),
-								array('id' => 'specialization_list', 'style' => 'width:60%;'))
+								array('id' => 'section_list', 'style' => 'width:60%;'))
 							}}
 							<span 
-								data-content="Select a Specialization Area to this Faculty." 
+								data-content="Select a Course Area to this Faculty." 
 								data-placement="right"
 								data-rel="popover" 
 								data-trigger="hover"

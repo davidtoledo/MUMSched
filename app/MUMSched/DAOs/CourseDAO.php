@@ -29,6 +29,19 @@ class CourseDAO {
 		$courses = \Course::find($id);
 		return $courses;
 	}
+
+	/**
+	 * Return a Course by ID with prerequisites
+	 * 
+	 * @author Fantastic Five
+	 */
+	public static function getCourseByIDWithPrerequisites($id) {
+		
+		$courses = \Course::with("prerequisites")
+						  ->find($id);
+		return $courses;
+	}
+	
 	
 	public static function saveCourse($course) {
 		return $course->save();

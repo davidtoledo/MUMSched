@@ -41,6 +41,12 @@ class UserController extends BaseController {
 		'is_admin' => [
 			'required',
 		],
+		'student_entry' => [
+			'required_if:type,S',
+		],
+		'student_track' => [
+			'required_if:type,S',
+		]
 	];
 
 	var $niceNames = [
@@ -49,6 +55,8 @@ class UserController extends BaseController {
 		'username' => 'user name',
 		'perfil' => 'perfil do usuário',
 		'is_admin' => 'is admin',
+		'student_entry' => 'student entry',
+		'student_track' => 'student track',
 	];
 
 	/**
@@ -220,6 +228,12 @@ class UserController extends BaseController {
 			'S' => 'Student'
 		];
 		
+		$entry_list = Entry::orderBy('name')
+    					   ->lists('name', 'id_entry');
+		
+		$this->data['entry_list'] = ['' => 'Select an entry'];
+		$this->data['entry_list'] += $entry_list;
+		
 	}
 	
 	/**
@@ -241,7 +255,8 @@ class UserController extends BaseController {
 		$user->password = Input::get('password');
 		$user->type = Input::get('type');
 		$user->is_admin = Input::get('is_admin');
-		
+		$user->student_track = Input::get('student_track');
+		$user->student_entry = Input::get('student_entry');
 		return $user;
 	}
 	

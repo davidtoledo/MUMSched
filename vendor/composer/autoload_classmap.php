@@ -31,7 +31,8 @@ return array(
 	'MUMSched\\Services\\StudentSectionService' => $baseDir . '/app/MUMSched/Services/StudentSectionService.php',
 	'MUMSched\\Services\\IStudentSectionService' => $baseDir . '/app/MUMSched/Services/IStudentSectionService.php',
 	'MUMSched\\DAOs\\StudentSectionDAO' => $baseDir . '/app/MUMSched/DAOs/StudentSectionDAO.php',
-	
+	'MUMSched\\Services\\CoursePrereqService' => $baseDir . '/app/MUMSched/Services/CoursePrereqService.php',
+	'MUMSched\\Services\\ICoursePrereqService' => $baseDir . '/app/MUMSched/Services/ICoursePrereqService.php',
 	
 	
 );
