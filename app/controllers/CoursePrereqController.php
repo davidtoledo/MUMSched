@@ -39,14 +39,14 @@ class CoursePrereqController extends BaseController {
 	 *
 	 * @author Fantastic Five
 	 */
-	public function showList ($id_prerequisite) {
+	public function showList ($id_course) {
 		
-		$course = CourseService::getCourseWithPrerequisite($id_prerequisite);
-		if ( !$user || !Auth::user()->is_admin && Auth::user()->id_user != $id_user) {
-			return Redirect::route('login')->withErrors('User does not exists.');
-		}	
+		$course = CourseService::getCourseByID($id_course);
+		// if ( !$user || !Auth::user()->is_admin && Auth::user()->id_user != $id_user) {
+			// return Redirect::route('login')->withErrors('User does not exists.');
+		// }	
 
-		$this->data['coursePrereq'] = & $course;
+		$this->data['course'] = & $course;
 		
 		return View::make('admin.course.list-prerequisite')->with($this->data);
 	}
@@ -58,8 +58,10 @@ class CoursePrereqController extends BaseController {
 	 */
 	public function create ($id_course) {
 		
-		$course = SystemUser::with('prerequisite')->find($id_course);
-		$this->data['coursePrereq'] = & $course;
+		// $course = SystemUser::with('prerequisite')->find($id_course);
+		// $this->data['courseprereq'] = & $course;
+		$course = CourseService::getCourseByID($id_course);
+		$this -> data['courseprereq'] = & $course;
 		
 		// Add combo objects
 		self::addCombos();
@@ -82,9 +84,9 @@ class CoursePrereqController extends BaseController {
 			}
 			
 			// Checks if association already exists
-			$fs = CourseService::getCoursePrerequisition($id_course, Input::get('id_prerequisite'));
+			$prc = CourseService::get($id_course, Input::get('id_prerequisite'));
 			
-			if ($fs) {
+			if ($prc) {
 				return Redirect::route('admin.course.prerequisition.list', [$course->id_course])
 					->withErrors(['Association already exists.']);
 			}
@@ -111,17 +113,17 @@ class CoursePrereqController extends BaseController {
 	 *
 	 * @author Fantastic Five
 	 */
-	public function delete ($id) {
+	public function delete ($id_course) {
 
-		$fs = CoursePrerequisition::find ($id);
-		$ret = CourseService::deleteCoursePrerequisition($id);
+		$prec = Prerequisite::find ($id_course);
+		$ret = CourseService::deleteCoursePrerequisition($id_course);
 				
 		if ($ret === TRUE) {	
 			Session::flash('success', 'Successfully deleted.');
-			return Redirect::route('admin.course.prerequisition.list', [$fs->id_course]);
+			return Redirect::route('admin.course.prerequisite.list', [$prec->id_course]);
 
 		} else {
-			return Redirect::route('admin.course.prerequisition.list', [$fs->id_course])
+			return Redirect::route('admin.course.prerequisite.list', [$prec->id_course])
 				->withErrors(['An error occurred while trying to delete:', 
 				$retorno->getMessage()]
 			);
@@ -135,16 +137,16 @@ class CoursePrereqController extends BaseController {
 	 */
 	private function populate ($id = NULL) {
 		
-		$fs = is_null($id) ? new CoursePrerequisition() : CoursePrerequisition::find($id);
+		$prec = is_null($id) ? new Prerequisite() : Prerequisite::find($id);
 		
-		if (!$fs) {
+		if (!$prec) {
 			return FALSE;
 		}
 		
-		$fs->id_prerequisite = Input::get('id_prerequisite');
-		$fs->id_course = Input::get('id_course');
+		$prec->id_prerequisite = Input::get('id_prerequisite');
+		$prec->id_course = Input::get('id_course');
 
-		return $fs;
+		return $prec;
 	}
 	
 	/**
@@ -155,11 +157,14 @@ class CoursePrereqController extends BaseController {
 	private function addCombos() {
 		
 		// Selectbox
+		/*
 		$specialization_list = Specialization::orderBy('prerequisition')
     										  ->lists('prerequisition', 'id_prerequisition');
 		
 		$this->data['prerequisition_list'] = ['' => 'Select a specialization area'];
 		$this->data['prerequisition_list'] += $prerequisition_list;
+	
+		 */
 	} 	
 	
 }

@@ -45,21 +45,15 @@ class StudentSectionDAO {
 	 * 
 	 * @author Fantastic Five
 	 */
-	public static function getSectionListByStudentID() {
-		$sections = \Section::get();
-		return $sections;
+	public static function getSectionsByStudentID($studentID) {
+				$studentSections = \StudentSection::with("section")
+							 ->with("student")
+							 ->where("id_student", $studentID)
+					  	     ->get();
+		
+		return $studentSections;
 	}
 
-	
-	/**
-	 * Return a StudentSection by ID
-	 * 
-	 * @author Fantastic Five
-	 */
-	public static function getStudentSectionByID($id) {
-		$section = \Section::find($id);
-		return $section;
-	}
 	
 	public static function saveSection($section) {
 		return $section->save();

@@ -50,15 +50,6 @@ class SectionDAO {
 		return $sections;
 	}
 
-	/**
-	 * Returns a list of Sections
-	 * 
-	 * @author Fantastic Five
-	 */
-	public static function getSectionListByBlockID($idBlock) {
-		$sections = \Section::get();
-		return $sections;
-	}
 	
 	/**
 	 * Return a Section by ID
@@ -72,16 +63,6 @@ class SectionDAO {
 	
 	public static function saveSection($section) {
 		return $section->save();
-	}
-	
-	public static function getSectionsByStudent($id) {
-		
-		$ss = \StudentSection::with("section")
-							 ->with("student")
-							 ->where("id_student", $id)
-					  	     ->get();
-		
-		return $ss;
 	}
 	
 	/**
