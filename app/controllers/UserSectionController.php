@@ -76,21 +76,22 @@ class UserSectionController extends BaseController {
 			}
 			
 			// Checks if association already exists
-			/*$fs = UserService::getFacultyCourse($id_user, Input::get('id_course'));
+			$ss = StudentSectionService::getStudentSection(Input::get('id_section'),$id_user);
 			
-			if ($fs) {
-				return Redirect::route('admin.user.list-sections', [$user->id_user])
+			if ($ss) {
+				return Redirect::route('admin.user.section.list', [$user->id_user])
 					->withErrors(['Association already exists.']);
-			}*/
+			}
 						
 			// create
-			$spec = self::populate();
+			$ss = self::populate();
 			
-			if ( $spec->save() ) {
+			if ( $ss->save() ) {
 				
 				// success
 				Session::flash('success', 'Successfully added.');
-				return Redirect::route('admin.user.list-sections', [$user->id_user]);
+				
+				return Redirect::route('admin.user.section.list', [$user->id_user]);
 			}
 			
 			return View::make('admin.user.form-sections')->with($this->data)
@@ -107,15 +108,15 @@ class UserSectionController extends BaseController {
 	 */
 	public function delete ($id) {
 
-		$fs = FacultyCourse::find ($id);
-		$ret = UserService::deleteFacultyCourse($id);
+		$ss = StudentSection::find ($id);
+		$ret = StudentSectionService::deleteSection($id);
 				
 		if ($ret === TRUE) {	
-			Session::flash('success', 'Successfully deleted.');
-			return Redirect::route('admin.user.course.list', [$fs->id_faculty]);
+			Session::flash('success', 'student section Successfully deleted.');
+			return Redirect::route('admin.user.section.list', [$ss->id_ss]);
 
 		} else {
-			return Redirect::route('admin.user.course.list', [$fs->id_faculty])
+			return Redirect::route('admin.user.section.list', [$ss->id_ss])
 				->withErrors(['An error occurred while trying to delete:', 
 				$retorno->getMessage()]
 			);
@@ -129,15 +130,15 @@ class UserSectionController extends BaseController {
 	 */
 	private function populate ($id = NULL) {
 		
-		$fc = is_null($id) ? new StudentSection() : StudentSection::find($id);
+		$ss = is_null($id) ? new StudentSection() : StudentSection::find($id);
 		
-		if (!$fc) {
+		if (!$ss) {
 			return FALSE;
 		}
 		
-		$fc->id_section = Input::get('id_section');
-		$fc->id_student = Input::get('id_user');
-		return $fc;
+		$ss->id_section = Input::get('id_section');
+		$ss->id_student = Input::get('id_user');
+		return $ss;
 	}
 	
 	/**
