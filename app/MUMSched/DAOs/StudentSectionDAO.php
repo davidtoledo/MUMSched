@@ -53,6 +53,13 @@ class StudentSectionDAO {
 		
 		return $studentSections;
 	}
+	
+	public static function getStudentSection($sectionID,$studentID) {
+				$studentSection = \StudentSection::where("id_student", $studentID)
+				->where("id_section", $sectionID)->first();
+		
+		return $studentSection;
+	}
 
 	
 	public static function saveSection($section) {
@@ -68,9 +75,7 @@ class StudentSectionDAO {
 				
 		$queries = [
 			'DELETE FROM student_section 
-					WHERE  id_section = ?',
-			'DELETE FROM section WHERE  id_section = ?',
-				
+					WHERE  id_ss = ?'
 		];
 		
 		try	{
