@@ -1,6 +1,7 @@
 <?php
 
 use MUMSched\Services\CourseService;
+use MUMSched\Services\CoursePrereqService;
 
 /**
  * Course Prerequisite Controller
@@ -33,7 +34,7 @@ class CoursePrereqController extends BaseController {
 	 */
 	public function showList ($id_course) {
 		
-		$course = CourseService::getCourseByIDWithPrerequisites($id_course);
+		$course = CoursePrereqService::getCourseByIDWithPrerequisites($id_course);
 
 		$this->data['course'] = & $course;
 				
@@ -47,7 +48,7 @@ class CoursePrereqController extends BaseController {
 	 */
 	public function create ($id_course) {
 		
-		$course = CourseService::getCourseByIDWithPrerequisites($id_course);
+		$course = CoursePrereqService::getCourseByIDWithPrerequisites($id_course);
 		$this->data['course'] = & $course;
 		
 		// Add combo objects
@@ -104,7 +105,7 @@ class CoursePrereqController extends BaseController {
 	 */
 	public function delete ($id_course, $id_prerequisite) {
 
-		$ret = CourseService::deletePrerequisite($id_prerequisite);
+		$ret = CoursePrereqService::deletePrerequisite($id_prerequisite);
 				
 		if ($ret === TRUE) {	
 			Session::flash('success', 'Successfully deleted.');
