@@ -43,6 +43,14 @@ class ScheduleDAO {
 	public static function deleteSchedule($id) {
 				
 		$queries = [
+		   'DELETE FROM student_section 
+			WHERE id_section IN (SELECT id_block FROM block WHERE id_entry IN 
+								   (SELECT id_entry FROM entry WHERE id_entry IN
+					 				  (SELECT id_entry FROM schedule WHERE id_schedule = ?
+									   )
+									)
+								)',
+
 			'DELETE FROM section 
 			 WHERE id_block IN (SELECT id_block FROM block WHERE id_entry IN 
 								 (SELECT id_entry FROM entry WHERE id_entry IN
