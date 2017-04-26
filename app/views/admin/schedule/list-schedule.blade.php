@@ -178,7 +178,7 @@
 	            		<label class="col-sm-3 control-label no-padding-right blue">Algorithm Type</label>
 	            		<div class="col-sm-9">
 							{{ Form::select('algorithm_type', 
-		        				[\Schedule::ALGORITHM_MUM_DEFAULT => 'Maharishi University Default', 
+		        				[\Schedule::ALGORITHM_MUM_DEFAULT => 'University Default Algorithm', 
 		        				 \Schedule::ALGORITHM_ONLY_COMPUTER_SCIENCE => 'Only Computer Science Courses'],
 		        				null,
 		            				[
@@ -188,7 +188,7 @@
 								)
 		        			}}
 							<span 
-							    data-content="<font color='black'><b>MUM Default Algorithm</b></font> will generate a schedule with SCI course in the 1st block and MPP/FPP in the 2nd block." 
+							    data-content="<font color='black'><b>University Default Algorithm</b></font> will generate a schedule with SCI course in the 1st block and MPP/FPP in the 2nd block." 
 								data-placement="right"
 								data-rel="popover" 
 								data-trigger="hover"

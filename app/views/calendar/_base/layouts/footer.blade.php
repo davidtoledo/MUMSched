@@ -10,7 +10,7 @@
 		</ul>		
 		<ul class="links-b">
 			<li>
-				{{ HTML::link('http://www.mum.edu/', 'Maharishi University of Management', array('target' => '_blank')) }}
+				{{ HTML::link('#2', 'University', array('target' => '_blank')) }}
 			</li>
 		</ul>		
 	</div>
