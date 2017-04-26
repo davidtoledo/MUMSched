@@ -255,8 +255,12 @@ class UserController extends BaseController {
 		$user->password = Input::get('password');
 		$user->type = Input::get('type');
 		$user->is_admin = Input::get('is_admin');
-		$user->student_track = Input::get('student_track');
-		$user->student_entry = Input::get('student_entry');
+		
+		if ($user->type == SystemUser::TYPE_STUDENT) {
+			$user->student_track = Input::get('student_track');
+			$user->student_entry = Input::get('student_entry');
+		}
+		
 		return $user;
 	}
 	
