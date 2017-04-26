@@ -189,8 +189,7 @@ class EntryController extends BaseController {
 
 		} else {
 			return Redirect::route('admin.entry.list')
-				->withErrors(['An error occurred while trying to delete:', 
-				$return->getMessage()]
+				->withErrors(['Please delete all the blocks, schedules, and student associatiobs in order to be able to delete this Entry!' ]
 			);
 		}
 	}	
