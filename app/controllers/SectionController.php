@@ -96,8 +96,8 @@ class SectionController extends BaseController {
 			// Register Section
 			$section = self::populate();
 			
-			if ( $section->save() ) {
-				
+			
+			if ( SectionService::saveSection($section) ) {	
 				// Success
 				Session::flash('success', 'Successfully registered.');
 				

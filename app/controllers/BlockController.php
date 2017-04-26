@@ -94,8 +94,8 @@ class BlockController extends BaseController {
 			// Register Block
 			$block = self::populate();
 			
-			if ( $block->save() ) {
-				
+			
+			if ( BlockService::saveBlock($block) ) {	
 				// Success
 				Session::flash('success', 'Successfully registered.');
 				

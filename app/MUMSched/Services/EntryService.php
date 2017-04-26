@@ -24,6 +24,10 @@ class EntryService implements IEntryService {
 	
 	public static function getEntriesList() {
 		return EntryDAO::getEntriesList();
-	}		
+	}	
+	
+	public static function saveEntry($entry) {
+		return EntryDAO::saveEntry($entry);
+	}	
 	
 }

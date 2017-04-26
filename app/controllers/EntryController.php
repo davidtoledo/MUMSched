@@ -98,8 +98,8 @@ class EntryController extends BaseController {
 			// Register Entry
 			$entry = self::populate();
 			
-			if ( $entry->save() ) {
-				
+			
+			if ( EntryService::saveEntry($entry) ) {
 				// Success
 				Session::flash('success', 'Successfully registered.');
 				

@@ -22,4 +22,7 @@ class BlockService implements IBlockService {
 		return BlockDAO::deleteBlock($id);
 	}	
 	
+	public static function saveBlock($block) {
+		return BlockDAO::saveBlock($block);
+	}
 }
