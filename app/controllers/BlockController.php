@@ -221,8 +221,8 @@ class BlockController extends BaseController {
 		$block->name = Input::get('name');	
 		$block->num_mpp_courses = Input::get('num_mpp_courses');
 		$block->num_fpp_courses = Input::get('num_fpp_courses');
-		$block->start_date = AppUtil::date2db(Input::get("start_date"));
-		$block->end_date = AppUtil::date2db(Input::get("end_date"));
+		$block->start_date = AppUtil::date2db(Input::get("dt_start_date"));
+		$block->end_date = AppUtil::date2db(Input::get("dt_end_date"));
 		
 		return $block;
 	}
