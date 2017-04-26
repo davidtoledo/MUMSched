@@ -13,4 +13,5 @@ interface IStudentSectionService {
 	public static function deleteSection($id);	
 	public static function getSectionsByStudent($studentID);
 	public static function getStudentSection($sectionID,$studentID);
+	public static function save($studentSection);
 }

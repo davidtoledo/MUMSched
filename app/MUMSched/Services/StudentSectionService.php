@@ -13,7 +13,7 @@ class StudentSectionService implements IStudentSectionService {
 	public static function getSectionList() {
 		return StudentSectionDAO::getSectionList();
 	}
-	
+
 	public static function getSectionByID($id) {
 		return StudentSectionDAO::getSectionByID($id);
 	}
@@ -21,13 +21,17 @@ class StudentSectionService implements IStudentSectionService {
 	public static function deleteSection($id) {
 		return StudentSectionDAO::deleteSection($id);
 	}
-	
-	public static function getSectionsByStudent($studentID){
+
+	public static function getSectionsByStudent($studentID) {
 		return StudentSectionDAO::getSectionsByStudentID($studentID);
 	}
-	
-	public static function getStudentSection($sectionID,$studentID){
-		return StudentSectionDAO::getStudentSection($sectionID,$studentID);
+
+	public static function getStudentSection($sectionID, $studentID) {
+		return StudentSectionDAO::getStudentSection($sectionID, $studentID);
 	}
-	
+
+	public static function save($studentSection) {
+		return StudentSectionDAO::save($studentSection);
+	}
+
 }

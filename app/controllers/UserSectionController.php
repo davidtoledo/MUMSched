@@ -45,7 +45,7 @@ class UserSectionController extends BaseController {
 	}
 	
 	/**
-	 * Associate an User to a Course
+	 * Associate an section to a student
 	 *
 	 * @author Fantastic Five
 	 */
@@ -84,7 +84,7 @@ class UserSectionController extends BaseController {
 			// create
 			$ss = self::populate();
 			
-			if ( $ss->save() ) {
+			if ( StudentSectionService::save($ss) ) {
 				
 				// success
 				Session::flash('success', 'Successfully added.');

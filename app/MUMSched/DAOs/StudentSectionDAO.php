@@ -96,5 +96,7 @@ class StudentSectionDAO {
 		}
 		
 	}	
-	
+	public static function save($studentSection){
+		return $studentSection->save();
+	}
 }
