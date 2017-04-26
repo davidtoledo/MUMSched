@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Symfony package.
+ * This file is part of the MUMSched package.
  *
- * (c) Fabien Potencier <fabien@symfony.com>
+ * (c) FantasticFive
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -16,9 +16,8 @@ use Symfony\Component\Security\Acl\Model\AuditableEntryInterface;
 use Symfony\Component\Security\Acl\Model\SecurityIdentityInterface;
 
 /**
- * Auditable ACE implementation
  *
- * @author Johannes M. Schmitt <schmittjoh@gmail.com>
+ * @author Nguyen Tran <tranvinhnguyen@gmail.com>
  */
 class Entry implements AuditableEntryInterface
 {

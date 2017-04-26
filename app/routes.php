@@ -249,7 +249,7 @@
 				'before' => 'isAdmin'
 		]);
 		
-		Route::any('entry/delete/{id_en  	try}', [
+		Route::any('entry/delete/{id_entry}', [
 				'as' => 'admin.entry.delete',
 				'uses' => 'EntryController@delete',
 				'before' => 'isAdmin'
