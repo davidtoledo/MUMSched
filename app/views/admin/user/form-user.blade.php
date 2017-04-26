@@ -142,6 +142,11 @@
 						</div>
 					</div>
 					
+					@if ( Auth::user()->type == \SystemUser::TYPE_STUDENT && !Auth::user()->is_admin )
+						{{ Form::hidden('student_entry', Auth::user()->student_entry ) }}
+						{{ Form::hidden('student_track', Auth::user()->student_track ) }}
+					@endif
+					
 					@if (Auth::user()->is_admin)
 						<div class="form-group">
 							<label class="col-sm-2 control-label no-padding-right blue">Type</label>
@@ -179,6 +184,7 @@
 							</div>
 						</div>
 						<div id="studentData">
+														
 						<div class="form-group">
 							<label class="col-sm-2 control-label no-padding-right blue">Student Track</label>
 							<div class="col-sm-10">
@@ -196,7 +202,7 @@
 								</span>							
 							</div>
 						</div>
-						
+												
 						<div class="form-group">
 							<label class="col-sm-2 control-label no-padding-right blue">Student Entry</label>
 							<div class="col-sm-10">
@@ -214,6 +220,7 @@
 								</span>							
 							</div>
 						</div>
+
 						</div>
 						
 					@else
