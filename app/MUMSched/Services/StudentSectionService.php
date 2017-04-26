@@ -26,4 +26,8 @@ class StudentSectionService implements IStudentSectionService {
 		return StudentSectionDAO::getSectionsByStudentID($studentID);
 	}
 	
+	public static function getStudentSection($sectionID,$studentID){
+		return StudentSectionDAO::getStudentSection($sectionID,$studentID);
+	}
+	
 }

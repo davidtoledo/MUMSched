@@ -154,7 +154,12 @@
 				'as' => 'admin.user.section.create',
 				'uses' => 'UserSectionController@create',
 		]);
-
+		
+		Route::any('user/section/delete/{id_user}/{id_ss}', [
+				'as' => 'admin.user.section.delete',
+				'uses' => 'UserSectionController@delete',
+		]);
+		
 		##################################################
 		############### USERS -> Schedules ###############
 

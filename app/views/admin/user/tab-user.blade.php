@@ -30,7 +30,7 @@
 		@endif
 		
 		@if ($user->type == \SystemUser::TYPE_STUDENT)
-			<li class="{{ Request::is('admin/user/section/list*') ? ' active ' : '' }}">
+			<li class="{{ Request::is('admin/user/section/*') ? ' active ' : '' }}">
 				<a href="{{ URL::route('admin.user.section.list', $user->id_user) }}">
 					<i class="blue ace-icon fa fa-plus-square" aria-hidden="true"></i>
 					Section Registration

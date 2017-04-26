@@ -89,7 +89,7 @@
 									<td>
 							            <!-- Multi-action button -->
 							            <div class="btn-group">
-							               <a class="btn btn-glow delete_confirmation"  href="{{ URL::route('admin.user.course.delete', [$us->id_fc]) }}">
+							               <a class="btn btn-glow delete_confirmation"  href="{{ URL::route('admin.user.section.delete', [$user->id_user, $us->id_ss]) }}">
 								               <i class="fa fa-ban red"></i>
 								               <span>Remove</span>
 							               </a>
